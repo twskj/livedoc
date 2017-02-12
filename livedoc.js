@@ -651,7 +651,7 @@ var mkdirpSync = function (dirpath) {
 function copyFile(source, target, cb) {
     var cbCalled = false;
     function done(err) {
-        if (!cbCalled) {
+        if (cb && !cbCalled) {
             cb(err);
             cbCalled = true;
         }
