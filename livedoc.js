@@ -366,7 +366,7 @@ function getTemplate() {
                     return false;
                 }
                 ,getSchema: function(schema,state){
-                    var tmp = schema.split("\n");
+                    var tmp = schema.split("\\n");
                     var tokens = [];
                     var fold = false;
                     var fold_lv = 0;
