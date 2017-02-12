@@ -619,7 +619,7 @@ function initHeader() {
     };
 }
 
-function makeEmbeded(html,callback){
+function makeEmbedded(html,callback){
     var fs = require(fs);
     var path = require('path');
     var content = fs.readFileSync(path.join('template',"materialize.min.css"), 'utf8');
@@ -777,8 +777,8 @@ function generateHTML(data, config, callback) {
         var filename = config.outputFilename || "doc.html";
         makeOffline(html,filename,callback);
     }
-    else if(config.mode === "embeded"){
-        makeEmbeded(html,callback);
+    else if(config.mode === "embedded"){
+        makeEmbedded(html,callback);
     }
     else {
         return makeSingleFile(html,callback);
