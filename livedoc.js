@@ -2,8 +2,8 @@ function getTemplate() {
     return `
 <html>
 <head>
-    __MATERIAL_CSS_PLACEHOLDER__
-    __MATERIAL_ICON_PLACEHOLDER__
+    ____MATERIAL_CSS_PLACEHOLDER____
+    ____MATERIAL_ICON_PLACEHOLDER____
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid #82b1ff;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:.3em;height:2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.pointer{cursor:pointer}.tool-panel{border:1px solid #9e9e9e;padding:1em;margin-bottom:1rem;margin-top:1rem}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}cursor:default;</style>
     <title></title>
@@ -194,11 +194,11 @@ function getTemplate() {
             </div>
         </div>
     </div>
-    <footer class="container grey-text text-lighten-4 thin">__FOOTER_PLACEHOLDER__</footer>
+    <footer class="container grey-text text-lighten-4 thin">____FOOTER_PLACEHOLDER____</footer>
 
-    __JQUERY_PLACEHOLDER__
-    __MATERIAL_JS_PLACEHOLDER__
-    __VUEPLACEHOLDER__
+    ____JQUERY_PLACEHOLDER____
+    ____MATERIAL_JS_PLACEHOLDER____
+    ____VUE_PLACEHOLDER____
 
     <script>
         var context = {
@@ -527,7 +527,7 @@ function getTemplate() {
                     }
                 }
             }
-            , data: __DATAPLACEHOLDER__
+            , data: ____DATAPLACEHOLDER____
         };
         var vm = new Vue(context);
         document.title = context.data.name;
@@ -545,8 +545,8 @@ function initContainer() {
         , host: ""
         , port: { http: 80, https: 443 }
         , basePath: ""
-        , currentHost: "__CURRENTHOST__"
-        , currentScheme: "__PROTO__"
+        , currentHost: "____CURRENTHOST____"
+        , currentScheme: "____PROTO____"
         , search: ""
         , apis: []
     };
@@ -620,7 +620,7 @@ function initHeader() {
 }
 
 function useLocalFont(css){
-    return css+'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
+    return css.trim()+'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
 }
 
 function makeEmbedded(html,callback){
@@ -628,14 +628,14 @@ function makeEmbedded(html,callback){
     var path = require('path');
     var content = fs.readFileSync(path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
-    html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
-    html = html.replace('__MATERIAL_ICON_PLACEHOLDER__', '');
+    html = html.replace('____MATERIAL_CSS_PLACEHOLDER____', '<style>'+content+'</style>');
+    html = html.replace('____MATERIAL_ICON_PLACEHOLDER____', '');
     content = fs.readFileSync(path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
-    html = html.replace('__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
+    html = html.replace('____JQUERY_PLACEHOLDER____', '<script>'+content+'</script>');
     content = fs.readFileSync(path.join(__dirname,'template',"materialize.min.js"), 'utf8');
-    html = html.replace('__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
+    html = html.replace('____MATERIAL_JS_PLACEHOLDER____', '<script>'+content+'</script>');
     content = fs.readFileSync(path.join(__dirname,'template',"vue.min.js"), 'utf8');
-    callback(null,html.replace('__VUEPLACEHOLDER__', '<script>'+content+'</script>'));
+    callback(null,html.replace('____VUE_PLACEHOLDER____', '<script>'+content+'</script>'));
 }
 
 function getFilenameWithoutExtension(filename){
@@ -737,11 +737,11 @@ function makeOffline(html,filename){
         copyFile(path.join(__dirname,templateDir,resource_files[i]),path.join(__dirname,resource_dirname,target_dir,src_files[i]));
     }
 
-    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
-    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="css/icon.css" rel="stylesheet">')
-    .replace('__JQUERY_PLACEHOLDER__', '<script src="js/jquery-2.2.4.min.js"></script>')
-    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="js/materialize.min.js"></script>')
-    .replace('__VUEPLACEHOLDER__', '<script src="vue.min.js"></script>');
+    var html = html.replace('____MATERIAL_CSS_PLACEHOLDER____', '<link rel="stylesheet" href="css/materialize.min.css">')
+    .replace('____MATERIAL_ICON_PLACEHOLDER____', '<link href="css/icon.css" rel="stylesheet">')
+    .replace('____JQUERY_PLACEHOLDER____', '<script src="js/jquery-2.2.4.min.js"></script>')
+    .replace('____MATERIAL_JS_PLACEHOLDER____', '<script src="js/materialize.min.js"></script>')
+    .replace('____VUE_PLACEHOLDER____', '<script src="vue.min.js"></script>');
 
     fs.writeFileSync(filename,html,'utf8');
     callback(null,html);
@@ -749,11 +749,11 @@ function makeOffline(html,filename){
 
 function makeSingleFile(html,callback){
 
-    callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
-    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
-    .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
-    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
-    .replace('__VUEPLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
+    callback(null,html.replace('____MATERIAL_CSS_PLACEHOLDER____', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
+    .replace('____MATERIAL_ICON_PLACEHOLDER____', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
+    .replace('____JQUERY_PLACEHOLDER____', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
+    .replace('____MATERIAL_JS_PLACEHOLDER____', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
+    .replace('____VUE_PLACEHOLDER____', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
 }
 
 function generateHTML(data, config, callback) {
@@ -766,16 +766,16 @@ function generateHTML(data, config, callback) {
         data = JSON.stringify(data,null,config.indent || 0);
     }
 
-    var html = getTemplate().replace("__DATAPLACEHOLDER__", data);
+    var html = getTemplate().replace("____DATAPLACEHOLDER____", data);
     var date = new Date();
     var dateFormat = {
         weekday: "long", year: "numeric", month: "short",
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
-    html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
-    html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
-    html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
-    html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
+    html = html.replace('"____PROTO____"', 'location.protocol.replace(":","")');
+    html = html.replace('"____CURRENTHOST____"', 'location.host || "null"');
+    html = html.replace("____FOOTER_PLACEHOLDER____", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
+    html = html.replace("____GENERATED_DATE____", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
 
     if(config.mode === "offline"){
         var filename = config.outputFilename || "doc.html";
