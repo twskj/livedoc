@@ -1,3 +1,6 @@
+const fs = require('fs');
+const Path = require('path');
+
 function getTemplate() {
     return `
 <html>
@@ -623,14 +626,12 @@ function useLocalFont(css){
 }
 
 function getFilenameWithoutExtension(filename){
-    var path = require('path');
-    var filename = path.basename('filename');
+    var filename = Path.basename('filename');
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
 }
 
 var mkdirSync = function (path) {
     try {
-        var fs = require('fs');
         fs.mkdirSync(path);
     }
     catch(e) {
@@ -641,15 +642,13 @@ var mkdirSync = function (path) {
 }
 
 var mkdirpSync = function (dirpath) {
-    var path = require('path');
-    var parts = dirpath.split(path.sep);
+    var parts = dirpath.split(Path.sep);
     for( var i = 1; i <= parts.length; i++ ) {
-        mkdirSync( path.join.apply(null, parts.slice(0, i)) );
+        mkdirSync(Path.join.apply(null, parts.slice(0, i)));
     }
 }
 
 function copyFile(source, target, cb) {
-
     var cbCalled = false;
     function done(err) {
         if (!cbCalled) {
@@ -675,9 +674,7 @@ function copyFile(source, target, cb) {
 }
 
 function makeEmbedded(html,callback){
-    var fs = require('fs');
-    var path = require('path');
-    var content = fs.readFileSync(path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
+    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
     html = html.replace('<span class="material-icons">close</span>','<span class="material-icons lighten-4">X</span>');
     html = html.replace('<i class="material-icons left">mode_edit</i>','');
@@ -685,11 +682,11 @@ function makeEmbedded(html,callback){
     html = html.replace('<i class="material-icons">add</i>','<span style="font-size:2rem">+</span>');
     html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
     html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = fs.readFileSync(path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
+    content = fs.readFileSync(Path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
     html = replace(html,'__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(path.join(__dirname,'template',"materialize.min.js"), 'utf8');
+    content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
     html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(path.join(__dirname,'template',"vue.min.js"), 'utf8');
+    content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
     html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>')
     callback(null,html);
 }
@@ -705,42 +702,40 @@ function replace(src,token,value){
 }
 
 function makeOffline(html,filename){
-    var fs = require('fs');
-    var path = require('path');
-    var filename = path.resolve(filename);
-    var dirname = path.dirname(filename);
-    var resource_dirname = path.join(dirname, getFilenameWithoutExtension(filename)+"_files");
+    var filename = Path.resolve(filename);
+    var dirname = Path.dirname(filename);
+    var resource_dirname = Path.join(dirname, getFilenameWithoutExtension(filename)+"_files");
     mkdirpSync(resource_dirname);
-    mkdirpSync(resource_dirname+path.sep+"js");
-    mkdirpSync(resource_dirname+path.sep+"css");
-    mkdirpSync(path.join(resource_dirname,"fonts","roboto"));
-    mkdirpSync(path.join(resource_dirname,"fonts","material"));
+    mkdirpSync(resource_dirname+Path.sep+"js");
+    mkdirpSync(resource_dirname+Path.sep+"css");
+    mkdirpSync(Path.join(resource_dirname,"fonts","roboto"));
+    mkdirpSync(Path.join(resource_dirname,"fonts","material"));
 
     src_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
-    ,"fonts"+path.sep+"material"+path.sep+"material_icon.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.eot"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.ttf"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.woff"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.eot"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.ttf"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.woff"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.eot"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.ttf"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.woff"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.eot"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.ttf"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.woff"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.eot"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.ttf"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.woff"
-    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.woff2"
+    ,"fonts"+Path.sep+"material"+Path.sep+"material_icon.woff2"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.eot"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.ttf"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff2"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.eot"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.ttf"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff2"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.eot"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.ttf"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.woff"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.woff2"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.eot"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.ttf"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.woff"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.woff2"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.eot"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.ttf"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff"
+    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff2"
     ];
 
-    var templateDir = "template"+path.sep;
+    var templateDir = "template"+Path.sep;
     var target_dir = "";
     var fileExt = "";
 
@@ -754,7 +749,7 @@ function makeOffline(html,filename){
         else{
             target_dir = "";
         }
-        copyFile(path.join(__dirname,templateDir,src_files[i]),path.join(__dirname,resource_dirname,target_dir,src_files[i]));
+        copyFile(Path.join(__dirname,templateDir,src_files[i]),Path.join(__dirname,resource_dirname,target_dir,src_files[i]));
     }
 
     var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
