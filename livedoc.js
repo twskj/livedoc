@@ -629,18 +629,21 @@ function getFilenameWithoutExtension(filename){
 }
 
 var mkdirSync = function (path) {
-  try {
-    fs.mkdirSync(path);
-  } catch(e) {
-    if ( e.code != 'EEXIST' ) throw e;
-  }
+    try {
+        var fs = require('fs');
+        fs.mkdirSync(path);
+    } catch(e) {
+    if ( e.code != 'EEXIST' ){
+        throw e;
+    }
 }
 
 var mkdirpSync = function (dirpath) {
-  var parts = dirpath.split(path.sep);
-  for( var i = 1; i <= parts.length; i++ ) {
-    mkdirSync( path.join.apply(null, parts.slice(0, i)) );
-  }
+    var path = require('path');
+    var parts = dirpath.split(path.sep);
+    for( var i = 1; i <= parts.length; i++ ) {
+        mkdirSync( path.join.apply(null, parts.slice(0, i)) );
+    }
 }
 
 function copyFile(source, target, cb) {
