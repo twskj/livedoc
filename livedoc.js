@@ -777,7 +777,7 @@ function generateHTML(data, config, callback) {
         var filename = config.outputFilename || "doc.html";
         makeOffline(html,filename,callback);
     }
-    else if(conf.mode === "embeded"){
+    else if(config.mode === "embeded"){
         makeEmbeded(html,callback);
     }
     else {
