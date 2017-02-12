@@ -676,6 +676,7 @@ function makeEmbedded(html,callback){
     content = useLocalFont(content);
     html = html.replace('<span class="material-icons">close</span>','<span class="material-icons lighten-4">X</span>');
     html = html.replace('<i class="material-icons left">mode_edit</i>','');
+    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>','');
     html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
     html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
     content = fs.readFileSync(path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
