@@ -1,6 +1,6 @@
 {
   "name": "livedoc",
-  "version": "0.0.25",
+  "version": "0.0.38",
   "description": "A single page document generator for REST API",
   "main": "livedoc.js",
   "scripts": {

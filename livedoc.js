@@ -18,7 +18,7 @@ function getTemplate() {
                 <div class="input-field">
                     <input id="search" type="search" placeholder="search by tag" title="Use - prefix to exclude unwanted tags. Ex: -POST" required v-model="filterByTag" @keyup.enter="$event.target.blur()">
                     <label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>
-                    <span class="material-icons">close</span>
+                    <i class="material-icons">close</i>
                 </div>
             </div>
             <div class="navButtonContainer"><a class="navButton pointer" @click="collapseAllApi(false)">Collapse</a><a class="navButton pointer" @click="collapseAllApi(true)">Expand</a></div>
@@ -651,7 +651,6 @@ var mkdirpSync = function (dirpath) {
 function copyFile(source, target, cb) {
     var cbCalled = false;
     function done(err) {
-        console.log(err);
         if (cb && !cbCalled) {
             cb(err);
             cbCalled = true;
@@ -677,7 +676,7 @@ function copyFile(source, target, cb) {
 function makeEmbedded(html,callback){
     var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
-    html = html.replace('<span class="material-icons">close</span>','<span class="material-icons lighten-4">X</span>');
+    html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
     html = html.replace('<i class="material-icons left">mode_edit</i>','');
     html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>','');
     html = html.replace('<i class="material-icons">add</i>','<span style="font-size:2rem">+</span>');
@@ -702,45 +701,38 @@ function replace(src,token,value){
     return src.substr(0,idx) + value + src.substr(idx+token.length);
 }
 
+function sleep(count,countTo){
+
+}
+
 function makeOffline(html,outputFilename,callback){
     var outputFilename = Path.resolve(outputFilename);
-    console.log("output: "+outputFilename);
     var dst = Path.dirname(outputFilename);
-    var dst_resource_dir = Path.join(dst, getFilenameWithoutExtension(outputFilename)+"_files");
+    var resource_folder = getFilenameWithoutExtension(outputFilename)+"_files";
+    var dst_resource_dir = Path.join(dst, resource_folder);
     mkdirpSync(dst_resource_dir);
     mkdirpSync(dst_resource_dir+Path.sep+"js");
     mkdirpSync(dst_resource_dir+Path.sep+"css");
     mkdirpSync(Path.join(dst_resource_dir,"fonts","roboto"));
     mkdirpSync(Path.join(dst_resource_dir,"fonts","material"));
 
-    template_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
+    template_files = ["jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
     ,"fonts"+Path.sep+"material"+Path.sep+"material_icon.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.eot"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.ttf"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.eot"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.ttf"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.eot"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.ttf"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.woff"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Medium.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.eot"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.ttf"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.woff"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.eot"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.ttf"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff2"
     ];
 
+    //icon.css' content needs dynamic path
+    var data = fs.readFileSync(Path.join(__dirname, 'template',"icon.css"), 'utf8');
+    data = data.replace("url('fonts/material/material_icon.woff2')","url('../fonts/material/material_icon.woff2')");
+    fs.writeFileSync(Path.join(dst_resource_dir,"css","icon.css"),data);
     var templateDir = Path.join(__dirname,"template");
     var target_dir = "";
     var fileExt = "";
 
+    var count = 0;
     for(var i = 0;i<template_files.length;i++){
         if(template_files[i].toLowerCase().endsWith(".css")){
             target_dir = "css";
@@ -751,17 +743,32 @@ function makeOffline(html,outputFilename,callback){
         else{
             target_dir = "";
         }
-        copyFile(Path.join(templateDir,template_files[i]),Path.join(dst_resource_dir,target_dir,template_files[i]));
+        copyFile(Path.join(templateDir,template_files[i]),Path.join(dst_resource_dir,target_dir,template_files[i]),function(err){
+            if(err){
+                console.log(err);
+            }
+            count++;
+        });
     }
 
-    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
-    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="css/icon.css" rel="stylesheet">')
-    .replace('__JQUERY_PLACEHOLDER__', '<script src="js/jquery-2.2.4.min.js"></script>')
-    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="js/materialize.min.js"></script>')
-    .replace('__VUE_PLACEHOLDER__', '<script src="vue.min.js"></script>');
-
+    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="'+resource_folder+'/css/materialize.min.css">')
+    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="'+resource_folder+'/css/icon.css" rel="stylesheet">')
+    .replace('__JQUERY_PLACEHOLDER__', '<script src="'+resource_folder+'/js/jquery-2.2.4.min.js"></script>')
+    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="'+resource_folder+'/js/materialize.min.js"></script>')
+    .replace('__VUE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/vue.min.js"></script>');
     fs.writeFileSync(outputFilename,html,'utf8');
-    callback(null,html);
+
+    function block(){
+
+        if(count == template_files.length){
+            callback(null,html);
+        }
+        else{
+            setTimeout(function() {
+                block();
+            }, 1000);
+        }
+    }
 }
 
 function makeSingleFile(html,callback){
@@ -793,12 +800,12 @@ function generateHTML(data, config, callback) {
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
     html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
-
-    if(config.mode === "offline"){
+    config.mode = config.mode || "singlefile";
+    if(config.mode.toLowerCase() === "offline"){
         var outputFilename = config.outputFilename || "doc.html";
         makeOffline(html,outputFilename,callback);
     }
-    else if(config.mode === "embedded"){
+    else if(config.mode.toLowerCase() === "embedded"){
         makeEmbedded(html,callback);
     }
     else {
