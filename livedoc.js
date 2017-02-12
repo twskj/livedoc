@@ -1,257 +1,13 @@
-#!/usr/bin/env node
-
-var fs = require('fs');
-
-var indent_num = 4;
-var lastkey = "";
-var argv = {};
-for (var i = 0; i < process.argv.length; i++) {
-    if (process.argv[i].startsWith("-")) {
-        lastkey = process.argv[i];
-    } else {
-        if (lastkey) {
-            argv[lastkey] = process.argv[i];
-            lastkey = "";
-        }
-    }
-}
-
-if (!argv["-i"]) {
-    console.log("missing input file");
-    process.exit(1);
-}
-
-var inputFile = argv["-i"];
-var outputFile = argv["-o"] || "index.html";
-
 function getTemplate() {
     return `
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    __MATERIAL_CSS_PLACEHOLDER__
+    __MATERIAL_ICON_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-
-        [v-cloak] {
-            display: none;
-        }
-
-        body {
-            /*padding: 0rem 1rem 0 1rem;*/
-            background: #fdfdfd;
-        }
-
-        .indent {
-            padding-left: 1em;
-        }
-
-        .r-margin {
-            margin-right: 2em;
-        }
-
-        .r-indent {
-            padding-right: 1em;
-        }
-
-        no-overflow {
-            overflow: auto;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        .api-block{
-            border: 1px solid;
-            margin: 0.5rem 0 1.5rem 0;
-            border-color: #82b1ff;
-        }
-
-        .api-header{
-            font-size: 13pt;
-        }
-
-        .api-header > .api-title {
-            font-size: 13pt;
-            padding: 0.5em 0.5em 0.5em 0.5em;
-            display: inline-block;
-        }
-
-        .tag-container{
-            padding: 0.3em;
-            height: 2em;
-        }
-        .tag-container > .tag {
-
-            display: inline-block;
-            margin-right: 10px;
-            padding: 0 0.5rem 0 0.5rem;
-            white-space: nowrap;
-            position: relative;
-            min-width: 3rem;
-            text-align: center;
-
-            background: linear-gradient(to bottom, #fed970 0%,#febc4a 100%);
-            background-color: #FEC95B;
-
-            color: #963;
-            font-weight: bold;
-            text-decoration: none;
-            text-shadow: 0 1px rgba(255,255,255,0.4);
-
-            border-top: 1px solid #EDB14A;
-            border-bottom: 1px solid #CE922E;
-            border-right: 1px solid #DCA03B;
-            border-left: 1px solid #EDB14A;
-            border-radius: 3px 3px 3px 3px;
-            box-shadow: inset 0 1px #FEE395, 0 1px 2px rgba(0,0,0,0.21);
-        }
-
-        .round-border {
-            border-radius: 3px;
-        }
-
-        .showReqBtn {
-            padding: 1rem 0 1rem 0;
-        }
-
-        .fade-enter-active, .fade-leave-active {
-            transition: opacity .5s
-        }
-
-        .fade-leave-active {
-            transition: opacity .05s
-        }
-
-        .fade-enter, .fade-leave-to {
-            opacity: 0
-        }
-
-        .pointer {
-            cursor: pointer;
-        }
-
-        .tool-panel{
-            border: 1px solid #9e9e9e;
-            padding: 1em;
-            margin-bottom: 1rem;
-            margin-top: 1rem;
-        }
-
-        [type="radio"].with-gap:checked + label:before {
-            border-radius: 50%;
-            border: 2px solid #2196f3;
-        }
-
-        [type="radio"].with-gap:checked + label:after {
-            border-radius: 50%;
-            border: 2px solid #2196f3;
-            background-color: #2196f3;
-            z-index: 0;
-            -webkit-transform: scale(.5);
-            -moz-transform: scale(.5);
-            -ms-transform: scale(.5);
-            -o-transform: scale(.5);
-            transform: scale(.5);
-        }
-
-
-          /* label color */
-        /*.input-field label {
-            color: #000;
-        }*/
-        /* label focus color */
-        .input-field input[type=text]:focus + label {
-            color: #666;
-        }
-        /* label underline focus color */
-        .input-field input[type=text]:focus {
-            border-bottom: 1px solid #64b5f6;
-            box-shadow: 0 1px 0 0 #42a5f5;
-        }
-        /* valid color */
-        /*.input-field input[type=text].valid {
-            border-bottom: 1px solid #000;
-            box-shadow: 0 1px 0 0 #000;
-        }*/
-        /* invalid color */
-        /*.input-field input[type=text].invalid {
-            border-bottom: 1px solid #000;
-            box-shadow: 0 1px 0 0 #000;
-        }*/
-        /* icon prefix focus color */
-        /*.input-field .prefix.active {
-            color: #000;
-        }*/
-
-        textarea {
-            white-space: pre;
-            overflow: scroll;
-            overflow-x: scroll;
-            overflow-y: scroll;
-            height: 10em;
-        }
-
-        .console{
-            font-family: monospace;
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        .yellow-border{
-            border-color: #ffc400;
-        }
-
-        blockquote{
-            padding: 0.5em 0 0.5em 1em;
-        }
-
-        #toast-container {
-            min-width: 100%;
-            bottom: 0%;
-            top: 95%;
-            right: 0%;
-            left:  0%;
-        }
-
-        ::-webkit-input-placeholder {
-            color: #DDDDDD;
-        }
-        ::-moz-placeholder {
-            color: #DDDDDD;
-        }
-        :-ms-input-placeholder {
-            color: #DDDDDD;
-        }
-        :-moz-placeholder {
-            color: #DDDDDD;
-        }
-
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
-        }
-
-        .navButtonContainer {
-            position:absolute;
-            top:0;
-            right:1rem;
-        }
-
-        .navButton{
-            padding: 0 1rem 0 1rem;
-        }
-
-    </style>
-    <title>Pretty-Swag</title>
+    <style>[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid #82b1ff;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:.3em;height:2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.pointer{cursor:pointer}.tool-panel{border:1px solid #9e9e9e;padding:1em;margin-bottom:1rem;margin-top:1rem}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}</style>
+    <title></title>
 </head>
-
 <body>
     <div id="app" v-cloak>
         <nav class="blue" role="navigation">
@@ -438,11 +194,11 @@ function getTemplate() {
             </div>
         </div>
     </div>
-    <footer class="container grey-text text-lighten-4 thin">Generated __GENERATEDDATE__ by Pretty-Swag</footer>
+    <footer class="container grey-text text-lighten-4 thin">__FOOTER_PLACEHOLDER__</footer>
 
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    __VUE__
+    __JQUERY_PLACEHOLDER__
+    __MATERIAL_JS_PLACEHOLDER__
+    __VUEPLACEHOLDER__
 
     <script>
         var context = {
@@ -600,7 +356,6 @@ function getTemplate() {
                     }
                 }
                 ,hasBodyParam: function(params){
-
                     var location;
                     for(var i = 0;i<params.length;i++){
                         location = params[i].location.toLowerCase();
@@ -608,7 +363,6 @@ function getTemplate() {
                             return true;
                         }
                     }
-
                     return false;
                 }
                 ,getSchema: function(schema,state){
@@ -683,7 +437,6 @@ function getTemplate() {
                             result.push(encodeURIComponent(method.params[i].name)+"="+encodeURIComponent(method.params[i].value));
                         }
                     }
-
                     if(result.length == 0){
                         return "";
                     }
@@ -756,7 +509,6 @@ function getTemplate() {
                             new_path = new_path.split(":"+params[i].name).join(params[i].value);
                         }
                     }
-
                     return new_path;
                 }
                 , computeBody: function(method){
@@ -777,7 +529,6 @@ function getTemplate() {
             }
             , data: __DATAPLACEHOLDER__
         };
-
         var vm = new Vue(context);
         document.title = context.data.name;
     </script>
@@ -820,7 +571,7 @@ function initMethod() {
         , params: []
         , responses: []
         , request: initRequest()
-        , showTool: true
+        , showTool: false
         , showMe: true
     };
 }
@@ -868,150 +619,186 @@ function initHeader() {
     };
 }
 
-function generateHTML(data_str, callback) {
+function makeEmbeded(html){
+    var fs = require(fs);
+    var path = require('path');
+    var content = fs.readFileSync(path.join('template',"materialize.min.css"), 'utf8');
+    html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
+    content = fs.readFileSync(path.join('template',"icon.css"), 'utf8');
+    html = html.replace('__MATERIAL_ICON_PLACEHOLDER__', '<style>'+content+'</style>');
+    content = fs.readFileSync(path.join('template',"jquery-2.2.4.min.js"), 'utf8');
+    html = html.replace('__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(path.join('template',"materialize.min.js"), 'utf8');
+    html = html.replace('__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(path.join('template',"vue.min.js"), 'utf8');
+    return html.replace('__VUEPLACEHOLDER__', '<script>'+content+'</script>');
+}
 
-    var html = getTemplate().replace("__DATAPLACEHOLDER__", data_str);
+function getFilenameWithoutExtension(filename){
+    var filename = path.basename('filename');
+    return filename.substr(0, filename.lastIndexOf('.')) || filename;
+}
+
+var mkdirSync = function (path) {
+  try {
+    fs.mkdirSync(path);
+  } catch(e) {
+    if ( e.code != 'EEXIST' ) throw e;
+  }
+}
+
+var mkdirpSync = function (dirpath) {
+  var parts = dirpath.split(path.sep);
+  for( var i = 1; i <= parts.length; i++ ) {
+    mkdirSync( path.join.apply(null, parts.slice(0, i)) );
+  }
+}
+
+function copyFile(source, target, cb) {
+
+    var cbCalled = false;
+    function done(err) {
+        if (!cbCalled) {
+            cb(err);
+            cbCalled = true;
+        }
+    }
+
+    var rd = fs.createReadStream(source);
+    rd.on("error", function(err) {
+        done(err);
+    });
+
+    var wr = fs.createWriteStream(target);
+        wr.on("error", function(err) {
+    done(err);
+    });
+
+    wr.on("close", function(ex) {
+        done();
+    });
+    rd.pipe(wr);
+}
+
+function makeOffline(html,filename){
+    var fs = require('fs');
+    var path = require('path');
+    var filename = path.resolve(filename);
+    var dirname = path.dirname(filename);
+    var resource_dirname = path.join(dirname, getFilenameWithoutExtension(filename)+"_files");
+    mkdirpSync(resource_dirname);
+    mkdirpSync(resource_dirname+path.sep+"js");
+    mkdirpSync(resource_dirname+path.sep+"css");
+    mkdirpSync(path.join(resource_dirname,"fonts","roboto"));
+    mkdirpSync(path.join(resource_dirname,"fonts","material"));
+
+    src_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
+    ,"fonts"+path.sep+"material"+path.sep+"material_icon.woff2"
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.eot
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.ttf
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.woff
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.woff2
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.eot
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.ttf
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.woff
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.woff2
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.eot
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.ttf
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.woff
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.woff2
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.eot
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.ttf
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.woff
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.woff2
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.eot
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.ttf
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.woff
+    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.woff2
+    ];
+
+    var templateDir = "template"+path.sep;
+    var target_dir = "";
+    var fileExt = "";
+
+    for(var i = 0;i<src_files.length;i++){
+        if(src_files[i].toLowerCase().endsWith(".css")){
+            target_dir = "css";
+        }
+        else if(src_files[i].toLowerCase().endsWith(".js")){
+            target_dir = "js";
+        }
+        else{
+            target_dir = "";
+        }
+        copyFile(templateDir+resource_files[i],resource_dirname+path.sep+target_dir+path.sep+src_files[i]);
+    }
+
+    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
+    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="css/icon.css" rel="stylesheet">')
+    .replace('__JQUERY_PLACEHOLDER__', '<script src="js/jquery-2.2.4.min.js"></script>')
+    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="js/materialize.min.js"></script>')
+    .replace('__VUEPLACEHOLDER__', '<script src="vue.min.js"></script>');
+
+    fs.writeFileSync(filename,html,'utf8');
+    return html;
+}
+
+function makeSingleFile(html){
+
+    return html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
+    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
+    .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
+    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
+    .replace('__VUEPLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>');
+}
+
+
+function generateHTML(data, config, callback) {
+
+    if(!config){
+        config = {};
+    }
+
+    if(typeof data === "object"){
+        data = JSON.stringify(data,null,config.indent || 0);
+    }
+
+    var html = getTemplate().replace("__DATAPLACEHOLDER__", data);
     var date = new Date();
     var options = {
         weekday: "long", year: "numeric", month: "short",
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
-    html = html.replace("__GENERATEDDATE__", date.toLocaleTimeString("en-us", options));
-
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
+    html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", options) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
 
-    html = html.replace("__VUE__", "<script src='https://unpkg.com/vue@2.1.10/dist/vue.min.js'></script>");
-    
-    fs.writeFile(outputFile, html, function (err) {
-        if (err) {
-            console.log(err);
+    if(config.mode === "offline"){
+        var filename = config.outputFilename || "index.html";
+        if(callback){
+            makeOffline(html,filename,callback);
         }
-        callback();
-    });
-}
-
-function computeSchema(schema,def) {
-    if (typeof schema === "string")
-        return schema;
-    var tmp = JSON.parse(resolveNested(schema, def));
-    return JSON.stringify(tmp, null, indent_num);
-}
-
-function resolveNested(schema,def) {
-    try {
-        if ("type" in schema) {
-
-            if (schema.type === "array") {
-                //need to loop
-                return "[" + resolveNested(schema.items, def) + "]";
-            }
-            else if (schema.type === "object") {
-                var keyval = [];
-                for (var prop in schema.properties) {
-
-                    if ("$ref" in schema.properties[prop]) {
-                        keyval.push('"' + prop + '":' + resolveNested(schema.properties[prop],def));
-                    }
-                    else if (schema.properties[prop].type === "array" || schema.properties[prop].type === "object") {
-                        keyval.push('"' + prop + '":' + resolveNested(schema.properties[prop],def));
-                    }
-                    else {
-                        keyval.push('"' + prop + '":"' + schema.properties[prop]["type"] + '"');
-                    }
-                }
-                return "{" + keyval.join(",") + "}";
-            }
-            else {
-                return schema.type;
-            }
+        else{
+            makeOffline(html,filename);
         }
-        else if ("$ref" in schema) {
-            return resolveNested(def[schema["$ref"].substr(14)], def); //remove #/definitions
-        }
-        else {
-            JSON.stringify(schema, null, indent_num);
-        }
-        
     }
-    catch (err) {
-        if (schema.type) {
-            return '"'+schema.type+'"';
-        }
-        return JSON.stringify(schema, null, indent_num);
+    else if(conf.mode === "embeded"){
+        return makeEmbeded(html);
+    }
+    else {
+        return makeSingleFile(html);
     }
 }
 
-function parseSourceFile() {
-    fs.readFile(inputFile, 'utf8', function (err, data) {
-        if (err) {
-            throw err;
-        }
+map = {
+    "generateHTML": generateHTML
+    ,"initContainer": initContainer
+    ,"initApi": initApi
+    ,"initMethod": initMethod
+    ,"initParam": initParam
+    ,"initResponse": initResponse
+    ,"initRequest": initRequest
+    ,"initHeader": initHeader
+};
 
-        var input;
-        try {
-            input = JSON.parse(data);
-        }
-        catch(json_err){
-            var yaml = require('js-yaml');
-            try {
-                input = yaml.safeLoad(data);
-            } catch (yaml_err) {
-                console.log(yaml_err);
-                process.exit(1);
-            }
-        }
-
-        var result = initContainer();
-        result.name = input.info.title;
-        result.summary = input.info.description;
-        result.version = input.info.version;
-        result.host = input.host;
-        result.basePath = input.basePath;
-
-        for (var path in input.paths) {
-
-            var api = initApi();
-            result.apis.push(api);
-            api.path = path;
-            for (var method_name in input.paths[path]) {
-                var method = initMethod();
-                api.methods.push(method);
-                var input_method = input.paths[path][method_name];
-                method.name = method_name;
-                method.tags = input_method.tags;
-                method.summary = input_method.summary;
-                method.desc = input_method.description;
-
-                if (input_method.parameters) {
-                    for (var i = 0; i < input_method.parameters.length; i++) {
-                        var param = initParam();
-                        method.params.push(param);
-                        var parameter = input_method.parameters[i];
-                        param.name = parameter.name;
-                        param.location = parameter.in;
-                        param.desc = parameter.description;
-                        param.required = parameter.require;
-                        param.schema = computeSchema(parameter.type, input.definitions);
-                    }
-                }
-
-                for (var code in input_method.responses) {
-                    var res = initResponse();
-                    method.responses.push(res);
-                    var response = input_method.responses[code];
-                    res.code = code;
-                    res.desc = response.description;
-                    res.schema = computeSchema(response.schema, input.definitions);
-                }
-            }
-        }
-        generateHTML(JSON.stringify(result, null, indent_num), function () { console.log("DONE") });
-    });
-}
-
-parseSourceFile();
-
-//idea array --> dis play as [] ?
-//idea clickable object to {...} 
-//what about ref loop?
+module.exports = map;
