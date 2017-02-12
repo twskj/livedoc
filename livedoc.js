@@ -377,7 +377,7 @@ function getTemplate() {
 
                         if(fold){
                             current_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
-                            var closeBraceRegex = new RegExp("^\\s*\\""+close_token+"\\"\\s*,?$");
+                            var closeBraceRegex = new RegExp("^\\s*"+close_token+"\\s*,?$");
                             if(closeBraceRegex.exec(tmp[i].trim()) && fold_lv == current_lv){
                                 fold = false;
                                 close_token = "";
