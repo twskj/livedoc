@@ -626,7 +626,7 @@ function useLocalFont(css){
 }
 
 function getFilenameWithoutExtension(filename){
-    var filename = Path.basename('filename');
+    var filename = Path.basename(filename);
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
 }
 
@@ -651,6 +651,7 @@ var mkdirpSync = function (dirpath) {
 function copyFile(source, target, cb) {
     var cbCalled = false;
     function done(err) {
+        console.log(err);
         if (cb && !cbCalled) {
             cb(err);
             cbCalled = true;
@@ -664,7 +665,7 @@ function copyFile(source, target, cb) {
 
     var wr = fs.createWriteStream(target);
         wr.on("error", function(err) {
-    done(err);
+        done(err);
     });
 
     wr.on("close", function(ex) {
@@ -701,17 +702,18 @@ function replace(src,token,value){
     return src.substr(0,idx) + value + src.substr(idx+token.length);
 }
 
-function makeOffline(html,filename,callback){
-    var filename = Path.resolve(filename);
-    var dirname = Path.dirname(filename);
-    var resource_dirname = Path.join(dirname, getFilenameWithoutExtension(filename)+"_files");
-    mkdirpSync(resource_dirname);
-    mkdirpSync(resource_dirname+Path.sep+"js");
-    mkdirpSync(resource_dirname+Path.sep+"css");
-    mkdirpSync(Path.join(resource_dirname,"fonts","roboto"));
-    mkdirpSync(Path.join(resource_dirname,"fonts","material"));
+function makeOffline(html,outputFilename,callback){
+    var outputFilename = Path.resolve(outputFilename);
+    console.log("output: "+outputFilename);
+    var dst = Path.dirname(outputFilename);
+    var dst_resource_dir = Path.join(dst, getFilenameWithoutExtension(outputFilename)+"_files");
+    mkdirpSync(dst_resource_dir);
+    mkdirpSync(dst_resource_dir+Path.sep+"js");
+    mkdirpSync(dst_resource_dir+Path.sep+"css");
+    mkdirpSync(Path.join(dst_resource_dir,"fonts","roboto"));
+    mkdirpSync(Path.join(dst_resource_dir,"fonts","material"));
 
-    src_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
+    template_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
     ,"fonts"+Path.sep+"material"+Path.sep+"material_icon.woff2"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.eot"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.ttf"
@@ -735,21 +737,21 @@ function makeOffline(html,filename,callback){
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff2"
     ];
 
-    var templateDir = "template"+Path.sep;
+    var templateDir = Path.join(__dirname,"template");
     var target_dir = "";
     var fileExt = "";
 
-    for(var i = 0;i<src_files.length;i++){
-        if(src_files[i].toLowerCase().endsWith(".css")){
+    for(var i = 0;i<template_files.length;i++){
+        if(template_files[i].toLowerCase().endsWith(".css")){
             target_dir = "css";
         }
-        else if(src_files[i].toLowerCase().endsWith(".js")){
+        else if(template_files[i].toLowerCase().endsWith(".js")){
             target_dir = "js";
         }
         else{
             target_dir = "";
         }
-        copyFile(Path.join(__dirname,templateDir,src_files[i]),Path.join(__dirname,resource_dirname,target_dir,src_files[i]));
+        copyFile(Path.join(templateDir,template_files[i]),Path.join(dst_resource_dir,target_dir,template_files[i]));
     }
 
     var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
@@ -758,7 +760,7 @@ function makeOffline(html,filename,callback){
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="js/materialize.min.js"></script>')
     .replace('__VUE_PLACEHOLDER__', '<script src="vue.min.js"></script>');
 
-    fs.writeFileSync(filename,html,'utf8');
+    fs.writeFileSync(outputFilename,html,'utf8');
     callback(null,html);
 }
 
@@ -793,8 +795,8 @@ function generateHTML(data, config, callback) {
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
 
     if(config.mode === "offline"){
-        var filename = config.outputFilename || "doc.html";
-        makeOffline(html,filename,callback);
+        var outputFilename = config.outputFilename || "doc.html";
+        makeOffline(html,outputFilename,callback);
     }
     else if(config.mode === "embedded"){
         makeEmbedded(html,callback);
