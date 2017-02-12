@@ -752,7 +752,6 @@ function makeSingleFile(html,callback){
     .replace('__VUEPLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
 }
 
-
 function generateHTML(data, config, callback) {
 
     if(!config){
@@ -765,13 +764,14 @@ function generateHTML(data, config, callback) {
 
     var html = getTemplate().replace("__DATAPLACEHOLDER__", data);
     var date = new Date();
-    var options = {
+    var dateFormat = {
         weekday: "long", year: "numeric", month: "short",
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
-    html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", options) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
+    html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
+    html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
 
     if(config.mode === "offline"){
         var filename = config.outputFilename || "doc.html";
