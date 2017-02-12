@@ -412,7 +412,7 @@ function getTemplate() {
                 ,schemaClicked: function(token,state){
                     var tmp = token.val.trim();
 
-                    if(!isFoldable(tmp)){
+                    if(!this.isFoldable(tmp)){
                         return;
                     }
 
