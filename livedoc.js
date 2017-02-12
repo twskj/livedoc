@@ -623,6 +623,7 @@ function useLocalFont(css){
 }
 
 function getFilenameWithoutExtension(filename){
+    var path = require('path');
     var filename = path.basename('filename');
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
 }
