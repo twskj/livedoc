@@ -632,9 +632,11 @@ var mkdirSync = function (path) {
     try {
         var fs = require('fs');
         fs.mkdirSync(path);
-    } catch(e) {
-    if ( e.code != 'EEXIST' ){
-        throw e;
+    }
+    catch(e) {
+        if ( e.code != 'EEXIST' ){
+            throw e;
+        }
     }
 }
 
