@@ -754,7 +754,7 @@ function makeOffline(html,filename){
         else{
             target_dir = "";
         }
-        copyFile(path.join(__dirname,templateDir,resource_files[i]),path.join(__dirname,resource_dirname,target_dir,src_files[i]));
+        copyFile(path.join(__dirname,templateDir,src_files[i]),path.join(__dirname,resource_dirname,target_dir,src_files[i]));
     }
 
     var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
