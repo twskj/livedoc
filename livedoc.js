@@ -619,13 +619,18 @@ function initHeader() {
     };
 }
 
+function useLocalFont(css){
+    return css+'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
+}
+
 function makeEmbedded(html,callback){
-    var fs = require(fs);
+    var fs = require('fs');
     var path = require('path');
     var content = fs.readFileSync(path.join('template',"materialize.min.css"), 'utf8');
+    content = useLocalFont(content);
     html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
-    content = fs.readFileSync(path.join('template',"icon.css"), 'utf8');
-    html = html.replace('__MATERIAL_ICON_PLACEHOLDER__', '<style>'+content+'</style>');
+    // content = fs.readFileSync(path.join('template',"icon.css"), 'utf8');
+    html = html.replace('__MATERIAL_ICON_PLACEHOLDER__', '');
     content = fs.readFileSync(path.join('template',"jquery-2.2.4.min.js"), 'utf8');
     html = html.replace('__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
     content = fs.readFileSync(path.join('template',"materialize.min.js"), 'utf8');
