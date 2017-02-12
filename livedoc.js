@@ -701,7 +701,7 @@ function replace(src,token,value){
     return src.substr(0,idx) + value + src.substr(idx+token.length);
 }
 
-function makeOffline(html,filename){
+function makeOffline(html,filename,callback){
     var filename = Path.resolve(filename);
     var dirname = Path.dirname(filename);
     var resource_dirname = Path.join(dirname, getFilenameWithoutExtension(filename)+"_files");
