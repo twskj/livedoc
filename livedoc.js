@@ -619,7 +619,7 @@ function initHeader() {
     };
 }
 
-function makeEmbeded(html){
+function makeEmbeded(html,callback){
     var fs = require(fs);
     var path = require('path');
     var content = fs.readFileSync(path.join('template',"materialize.min.css"), 'utf8');
@@ -631,7 +631,7 @@ function makeEmbeded(html){
     content = fs.readFileSync(path.join('template',"materialize.min.js"), 'utf8');
     html = html.replace('__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
     content = fs.readFileSync(path.join('template',"vue.min.js"), 'utf8');
-    return html.replace('__VUEPLACEHOLDER__', '<script>'+content+'</script>');
+    callback(null,html.replace('__VUEPLACEHOLDER__', '<script>'+content+'</script>'));
 }
 
 function getFilenameWithoutExtension(filename){
@@ -740,16 +740,16 @@ function makeOffline(html,filename){
     .replace('__VUEPLACEHOLDER__', '<script src="vue.min.js"></script>');
 
     fs.writeFileSync(filename,html,'utf8');
-    return html;
+    callback(null,html);
 }
 
-function makeSingleFile(html){
+function makeSingleFile(html,callback){
 
-    return html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
+    callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
     .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
-    .replace('__VUEPLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>');
+    .replace('__VUEPLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
 }
 
 
@@ -774,19 +774,14 @@ function generateHTML(data, config, callback) {
     html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", options) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
 
     if(config.mode === "offline"){
-        var filename = config.outputFilename || "index.html";
-        if(callback){
-            makeOffline(html,filename,callback);
-        }
-        else{
-            makeOffline(html,filename);
-        }
+        var filename = config.outputFilename || "doc.html";
+        makeOffline(html,filename,callback);
     }
     else if(conf.mode === "embeded"){
-        return makeEmbeded(html);
+        makeEmbeded(html,callback);
     }
     else {
-        return makeSingleFile(html);
+        return makeSingleFile(html,callback);
     }
 }
 
