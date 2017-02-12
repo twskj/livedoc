@@ -15,7 +15,7 @@ function getTemplate() {
                 <div class="input-field">
                     <input id="search" type="search" placeholder="search by tag" title="Use - prefix to exclude unwanted tags. Ex: -POST" required v-model="filterByTag" @keyup.enter="$event.target.blur()">
                     <label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>
-                    <i class="material-icons">close</i>
+                    <span class="material-icons">close</span>
                 </div>
             </div>
             <div class="navButtonContainer"><a class="navButton pointer" @click="collapseAllApi(false)">Collapse</a><a class="navButton pointer" @click="collapseAllApi(true)">Expand</a></div>
@@ -674,6 +674,8 @@ function makeEmbedded(html,callback){
     var path = require('path');
     var content = fs.readFileSync(path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
+    html = html.replace('<span class="material-icons">close</span>','<span class="material-icons lighten-4">X</span>');
+    html = html.replace('<i class="material-icons left">mode_edit</i>','');
     html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
     html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
     content = fs.readFileSync(path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
