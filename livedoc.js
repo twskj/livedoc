@@ -626,16 +626,15 @@ function useLocalFont(css){
 function makeEmbedded(html,callback){
     var fs = require('fs');
     var path = require('path');
-    var content = fs.readFileSync(path.join('template',"materialize.min.css"), 'utf8');
+    var content = fs.readFileSync(path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
     html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
-    // content = fs.readFileSync(path.join('template',"icon.css"), 'utf8');
     html = html.replace('__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = fs.readFileSync(path.join('template',"jquery-2.2.4.min.js"), 'utf8');
+    content = fs.readFileSync(path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
     html = html.replace('__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(path.join('template',"materialize.min.js"), 'utf8');
+    content = fs.readFileSync(path.join(__dirname,'template',"materialize.min.js"), 'utf8');
     html = html.replace('__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(path.join('template',"vue.min.js"), 'utf8');
+    content = fs.readFileSync(path.join(__dirname,'template',"vue.min.js"), 'utf8');
     callback(null,html.replace('__VUEPLACEHOLDER__', '<script>'+content+'</script>'));
 }
 
@@ -735,7 +734,7 @@ function makeOffline(html,filename){
         else{
             target_dir = "";
         }
-        copyFile(templateDir+resource_files[i],resource_dirname+path.sep+target_dir+path.sep+src_files[i]);
+        copyFile(path.join(__dirname,templateDir,resource_files[i]),path.join(__dirname,resource_dirname,target_dir,src_files[i]));
     }
 
     var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="css/materialize.min.css">')
