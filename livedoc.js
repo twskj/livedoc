@@ -718,26 +718,26 @@ function makeOffline(html,filename){
 
     src_files = ["icon.css","jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
     ,"fonts"+path.sep+"material"+path.sep+"material_icon.woff2"
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.eot
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.ttf
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.woff
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Bold.woff2
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.eot
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.ttf
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.woff
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Light.woff2
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.eot
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.ttf
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.woff
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Medium.woff2
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.eot
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.ttf
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.woff
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Regular.woff2
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.eot
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.ttf
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.woff
-    ,"fonts"+path.sep+"roboto"+path.sep+Roboto-Thin.woff2
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.eot"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.ttf"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.woff"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Bold.woff2"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.eot"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.ttf"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.woff"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Light.woff2"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.eot"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.ttf"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.woff"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Medium.woff2"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.eot"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.ttf"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.woff"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Regular.woff2"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.eot"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.ttf"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.woff"
+    ,"fonts"+path.sep+"roboto"+path.sep+"Roboto-Thin.woff2"
     ];
 
     var templateDir = "template"+path.sep;
