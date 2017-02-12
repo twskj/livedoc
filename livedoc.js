@@ -376,7 +376,7 @@ function getTemplate() {
                     for(var i = 0; i < tmp.length;i++){
 
                         if(fold){
-                            current_lv = tmp[i].length - tmp[i].replace(/^\s+/,"").length;
+                            current_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                             var closeBraceRegex = new RegExp("^\\s*\\""+close_token+"\\"\\s*,?$");
                             if(closeBraceRegex.exec(tmp[i].trim()) && fold_lv == current_lv){
                                 fold = false;
@@ -388,22 +388,22 @@ function getTemplate() {
                             if(state.indexOf(i) !== -1){
                                 fold = true;
                                 open_token = tmp[i].trim();
-                                if(open_token.match(/^"[\s\S]*"\s*:\s*[{[]$/)){
+                                if(open_token.match(/^"[\\s\\S]*"\\s*:\\s*[{[]$/)){
                                     var match = /([[{])\s*$/.exec(tmp[i]);
                                     open_token = match[1];
                                     var brace_loc = match.index;
-                                    fold_lv = tmp[i].length - tmp[i].replace(/^\s+/,"").length;
+                                    fold_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                                     close_token = open_token === "{" ? "}" : "]";
-                                    tokens.push({"val":tmp[i].substr(0,brace_loc)+open_token+"..."+close_token+"\n","line":i});
+                                    tokens.push({"val":tmp[i].substr(0,brace_loc)+open_token+"..."+close_token+"\\n","line":i});
                                 }
                                 else{
-                                    fold_lv = tmp[i].length - tmp[i].replace(/^\s+/,"").length;
+                                    fold_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                                     close_token = open_token === "{" ? "}" : "]";
-                                    tokens.push({"val":tmp[i].substr(0,fold_lv)+open_token+"..."+close_token+"\n","line":i});
+                                    tokens.push({"val":tmp[i].substr(0,fold_lv)+open_token+"..."+close_token+"\\n","line":i});
                                 }
                             }
                             else{
-                                tokens.push({"val":tmp[i]+"\n","line":i});
+                                tokens.push({"val":tmp[i]+"\\n","line":i});
                             }
                         }
                     }
@@ -411,7 +411,8 @@ function getTemplate() {
                 }
                 ,schemaClicked: function(token,state){
                     var tmp = token.val.trim();
-                    if(tmp !== "{" && tmp !== "[" && tmp !== "{...}" && tmp !== "[...]" && !tmp.match(/^"[\s\S]*"\s*:\s*[{[]$/) && !tmp.match(/^\s*"[\s\S]*"\s*:\s*(\[\.\.\.\])|(\{\.\.\.\})$/)){
+
+                    if(!isFoldable(tmp)){
                         return;
                     }
 
@@ -425,9 +426,8 @@ function getTemplate() {
                 }
                 ,isFoldable: function(token){
                     var txt = token.val.trim();
-                    return  txt==='{' || txt==='[' || txt==='{...}' || txt==='[...]' || txt.match(/^"[\s\S]*"\s*:\s*[{[]$/) || txt.match(/^\s*"[\s\S]*"\s*:\s*(\[\.\.\.\])|(\{\.\.\.\})$/);
+                    return  txt==='{' || txt==='[' || txt==='{...}' || txt==='[...]' || txt.match(/^"[\\s\\S]*"\\s*:\\s*[{[]$/) || txt.match(/^\\s*"[\\s\\S]*"\\s*:\\s*(\\[\\.\\.\\.\\])|(\\{\\.\\.\\.\\})$/);
                 }
-
                 ,getFormParam: function(method){
 
                     var result = [];
