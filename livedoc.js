@@ -801,8 +801,8 @@ function generateHTML(data, config, callback) {
     };
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
-    html = replace(html,PATH_PARAM_LEFT_TOKEN, config.pathParamLeftToken);
-    html = replace (html,PATH_PARAM_RIGHT_TOKEN, config.pathParamRightToken);
+    html = replace(html,"__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
+    html = replace (html,"__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
     html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
     config.mode = config.mode || "singlefile";
