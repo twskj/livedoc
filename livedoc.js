@@ -28,7 +28,7 @@ function getTemplate() {
             <div class="section">
                 <h4 class="grey-text text-darken-3">{{name}}</h4>
                 <div class="indent">
-                    <p class="grey-text text-darken-1">{{summary}}</p>
+                    __CONTAINER_SUMMARY_PLACEHOLDER__
                     <div><span class="bold">Version</span> <span class="grey-text text-darken-1">{{version}}</span></div>
                     <div>
                         <span class="bold">Available Tags: </span>{{getAllTags}}
@@ -54,9 +54,9 @@ function getTemplate() {
                                             </div>
                                             <div class="indent r-indent">
                                                 <h5 class="blue-text" v-if="method.summary">Summary</h5>
-                                                <p class="indent" v-if="method.summary">{{method.summary}}</p>
+                                                __METHOD_SUMMARY_PLACEHOLDER__
                                                 <h5 class="blue-text" v-if="method.desc">Description</h5>
-                                                <p class="indent" v-if="method.desc">{{method.desc}}</p>
+                                                __METHOD_DESC_PLACEHOLDER__
                                                 <h5 class="blue-text" v-if="method.params.length > 0">Parameters</h5>
                                                 <table class="bordered" v-if="method.params.length > 0">
                                                     <thead>
@@ -785,6 +785,7 @@ function generateHTML(data, config, callback) {
     config.pathParamLeftToken = config.pathParamLeftToken || ":";
     config.pathParamRightToken = config.pathParamRightToken || "";
     config.formDataToken = config.formDataToken || "form";
+    config.allowHtml = config.allowHtml || false;
 
 
     if(typeof data === "object"){
@@ -800,6 +801,9 @@ function generateHTML(data, config, callback) {
     html = html.replace("__FORM_PLACEHOLDER__", config.formDataToken);
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
+    html = replace(html,"__CONTAINER_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="grey-text text-darken-1" v-html="summary"></p>':'<p class="grey-text text-darken-1">{{summary}}</p>');
+    html = replace(html,"__METHOD_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.summary" v-html="method.summary"></p>':'<p class="indent" v-if="method.summary">{{method.summary}}</p>');
+    html = replace(html,"__METHOD_DESC_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.desc" v-html="method.desc"></p>':'<p class="indent" v-if="method.desc">{{method.desc}}</p>');
     html = replace(html,"__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
     html = replace (html,"__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
     html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
