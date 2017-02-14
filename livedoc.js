@@ -53,12 +53,12 @@ function getTemplate() {
                                                 <div class="tag right pointer no-overflow" v-for="tag in method.tags" @click="addToSearch(tag)">{{tag}}</div>
                                             </div>
                                             <div class="indent r-indent">
-                                                <h5 class="blue-text">Summary</h5>
-                                                <p class="indent">{{method.summary}}</p>
-                                                <h5 class="blue-text">Description</h5>
-                                                <p class="indent">{{method.desc}}</p>
-                                                <h5 class="blue-text">Parameters</h5>
-                                                <table class="bordered">
+                                                <h5 class="blue-text" v-if="method.summary">Summary</h5>
+                                                <p class="indent" v-if="method.summary">{{method.summary}}</p>
+                                                <h5 class="blue-text" v-if="method.desc">Description</h5>
+                                                <p class="indent" v-if="method.desc">{{method.desc}}</p>
+                                                <h5 class="blue-text" v-if="method.params.length > 0">Parameters</h5>
+                                                <table class="bordered" v-if="method.params.length > 0">
                                                     <thead>
                                                         <tr>
                                                             <th>Name</th>
@@ -78,8 +78,8 @@ function getTemplate() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <h5 class="blue-text">Responses</h5>
-                                                <table class="bordered">
+                                                <h5 class="blue-text" v-if="method.responses.length > 0">Responses</h5>
+                                                <table class="bordered" v-if="method.responses.length > 0">
                                                     <thead>
                                                         <tr>
                                                             <th>Code</th>
