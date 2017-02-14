@@ -435,7 +435,7 @@ function getTemplate() {
                     var result = [];
                     var len = method.params.length;
                     for(var i=0;i<len;i++){
-                        if(method.params[i].location === "form"){
+                        if(method.params[i].location === "__FORM_PLACEHOLDER__"){
                             result.push(encodeURIComponent(method.params[i].name)+"="+encodeURIComponent(method.params[i].value));
                         }
                     }
@@ -782,12 +782,10 @@ function generateHTML(data, config, callback) {
         config = {};
     }
 
-    if(!config.pathParamLeftToken){
-        config.pathParamLeftToken = ":";
-    }
-    if(!config.pathParamRightToken){
-        config.pathParamRightToken = "";
-    }
+    config.pathParamLeftToken = config.pathParamLeftToken || ":";
+    config.pathParamRightToken = config.pathParamRightToken || "";
+    config.formDataToken = config.formDataToken || "form";
+
 
     if(typeof data === "object"){
         data = JSON.stringify(data,null,config.indent || 0);
@@ -799,6 +797,7 @@ function generateHTML(data, config, callback) {
         weekday: "long", year: "numeric", month: "short",
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
+    html = html.replace("__FORM_PLACEHOLDER__", config.formDataToken);
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
     html = replace(html,"__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
