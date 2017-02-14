@@ -40,7 +40,7 @@ function getTemplate() {
                 <h5>Paths</h5>
                 <div class="indent" v-for="(api,api_idx) in apis" v-if="api.visible">
                     <div class="indent">
-                        <div class="row pointer blue-text text-lighten-1" @click="api.showMe=!api.showMe">{{api.path}}</div>
+                        <div class="row pointer blue-text text-lighten-1"><span @click="api.showMe=!api.showMe">{{api.path}}</span></div>
                         <transition name="fade">
                             <div v-if="api.showMe">
                                 <div class="api-block round-border" v-for="(method,method_idx) in api.methods" v-if="method.visible">
