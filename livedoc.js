@@ -282,6 +282,9 @@ function getTemplate() {
                                 continue;
                             }
                             var method = api.methods[j];
+                            if(!method.tags){
+                                break;
+                            }
                             for(var k=0;k<method.tags.length;k++){
                                 result[method.tags[k]] = null;
                             }
