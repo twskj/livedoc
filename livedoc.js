@@ -398,14 +398,22 @@ function getTemplate() {
                             if(state.indexOf(i) !== -1){
                                 fold = true;
                                 open_token = tmp[i].trim();
-                                if(this.is_it_an_object_value_open_w_optional_comment(open_token)){
+                                if(this.is_an_object_value_open_w_optional_comment(open_token)){
                                     var match = /([[{])/.exec(tmp[i]);
                                     open_token = match[1];
                                     var brace_loc = match.index;
                                     fold_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                                     close_token = open_token === "{" ? "}" : "]";
                                     comment_idx = tmp[i].indexOf("/");
-                                    comment = comment_idx > -1 ? tmp[i].substr(comment_idx).trim() : '';
+                                    if(comment_idx > -1){
+                                        comment = tmp[i].substr(comment_idx).trim();
+                                        if(!comment.endsWith("*/")){
+                                            comment += " ... */";
+                                        }
+                                    }
+                                    else {
+                                        comment = '';
+                                    }
                                     tokens.push({"val":tmp[i].substr(0,brace_loc)+open_token+"..."+close_token+" "+comment+"\\n","line":i});
                                 }
                                 else{
@@ -413,7 +421,15 @@ function getTemplate() {
                                     open_token = open_token[0];
                                     close_token = open_token === "{" ? "}" : "]";
                                     comment_idx = tmp[i].indexOf("/");
-                                    comment = comment_idx > -1 ? tmp[i].substr(comment_idx).trim() : '';
+                                    if(comment_idx > -1){
+                                        comment = tmp[i].substr(comment_idx).trim();
+                                        if(!comment.endsWith("*/")){
+                                            comment += " ... */";
+                                        }
+                                    }
+                                    else {
+                                        comment = '';
+                                    }
                                     tokens.push({"val":tmp[i].substr(0,fold_lv)+open_token+"..."+close_token+" "+comment+"\\n","line":i});
                                 }
                             }
@@ -440,17 +456,17 @@ function getTemplate() {
                 ,isFoldable: function(token){
                     var txt = token.val.trim();
                     return txt==='{' || txt==='[' || txt==='{...}' || txt==='[...]'
-                        || this.is_it_an_open_brace_with_comment(txt)
-                        || this.is_it_an_object_value_open_w_optional_comment(txt)
-                        || this.is_it_an_array_folded_with_comment(txt)
-                        || this.is_it_an_object_folded_with_comment(txt)
-                        || this.is_it_an_object_value_folded_w_optional_comment(txt);
+                        || this.is_an_open_brace_with_comment(txt)
+                        || this.is_an_object_value_open_w_optional_comment(txt)
+                        || this.is_an_array_folded_with_comment(txt)
+                        || this.is_an_object_folded_with_comment(txt)
+                        || this.is_an_object_value_folded_w_optional_comment(txt);
                 }
-                , is_it_an_open_brace_with_comment: function(line){ return /[[{]\\s*\\/\\*\\s*[^\\r\\n]*\\s*\\*\\//.exec(line);}
-                , is_it_an_object_value_open_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*[[{](\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
-                , is_it_an_array_folded_with_comment:  function(line){ return /\\[\\.\\.\\.\\]\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
-                , is_it_an_object_folded_with_comment: function(line){ return /\\{\\.\\.\\.\\}\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
-                , is_it_an_object_value_folded_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*(\\[\\.\\.\\.\\])|(\\{\\.\\.\\.\\})(\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
+                , is_an_open_brace_with_comment: function(line){ return /[[{]\\s*\\/\\*\\s*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_an_object_value_open_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*[[{](\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
+                , is_an_array_folded_with_comment:  function(line){ return /\\[\\.\\.\\.\\]\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_an_object_folded_with_comment: function(line){ return /\\{\\.\\.\\.\\}\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_an_object_value_folded_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*(\\[\\.\\.\\.\\])|(\\{\\.\\.\\.\\})(\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
 
                 ,getFormParam: function(method){
 
