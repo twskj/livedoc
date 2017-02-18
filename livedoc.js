@@ -8,7 +8,7 @@ function getTemplate() {
     __MATERIAL_CSS_PLACEHOLDER__
     __MATERIAL_ICON_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid #82b1ff;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:.3em;height:2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.pointer{cursor:pointer}.tool-panel{border:1px solid #9e9e9e;padding:1em;margin-bottom:1rem;margin-top:1rem}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5;cursor:pointer}.margin-bottom-1rem{margin-bottom:1rem}td{vertical-align: top}</style>
+    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid #82b1ff;margin:.5rem 0 1.5rem}.margin-bottom-1rem,.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:.3em;height:2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}th.status{width:64px}th.desc{width:256px}no-padding-bot{padding-bottom:0}</style>
     <title></title>
 </head>
 <body>
@@ -26,7 +26,7 @@ function getTemplate() {
 
         <div class="container">
             <div class="section">
-                <h4 class="grey-text text-darken-3">{{name}}</h4>
+                <h1 class="grey-text text-darken-3">{{name}}</h1>
                 <div class="indent">
                     __CONTAINER_SUMMARY_PLACEHOLDER__
                     <div><span class="bold">Version</span> <span class="grey-text text-darken-1">{{version}}</span></div>
@@ -79,11 +79,11 @@ function getTemplate() {
                                                     </tbody>
                                                 </table>
                                                 <h5 class="blue-text" v-if="method.responses.length > 0">Responses</h5>
-                                                <table class="bordered" v-bind:class="[host ? '' : 'margin-bottom-1rem']" v-if="method.responses.length > 0">
+                                                <table class="bordered fixed" v-if="method.responses.length > 0">
                                                     <thead>
                                                         <tr>
-                                                            <th>Code</th>
-                                                            <th>Description</th>
+                                                            <th class="status">Code</th>
+                                                            <th class="desc">Description</th>
                                                             <th>Schema</th>
                                                         </tr>
                                                     </thead>
@@ -162,7 +162,7 @@ function getTemplate() {
                                                                     <textarea v-bind:id="api_idx+'_'+method_idx+'_requestBody'" v-model="method.request.choosen.body"></textarea>
                                                                 </div>
                                                                 <h6 class="grey-text">Request</h6>
-                                                                <div class="tool-panel grey lighten-3 console">
+                                                                <div class="grey lighten-3 console padding-all">
                                                                     <span class="bold red-text">{{method.name.toUpperCase()}}</span> <a v-bind:href="getURL(method,api.path)">{{getURL(method,api.path)}}</a> HTTP/1.1
                                                                     <div><span class="bold">Host:</span> {{host}}</div>
                                                                     <div v-for="(value,key) in method.request.choosen.headers"><span class="bold">{{key}}:</span> {{value}}</div>
@@ -170,7 +170,7 @@ function getTemplate() {
                                                                 </div>
 
                                                                 <h6 class="grey-text">Response</h6>
-                                                                <div class="tool-panel grey lighten-3 console">
+                                                                <div class="grey lighten-3 console padding-all">
                                                                     <textarea wrap='off' readonly>{{method.request.choosen.result}}</textarea>
                                                                 </div>
 
@@ -180,8 +180,7 @@ function getTemplate() {
                                                                 <div v-else-if="crossDomain(method.request.choosen)">
                                                                     <blockquote class="yellow-border yellow lighten-5"> <i class="material-icons left">warning</i> This is a cross-origin call. Make sure the server at <span class="blue-text">{{getDestHost(method.request.choosen.scheme)}}</span> accepts POST requests from <span class="blue-text">{{currentHost}}</span>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">Learn more</a></blockquote>
                                                                 </div>
-
-                                                                <a class="blue waves-effect waves-light btn" @click="sendRequest(method.name,getURL(method,api.path),method.request.choosen.body,method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
+                                                                <a class="blue waves-effect waves-light btn b-margin" @click="sendRequest(method.name,getURL(method,api.path),method.request.choosen.body,method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -364,6 +363,9 @@ function getTemplate() {
                 ,hasBodyParam: function(params){
                     var location;
                     for(var i = 0;i<params.length;i++){
+                        if(!params[i].location){
+                            continue;
+                        }
                         location = params[i].location.toLowerCase();
                         if(location === 'body'){
                             return true;
@@ -379,12 +381,14 @@ function getTemplate() {
                     var current_lv;
                     var close_token ="";
                     var open_token ="";
+                    var comment = "";
+                    var comment_idx;
                     for(var i = 0; i < tmp.length;i++){
 
                         if(fold){
                             current_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                             var closeBraceRegex = new RegExp("^\\s*"+close_token+"\\s*,?$");
-                            if(closeBraceRegex.exec(tmp[i].trim()) && fold_lv == current_lv){
+                            if(fold_lv == current_lv && closeBraceRegex.exec(tmp[i].trim())){
                                 fold = false;
                                 close_token = "";
                                 continue;
@@ -394,18 +398,23 @@ function getTemplate() {
                             if(state.indexOf(i) !== -1){
                                 fold = true;
                                 open_token = tmp[i].trim();
-                                if(open_token.match(/^"[\\s\\S]*"\\s*:\\s*[{[]$/)){
-                                    var match = /([[{])\s*$/.exec(tmp[i]);
+                                if(this.is_it_an_object_value_open_w_optional_comment(open_token)){
+                                    var match = /([[{])/.exec(tmp[i]);
                                     open_token = match[1];
                                     var brace_loc = match.index;
                                     fold_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
                                     close_token = open_token === "{" ? "}" : "]";
-                                    tokens.push({"val":tmp[i].substr(0,brace_loc)+open_token+"..."+close_token+"\\n","line":i});
+                                    comment_idx = tmp[i].indexOf("/");
+                                    comment = comment_idx > -1 ? tmp[i].substr(comment_idx).trim() : '';
+                                    tokens.push({"val":tmp[i].substr(0,brace_loc)+open_token+"..."+close_token+" "+comment+"\\n","line":i});
                                 }
                                 else{
                                     fold_lv = tmp[i].length - tmp[i].replace(/^\\s+/,"").length;
+                                    open_token = open_token[0];
                                     close_token = open_token === "{" ? "}" : "]";
-                                    tokens.push({"val":tmp[i].substr(0,fold_lv)+open_token+"..."+close_token+"\\n","line":i});
+                                    comment_idx = tmp[i].indexOf("/");
+                                    comment = comment_idx > -1 ? tmp[i].substr(comment_idx).trim() : '';
+                                    tokens.push({"val":tmp[i].substr(0,fold_lv)+open_token+"..."+close_token+" "+comment+"\\n","line":i});
                                 }
                             }
                             else{
@@ -416,7 +425,6 @@ function getTemplate() {
                     return tokens;
                 }
                 ,schemaClicked: function(token,state){
-
                     if(!this.isFoldable(token)){
                         return;
                     }
@@ -431,8 +439,19 @@ function getTemplate() {
                 }
                 ,isFoldable: function(token){
                     var txt = token.val.trim();
-                    return  txt==='{' || txt==='[' || txt==='{...}' || txt==='[...]' || txt.match(/^"[\\s\\S]*"\\s*:\\s*[{[]$/) || txt.match(/^\\s*"[\\s\\S]*"\\s*:\\s*(\\[\\.\\.\\.\\])|(\\{\\.\\.\\.\\})$/);
+                    return txt==='{' || txt==='[' || txt==='{...}' || txt==='[...]'
+                        || this.is_it_an_open_brace_with_comment(txt)
+                        || this.is_it_an_object_value_open_w_optional_comment(txt)
+                        || this.is_it_an_array_folded_with_comment(txt)
+                        || this.is_it_an_object_folded_with_comment(txt)
+                        || this.is_it_an_object_value_folded_w_optional_comment(txt);
                 }
+                , is_it_an_open_brace_with_comment: function(line){ return /[[{]\\s*\\/\\*\\s*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_it_an_object_value_open_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*[[{](\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
+                , is_it_an_array_folded_with_comment:  function(line){ return /\\[\\.\\.\\.\\]\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_it_an_object_folded_with_comment: function(line){ return /\\{\\.\\.\\.\\}\\s*\\/\\*[^\\r\\n]*\\s*\\*\\//.exec(line);}
+                , is_it_an_object_value_folded_w_optional_comment: function(line){ return /^"[\\s\\S]+"\\s*:\\s*(\\[\\.\\.\\.\\])|(\\{\\.\\.\\.\\})(\\s*\\/\\*[^\\r\\n]*\\s*\\*\\/)?/.exec(line);}
+
                 ,getFormParam: function(method){
 
                     var result = [];
@@ -510,6 +529,9 @@ function getTemplate() {
                     var len = params.length;
                     var new_path = path;
                     for(var i=0;i<len;i++){
+                        if(!params[i].location){
+                            continue;
+                        }
                         if(params[i].location.toLowerCase() === 'path' && params[i].value){
                             new_path = new_path.split("__PATH_PARAM_LEFT_TOKEN__"+params[i].name+"__PATH_PARAM_RIGHT_TOKEN__").join(params[i].value);
                         }
