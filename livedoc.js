@@ -13,7 +13,7 @@ function getTemplate() {
 </head>
 <body>
     <div id="app" v-cloak>
-        <div :class="[navFixed ? 'navbar-fixed':'']">
+        <div :class="[fixedNav ? 'navbar-fixed':'']">
             <nav :class="getThemeColor('default')" role="navigation">
                 <div class="nav-wrapper container">
                     <div class="input-field">
@@ -610,7 +610,7 @@ function initContainer() {
         , currentScheme: "__PROTO__"
         , search: ""
         , bgColor: {}
-        , navFixed: false
+        , fixedNav: false
         , apis: []
     };
 }
