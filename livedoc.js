@@ -99,7 +99,7 @@ function getTemplate() {
                                                 </table>
 
                                                 <div class="showReqBtn" v-if="host">
-                                                    <a class="btn waves-effect" :class="[getThemeColor('default')+'-text']" @click="method.showTool = true" v-if="!method.showTool"><i class="material-icons left">mode_edit</i>Try this operation</a>
+                                                    <a class="btn waves-effect" :class="[getThemeColor('default',true)]" @click="method.showTool = true" v-if="!method.showTool"><i class="material-icons left">mode_edit</i>Try this operation</a>
                                                     <a class="right pointer" @click="method.showTool = false" v-else>Hide</a>
                                                 </div>
 
@@ -148,7 +148,7 @@ function getTemplate() {
                                                                     <label v-bind:for="api_idx+'_'+method_idx+'_headerValue'">value</label>
                                                                 </div>
                                                                 <div class="input-field col s1">
-                                                                    <a class="btn-floating btn-large waves-effect waves-light" :class="[getThemeColor('default')+'-text']" @click="addToHeaderList(method.request.choosen,api_idx+'_'+method_idx+'_headerName')"><i class="material-icons">add</i></a>
+                                                                    <a class="btn-floating btn-large waves-effect waves-light" :class="[getThemeColor('default',true)]" @click="addToHeaderList(method.request.choosen,api_idx+'_'+method_idx+'_headerName')"><i class="material-icons">add</i></a>
                                                                 </div>
                                                             </div>
                                                             <h5>Parameters</h5>
@@ -182,7 +182,7 @@ function getTemplate() {
                                                                 <div v-else-if="crossDomain(method.request.choosen)">
                                                                     <blockquote class="warning-yellow-border yellow lighten-5"> <i class="material-icons left">warning</i> This is a cross-origin call. Make sure the server at <span class="blue-text">{{getDestHost(method.request.choosen.scheme)}}</span> accepts POST requests from <span class="blue-text">{{currentHost}}</span>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">Learn more</a></blockquote>
                                                                 </div>
-                                                                <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)] @click="sendRequest(method.name,getURL(method,api.path),method.request.choosen.body,method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
+                                                                <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="sendRequest(method.name,getURL(method,api.path),method.request.choosen.body,method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
                                                             </div>
                                                         </div>
                                                     </div>
