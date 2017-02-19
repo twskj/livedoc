@@ -13,7 +13,7 @@ function getTemplate() {
 </head>
 <body>
     <div id="app" v-cloak>
-        <div :class="[navfixed ? 'navbar-fixed':''">
+        <div :class="[navFixed ? 'navbar-fixed':'']">
             <nav :class="getThemeColor('default')" role="navigation">
                 <div class="nav-wrapper container">
                     <div class="input-field">
