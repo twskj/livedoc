@@ -99,7 +99,7 @@ function getTemplate() {
                                                 </table>
 
                                                 <div class="showReqBtn" v-if="host">
-                                                    <a class="btn waves-effect" :class="[getThemeColor('default',true)]" @click="method.showTool = true" v-if="!method.showTool"><i class="material-icons left">mode_edit</i>Try this operation</a>
+                                                    <a class="btn waves-effect" :class="[getThemeColor(method.name,true)]" @click="method.showTool = true" v-if="!method.showTool"><i class="material-icons left">mode_edit</i>Try this operation</a>
                                                     <a class="right pointer" @click="method.showTool = false" v-else>Hide</a>
                                                 </div>
 
@@ -148,7 +148,7 @@ function getTemplate() {
                                                                     <label v-bind:for="api_idx+'_'+method_idx+'_headerValue'">value</label>
                                                                 </div>
                                                                 <div class="input-field col s1">
-                                                                    <a class="btn-floating btn-large waves-effect waves-light" :class="[getThemeColor('default',true)]" @click="addToHeaderList(method.request.choosen,api_idx+'_'+method_idx+'_headerName')"><i class="material-icons">add</i></a>
+                                                                    <a class="btn-floating btn-large waves-effect waves-light" :class="[getThemeColor(method.name,true)]" @click="addToHeaderList(method.request.choosen,api_idx+'_'+method_idx+'_headerName')"><i class="material-icons">add</i></a>
                                                                 </div>
                                                             </div>
                                                             <h5>Parameters</h5>
