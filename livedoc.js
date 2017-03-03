@@ -686,6 +686,11 @@ function useLocalFont(css){
     return css.trim()+'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
 }
 
+function useEmbeddedFont(css){
+    var embeddedFont = fs.readFileSync(Path.join(__dirname, 'template',"embedded.min.css"), 'utf8');
+    return embeddedFont.trim()+css.trim();
+}
+
 function getFilenameWithoutExtension(filename){
     var filename = Path.basename(filename);
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
@@ -734,7 +739,7 @@ function copyFile(source, target, cb) {
     rd.pipe(wr);
 }
 
-function makeEmbedded(html,callback){
+function makeLite(html,callback){
     var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
     html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
@@ -828,7 +833,7 @@ function makeOffline(html,outputFilename,callback){
     }
 }
 
-function makeOnline(html,callback){
+function makeCDN(html,callback){
 
     callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
@@ -839,12 +844,8 @@ function makeOnline(html,callback){
 
 function makeSingleFile(html,callback){
 
-    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
-    content = useLocalFont(content);
-    html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
-    html = html.replace('<i class="material-icons left">mode_edit</i>','');
-    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>','');
-    html = html.replace('<i class="material-icons">add</i>','<span style="font-size:2rem">+</span>');
+    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.noRoboto.min.css"), 'utf8');
+    content = useEmbeddedFont(content);
     html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
     html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
     content = fs.readFileSync(Path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
@@ -893,8 +894,11 @@ function generateHTML(data, config, callback) {
         var outputFilename = config.outputFilename || "doc.html";
         makeOffline(html,outputFilename,callback);
     }
-    else if(config.mode.toLowerCase() === "embedded"){
+    else if(config.mode.toLowerCase() === "lite"){
         makeEmbedded(html,callback);
+    }
+    else if(config.mode.toLowerCase() === "cdn"){
+        makeCDN(html,callback);
     }
     else {
         return makeSingleFile(html,callback);
