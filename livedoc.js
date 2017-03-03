@@ -739,7 +739,7 @@ function copyFile(source, target, cb) {
     rd.pipe(wr);
 }
 
-function makeLite(html,callback){
+function makeNoIcon(html,callback){
     var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
     content = useLocalFont(content);
     html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
@@ -833,7 +833,7 @@ function makeOffline(html,outputFilename,callback){
     }
 }
 
-function makeCDN(html,callback){
+function makeLite(html,callback){
 
     callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
@@ -894,11 +894,11 @@ function generateHTML(data, config, callback) {
         var outputFilename = config.outputFilename || "doc.html";
         makeOffline(html,outputFilename,callback);
     }
+    else if(config.mode.toLowerCase() === "noicon"){
+        makeNoIcon(html,callback);
+    }
     else if(config.mode.toLowerCase() === "lite"){
         makeLite(html,callback);
-    }
-    else if(config.mode.toLowerCase() === "cdn"){
-        makeCDN(html,callback);
     }
     else {
         return makeSingleFile(html,callback);
