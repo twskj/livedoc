@@ -895,7 +895,7 @@ function generateHTML(data, config, callback) {
         makeOffline(html,outputFilename,callback);
     }
     else if(config.mode.toLowerCase() === "lite"){
-        makeEmbedded(html,callback);
+        makeLite(html,callback);
     }
     else if(config.mode.toLowerCase() === "cdn"){
         makeCDN(html,callback);
