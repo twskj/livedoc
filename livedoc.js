@@ -828,13 +828,32 @@ function makeOffline(html,outputFilename,callback){
     }
 }
 
-function makeSingleFile(html,callback){
+function makeOnline(html,callback){
 
     callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
     .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
     .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
+}
+
+function makeSingleFile(html,callback){
+
+    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
+    content = useLocalFont(content);
+    html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
+    html = html.replace('<i class="material-icons left">mode_edit</i>','');
+    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>','');
+    html = html.replace('<i class="material-icons">add</i>','<span style="font-size:2rem">+</span>');
+    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
+    html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
+    content = fs.readFileSync(Path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
+    html = replace(html,'__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
+    html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
+    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>')
+    callback(null,html);
 }
 
 function generateHTML(data, config, callback) {
