@@ -676,6 +676,9 @@ function getTemplate() {
                 }
             }
             , data: __DATAPLACEHOLDER__
+            , mounted: function(){
+                document.body.addEventListener('keydown', this.toggleConsole);
+            }
         };
         var vm = new Vue(context);
         document.title = context.data.name;
