@@ -643,7 +643,7 @@ function getTemplate() {
                                     var api = this.apis[i];
                                     for(var j=0;j<api.methods.length;j++){
                                         var method = api.methods[j];
-                                        method.request.choosen.headers[header] = val;
+                                        Vue.set(method.request.choosen.headers,header,val);
                                     }
                                 }
                             }
