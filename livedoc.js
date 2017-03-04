@@ -8,7 +8,7 @@ function getTemplate() {
     __MATERIAL_CSS_PLACEHOLDER__
     __MATERIAL_ICON_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.margin-bottom-1rem,.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}th.status{width:64px}th.desc{width:256px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}</style>
+    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.margin-bottom-1rem,.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding:1rem 0}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #2196f3}[type=radio].with-gap:checked+label:after{border-radius:50%;border:2px solid #2196f3;background-color:#2196f3;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}.input-field input[type=text]:focus+label{color:#666}.input-field input[type=text]:focus{border-bottom:1px solid #64b5f6;box-shadow:0 1px 0 0 #42a5f5}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}th.status{width:64px}th.desc{width:256px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}</style>
     <title></title>
 </head>
 <body>
@@ -22,9 +22,19 @@ function getTemplate() {
                         <i class="material-icons">close</i>
                     </div>
                 </div>
-                <div class="navButtonContainer"><a class="navButton pointer" @click="collapseAllApi(false)">Collapse</a><a class="navButton pointer" @click="collapseAllApi(true)">Expand</a></div>
+                <div class="navButtonContainer">
+                    <a class="navButton pointer waves-effect waves-light" @click="collapseAllApi(false)">Collapse</a>
+                    <a class="navButton pointer waves-effect waves-light" @click="collapseAllApi(true)">Expand</a>
+                </div>
             </nav>
         </div>
+
+        <transition name="slide-vert">
+          <div v-show="showConsole" id="consolePanel" class="input-field" style="background-color: rgba(0,0,0,.67);color: whitesmoke; position: absolute; left:0;right:-1; z-index: 2; padding: 1.5rem;">
+            <div v-for="log in consoleLogs">{{log}}</div>
+            <input type="text" spellcheck="false" v-model="console" @keyup.enter="parseCmd" @keydown.tab.prevent @keyup.tab="autoComplete" ref="txtConsole">
+          </div>
+        </transition>
 
         <div class="container">
             <div class="section">
@@ -587,11 +597,100 @@ function getTemplate() {
                             return "white-text " + tmp;
                     }
                 }
+                , toggleConsole: function(event){
+
+                    if(event){
+                      var keycode = event.keyCode;
+                      if(keycode !== 192 || !event.ctrlKey){
+                          return;
+                      }
+                    }
+
+                    this.showConsole = !this.showConsole;
+                    if(this.showConsole){
+                      var self = this;
+                      Vue.nextTick(function () {
+                        self.$refs.txtConsole.focus();
+                      });
+                    }
+                }
+
+                , autoComplete: function(){
+                    if(!this.console){
+                        return;
+                    }
+
+                    if("add header -g".startsWith(this.console)){
+                        this.console = "add header -g ";
+                    }
+
+                    if("remove header -g".startsWith(this.console)){
+                        this.console = "remove header -g ";
+                    }
+
+                    if("clear".startsWith(this.console)){
+                        this.console = "clear";
+                    }
+                }
+                , parseCmd: function(){
+                    var tokens = this.console.split(" ");
+                    if(tokens[0] === "add"){
+                        if(tokens[1] === "header"){
+                            if(tokens[2] === "-g"){
+                                var header = tokens[3];
+                                var val = tokens.length > 5 ? tokens.slice(4).join(" ") : tokens[4];
+                                for(var i = 0;i<this.apis.length;i++){
+                                    var api = this.apis[i];
+                                    for(var j=0;j<api.methods.length;j++){
+                                        var method = api.methods[j];
+                                        method.request.choosen.headers[header] = val;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if(tokens[0] === "remove"){
+                        if(tokens[1] === "header"){
+                            if(tokens[2] === "-g"){
+                                var header = tokens[3];
+                                var val = tokens.length > 5 ? tokens.slice(4).join(" ") : tokens[4];
+                                for(var i = 0;i<this.apis.length;i++){
+                                    var api = this.apis[i];
+                                    for(var j=0;j<api.methods.length;j++){
+                                        var method = api.methods[j];
+                                        delete method.request.choosen.headers[header];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(tokens[0] === "clear"){
+                        this.console = "";
+                        this.consoleLogs = [];
+                    }
+                    else{
+                        this.consoleLogs.push("> "+this.console);
+                    }
+                    this.console = "";
+                }
             }
             , data: __DATAPLACEHOLDER__
         };
         var vm = new Vue(context);
         document.title = context.data.name;
+
+        $(function(){
+            function fixDiv() {
+                var consolePanel = $('#consolePanel');
+                consolePanel.css({
+                    'position': 'fixed',
+                    'bottom': '0px'
+                });
+          }
+          $(window).scroll(fixDiv);
+          fixDiv();
+        });
     </script>
 </body>
 </html>
@@ -611,6 +710,9 @@ function initContainer() {
         , search: ""
         , bgColor: {}
         , fixedNav: false
+        , showConsole: false
+        , consoleLogs: []
+        , console: ""
         , apis: []
     };
 }
