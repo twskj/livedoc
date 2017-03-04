@@ -1034,9 +1034,9 @@ function generateHTML(data, config, callback) {
         day: "numeric", hour: "2-digit", minute: "2-digit"
     };
     html = html.replace("__FORM_PLACEHOLDER__", config.formDataToken);
-    html = html.replace("__RADIO_BUTTON_COLOR__", radioColor);
-    html = html.replace("__TEXT_INPUT_COLOR__", textInputColor[0]);
-    html = html.replace("__TEXT_INPUT_SHADOW_COLOR__", textInputColor[1]);
+    html = html.replace(/__RADIO_BUTTON_COLOR__/g, radioColor);
+    html = html.replace(/__TEXT_INPUT_COLOR__/g, textInputColor[0]);
+    html = html.replace(/__TEXT_INPUT_SHADOW_COLOR__/g, textInputColor[1]);
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
     html = replace(html,"__CONTAINER_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="grey-text text-darken-1" v-html="summary"></p>':'<p class="grey-text text-darken-1">{{summary}}</p>');
@@ -1046,7 +1046,9 @@ function generateHTML(data, config, callback) {
     html = replace (html,"__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
     html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
+
     config.mode = config.mode || "singlefile";
+
     if(config.mode.toLowerCase() === "offline"){
         var outputFilename = config.outputFilename || "doc.html";
         makeOffline(html,outputFilename,callback);
