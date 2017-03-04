@@ -677,7 +677,7 @@ function getTemplate() {
             }
             , data: __DATAPLACEHOLDER__
             , mounted: function(){
-                document.body.addEventListener('keydown', this.toggleConsole);
+                document.body.addEventListener('keyup', this.toggleConsole);
             }
         };
         var vm = new Vue(context);
