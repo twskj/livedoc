@@ -1044,7 +1044,7 @@ function generateHTML(data, config, callback) {
     html = replace(html,"__METHOD_DESC_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.desc" v-html="method.desc"></p>':'<p class="indent" v-if="method.desc">{{method.desc}}</p>');
     html = replace(html,"__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
     html = replace (html,"__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
-    html = html.replace("__FOOTER_PLACEHOLDER__", config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
+    html = html.replace("__FOOTER_PLACEHOLDER__", config.noFooter ? '' : config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
 
     config.mode = config.mode || "singlefile";
