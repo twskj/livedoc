@@ -165,7 +165,7 @@ function getTemplate() {
                                                             <div class="tool-panel round-border">
                                                                 <div v-for="(param,param_idx) in method.params">
                                                                     <div class="input-field" v-if="param.location !== 'body' && param.location !== 'header'">
-                                                                        <label v-bind:for="api_idx+'_'+method_idx+'_'+param.name" :class="[method.params[param_idx].value ? 'active' : '']>{{param.name}}</label>
+                                                                        <label v-bind:for="api_idx+'_'+method_idx+'_'+param.name" :class="[method.params[param_idx].value ? 'active' : '']">{{param.name}}</label>
                                                                         <input v-bind:id="api_idx+'_'+method_idx+'_'+param.name" type="text" v-model="method.params[param_idx].value">
                                                                     </div>
                                                                 </div>
