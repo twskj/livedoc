@@ -14,7 +14,7 @@ function getTemplate() {
 </head>
 <body>
     <div id="app" v-cloak>
-        <div :class="[fixedNav ? 'navbar-fixed':'']">
+        <div :class="{ 'navbar-fixed': fixedNav, 'hide': showNav }">
             <nav :class="getThemeColor('default')" role="navigation">
                 <div class="nav-wrapper container">
                     <div class="input-field">
@@ -717,6 +717,7 @@ function initContainer() {
         , showConsole: false
         , consoleLogs: []
         , console: ""
+        , showNav: true
         , apis: []
     };
 }
