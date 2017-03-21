@@ -14,7 +14,7 @@ function getTemplate() {
 </head>
 <body>
     <div id="app" v-cloak>
-        <div :class="{ 'navbar-fixed': fixedNav, 'hide': showNav }">
+        <div :class="{ 'navbar-fixed': fixedNav, 'hide': !showNav }">
             <nav :class="getThemeColor('default')" role="navigation">
                 <div class="nav-wrapper container">
                     <div class="input-field">
@@ -63,7 +63,7 @@ function getTemplate() {
                                     <transition name="fade">
                                         <div v-if="method.showMe">
                                             <div class="tag-container">
-                                                <div class="tag right pointer no-overflow" v-for="tag in method.tags" @click="addToSearch(tag)">{{tag}}</div>
+                                                <div class="tag right no-overflow" :class="[showNav ? 'pointer':'']" v-for="tag in method.tags" @click="addToSearch(tag)">{{tag}}</div>
                                             </div>
                                             <div class="indent r-indent">
                                                 <h5 :class="[getThemeColor('default')+'-text']" v-if="method.summary">Summary</h5>
@@ -322,6 +322,9 @@ function getTemplate() {
                 }
                 ,addToSearch: function(keyword){
 
+                    if(!this.showNav){
+                        return;
+                    }
                     var tags = this.search.split(" ");
                     tags = new Set(tags);
                     if(tags.has(keyword)){
