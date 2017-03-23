@@ -43,7 +43,7 @@ function getTemplate() {
                 <div class="indent">
                     __CONTAINER_SUMMARY_PLACEHOLDER__
                     <div><span class="bold">Version</span> <span class="grey-text text-darken-1">{{version}}</span></div>
-                    <div>
+                    <div v-if="getAllTags.length > 0">
                         <span class="bold">Available Tags: </span>{{getAllTags}}
                     </div>
                 </div>
