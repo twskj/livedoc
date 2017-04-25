@@ -1037,7 +1037,6 @@ function generateHTML(data, config, callback) {
         config.customCSS = "";
     }
     else{
-
         config.customCSS = "<style>"+config.customCSS+"</style>";
     }
 
