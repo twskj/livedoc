@@ -7,6 +7,7 @@ function getTemplate() {
 <head>
     __MATERIAL_CSS_PLACEHOLDER__
     __MATERIAL_ICON_PLACEHOLDER__
+    __CUSTOM_CSS_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
     <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding-bottom:1.5rem}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #555555}[type=radio].with-gap:checked+label:after{border-radius:50%;border:1px solid __RADIO_BUTTON_COLOR__;background-color:__RADIO_BUTTON_COLOR__;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}input[type=text]:focus:not([readonly])+label{color:#666}input[type=text]:focus:not([readonly]){border-bottom:1px solid __TEXT_INPUT_COLOR__;box-shadow:0 1px 0 0 __TEXT_INPUT_SHADOW_COLOR__}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}th.status{width:64px}th.desc{width:256px}th.location,th.name{width:128px}th.required{width:90px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}table.compact input{margin:0;border-bottom:0;height:1rem}strong{font-weight:900}.b-margin-one-half{margin-bottom:1.5rem}__CODESTYLE_PLACEHOLDER__</style>
@@ -1032,6 +1033,13 @@ function generateHTML(data, config, callback) {
     config.pathParamRightToken = config.pathParamRightToken || "";
     config.formDataToken = config.formDataToken || "form";
     config.allowHtml = config.allowHtml || false;
+    if(!config.customCSS){
+        config.customCSS = "";
+    }
+    else{
+
+        config.customCSS = "<style>"+config.customCSS+"</style>";
+    }
 
     if(typeof data === "object"){
         data = JSON.stringify(data,null,config.indent || 0);
@@ -1045,6 +1053,7 @@ function generateHTML(data, config, callback) {
     };
     var codeStyleCSS = config.syntaxHighlight ? ".hljs{display:block;overflow-x:auto;padding:1.5em 1em;color:#333;background:#F5F5F5;border: 1px solid #CCC}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-meta,.hljs-strong{font-weight:700}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}" : "";
     html = html.replace("__CODESTYLE_PLACEHOLDER__", codeStyleCSS);
+    html = html.replace("__CUSTOM_CSS_PLACEHOLDER__", config.customCSS);
     html = html.replace("__FORM_PLACEHOLDER__", config.formDataToken);
     html = html.replace(/__RADIO_BUTTON_COLOR__/g, radioColor);
     html = html.replace(/__TEXT_INPUT_COLOR__/g, textInputColor[0]);
