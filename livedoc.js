@@ -953,8 +953,7 @@ function makeLite(html,callback){
     .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
     .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
-    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://raw.githubusercontent.com/alvaro-prieto/colResizable/master/colResizable-1.6.min.js"></script>'));
-    //No cdn? direct link: http://www.bacubacu.com/colresizable/js/colResizable-1.6.min.js
+    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://cdn.jsdelivr.net/gh/alvaro-prieto/colResizable@1.6.0/colResizable-1.6.min.js"></script>'));
 }
 
 function makeSingleFile(html,callback){
