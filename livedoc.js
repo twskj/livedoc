@@ -215,6 +215,7 @@ function getTemplate() {
     __JQUERY_PLACEHOLDER__
     __MATERIAL_JS_PLACEHOLDER__
     __VUE_PLACEHOLDER__
+    __COLRESIZE_PLACEHOLDER__
 
     <script>
         var context = {
@@ -698,6 +699,11 @@ function getTemplate() {
           }
           $(window).scroll(fixDiv);
           fixDiv();
+          $("table").colResizable({
+              liveDrag:true
+              ,gripInnerHtml:"<div class='grip'></div>"
+              ,draggingClass:"dragging"
+          });
         });
     </script>
 </body>
@@ -869,7 +875,9 @@ function makeNoIcon(html,callback){
     content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
     html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
     content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
-    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>')
+    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(Path.join(__dirname,'template',"colResizable-1.6.min.js"), 'utf8');
+    html = replace(html,'__COLRESIZE_PLACEHOLDER__', '<script>'+content+'</script>')
     callback(null,html);
 }
 
@@ -894,7 +902,7 @@ function makeOffline(html,outputFilename,callback){
     mkdirpSync(Path.join(dst_resource_dir,"fonts","roboto"));
     mkdirpSync(Path.join(dst_resource_dir,"fonts","material"));
 
-    template_files = ["jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js"
+    template_files = ["jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js","colResizable-1.6.min.js"
     ,"fonts"+Path.sep+"material"+Path.sep+"material_icon.woff2"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff2"
     ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff2"
@@ -933,29 +941,20 @@ function makeOffline(html,outputFilename,callback){
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="'+resource_folder+'/css/icon.css" rel="stylesheet">')
     .replace('__JQUERY_PLACEHOLDER__', '<script src="'+resource_folder+'/js/jquery-2.2.4.min.js"></script>')
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="'+resource_folder+'/js/materialize.min.js"></script>')
-    .replace('__VUE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/vue.min.js"></script>');
+    .replace('__VUE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/vue.min.js"></script>')
+    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/colResizable-1.6.min.js"></script>');
     fs.writeFileSync(outputFilename,html,'utf8');
 
-    function block(){
-
-        if(count == template_files.length){
-            callback(null,html);
-        }
-        else{
-            setTimeout(function() {
-                block();
-            }, 1000);
-        }
-    }
 }
 
 function makeLite(html,callback){
-
     callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
     .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
     .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
     .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
-    .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>'));
+    .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
+    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://raw.githubusercontent.com/alvaro-prieto/colResizable/master/colResizable-1.6.min.js"></script>'));
+    //No cdn? direct link: http://www.bacubacu.com/colresizable/js/colResizable-1.6.min.js
 }
 
 function makeSingleFile(html,callback){
@@ -969,7 +968,9 @@ function makeSingleFile(html,callback){
     content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
     html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
     content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
-    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>')
+    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>');
+    content = fs.readFileSync(Path.join(__dirname,'template',"colResizable-1.6.min.js"), 'utf8');
+    html = replace(html,'__COLRESIZE_PLACEHOLDER__', '<script>'+content+'</script>')
     callback(null,html);
 }
 
