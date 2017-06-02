@@ -116,7 +116,7 @@ function getTemplate() {
                                                 </div>
 
                                                 <transition name="fade">
-                                                    <div class="request-panel" v-if="method.showTool">
+                                                    <div class="request-panel" v-if="method.showTool && appConfig.showDevPlayground">
                                                         <h5>Request</h5>
                                                         <div class="tool-panel round-border">
                                                             <p class="bold">Scheme</p>
