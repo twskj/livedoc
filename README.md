@@ -1,6 +1,6 @@
 # livedoc
 
-livedoc is a javascript library to generate a generic UI for REST API document. It generates result as a single html file and various variation.
+livedoc is a javascript library that generates a generic UI for REST API document. It generates result as a single html file and various variation.
 
 ## Requirement
 [Node](https://nodejs.org/en/)
