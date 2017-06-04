@@ -2,19 +2,19 @@
 
 livedoc is a javascript library to generate a generic UI for REST API document. It generates result as a single html file and various variation.
 
-# Requirement
+## Requirement
 [Node](https://nodejs.org/en/)
 
-# Installation
+## Installation
 ```bash
 npm install livedoc
 ```
 
-# Structure
+## Structure
 todo: add page structure
 
-# Example
+## Example
 todo: add example here
 
-# License
+## License
 The contents of this repository are covered under the [MIT License](LICENSE)
