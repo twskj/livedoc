@@ -1,5 +1,6 @@
-# liveDoc
+# livedoc
 
+livedoc provides a generic UI for REST API document. It generates result as a single html file and various variation.
 
-# TODO
-- remove sync code
+# License
+The contents of this repository are covered under the MIT License
