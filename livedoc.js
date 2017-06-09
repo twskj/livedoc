@@ -10,7 +10,7 @@ function getTemplate() {
     __CUSTOM_CSS_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
-    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding-bottom:1.5rem}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #555555}[type=radio].with-gap:checked+label:after{border-radius:50%;border:1px solid __RADIO_BUTTON_COLOR__;background-color:__RADIO_BUTTON_COLOR__;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}input[type=text]:focus:not([readonly])+label{color:#666}input[type=text]:focus:not([readonly]){border-bottom:1px solid __TEXT_INPUT_COLOR__;box-shadow:0 1px 0 0 __TEXT_INPUT_SHADOW_COLOR__}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainer{position:absolute;top:0;right:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}.lpad5px{padding-left:5px}th.status{width:64px}th.desc{width:256px}th.location,th.name{width:128px}th.required{width:90px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}table.compact input{margin:0;border-bottom:0;height:1rem}strong{font-weight:900}.b-margin-one-half{margin-bottom:1.5rem}__CODESTYLE_PLACEHOLDER__</style>
+    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding-bottom:1.5rem}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #555555}[type=radio].with-gap:checked+label:after{border-radius:50%;border:1px solid __RADIO_BUTTON_COLOR__;background-color:__RADIO_BUTTON_COLOR__;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}input[type=text]:focus:not([readonly])+label{color:#666}input[type=text]:focus:not([readonly]){border-bottom:1px solid __TEXT_INPUT_COLOR__;box-shadow:0 1px 0 0 __TEXT_INPUT_SHADOW_COLOR__}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainerR{position:absolute;top:0;right:1rem}.navButtonContainerL{position:absolute;top:0;left:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}.lpad5px{padding-left:5px}th.status{width:64px}th.desc{width:256px}th.location,th.name{width:128px}th.required{width:90px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}table.compact input{margin:0;border-bottom:0;height:1rem}strong{font-weight:900}.b-margin-one-half{margin-bottom:1.5rem}__CODESTYLE_PLACEHOLDER__</style>
     <title></title>
 </head>
 <body>
@@ -24,10 +24,13 @@ function getTemplate() {
                         <i class="material-icons">close</i>
                     </div>
                 </div>
-                <div class="navButtonContainer">
+                <div class="navButtonContainerR">
+                    __HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__
                     <a class="navButton pointer waves-effect waves-light" @click="collapseAllApi(false)">Collapse</a>
                     <a class="navButton pointer waves-effect waves-light" @click="collapseAllApi(true)">Expand</a>
+                    __HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__
                 </div>
+                __HOME_ADDR_LEFT_PLACEHOLDER__
             </nav>
         </div>
 
@@ -784,7 +787,7 @@ function initResponse() {
 
 function initRequest() {
     return {
-        schemes: ["http","https"]
+        schemes: ["http", "https"]
         , headers: []
         , choosen: {
             scheme: "http"
@@ -804,16 +807,16 @@ function initHeader() {
     };
 }
 
-function useLocalFont(css){
-    return css.trim()+'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
+function useLocalFont(css) {
+    return css.trim() + 'html{font-family:"Helvetica Neue","Segoe UI",GillSans,Calibri,Trebuchet,Helvetica,sans-serif}';
 }
 
-function useEmbeddedFont(css){
-    var embeddedFont = fs.readFileSync(Path.join(__dirname, 'template',"embedded.min.css"), 'utf8');
-    return embeddedFont.trim()+css.trim();
+function useEmbeddedFont(css) {
+    var embeddedFont = fs.readFileSync(Path.join(__dirname, 'template', "embedded.min.css"), 'utf8');
+    return embeddedFont.trim() + css.trim();
 }
 
-function getFilenameWithoutExtension(filename){
+function getFilenameWithoutExtension(filename) {
     var filename = Path.basename(filename);
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
 }
@@ -822,8 +825,8 @@ var mkdirSync = function (path) {
     try {
         fs.mkdirSync(path);
     }
-    catch(e) {
-        if ( e.code != 'EEXIST' ){
+    catch (e) {
+        if (e.code != 'EEXIST') {
             throw e;
         }
     }
@@ -831,7 +834,7 @@ var mkdirSync = function (path) {
 
 var mkdirpSync = function (dirpath) {
     var parts = dirpath.split(Path.sep);
-    for( var i = 1; i <= parts.length; i++ ) {
+    for (var i = 1; i <= parts.length; i++) {
         mkdirSync(Path.join.apply(null, parts.slice(0, i)));
     }
 }
@@ -846,184 +849,184 @@ function copyFile(source, target, cb) {
     }
 
     var rd = fs.createReadStream(source);
-    rd.on("error", function(err) {
+    rd.on("error", function (err) {
         done(err);
     });
 
     var wr = fs.createWriteStream(target);
-        wr.on("error", function(err) {
+    wr.on("error", function (err) {
         done(err);
     });
 
-    wr.on("close", function(ex) {
+    wr.on("close", function (ex) {
         done();
     });
     rd.pipe(wr);
 }
 
-function makeNoIcon(html,callback){
-    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.min.css"), 'utf8');
+function makeNoIcon(html, callback) {
+    var content = fs.readFileSync(Path.join(__dirname, 'template', "materialize.min.css"), 'utf8');
     content = useLocalFont(content);
-    html = html.replace('<i class="material-icons">close</i>','<span class="material-icons lighten-4">X</span>');
-    html = html.replace('<i class="material-icons left">mode_edit</i>','');
-    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>','');
-    html = html.replace('<i class="material-icons">add</i>','<span style="font-size:2rem">+</span>');
-    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
-    html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = fs.readFileSync(Path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
-    html = replace(html,'__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
-    html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
-    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"colResizable-1.6.min.js"), 'utf8');
-    html = replace(html,'__COLRESIZE_PLACEHOLDER__', '<script>'+content+'</script>')
-    callback(null,html);
+    html = html.replace('<i class="material-icons">close</i>', '<span class="material-icons lighten-4">X</span>');
+    html = html.replace('<i class="material-icons left">mode_edit</i>', '');
+    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>', '');
+    html = html.replace('<i class="material-icons">add</i>', '<span style="font-size:2rem">+</span>');
+    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
+    html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "jquery-2.2.4.min.js"), 'utf8');
+    html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "materialize.min.js"), 'utf8');
+    html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "vue.min.js"), 'utf8');
+    html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "colResizable-1.6.min.js"), 'utf8');
+    html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
+    callback(null, html);
 }
 
 //use this to avoid str.replace do the trick on $&, $`
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
-function replace(src,token,value){
+function replace(src, token, value) {
     var idx = src.indexOf(token);
-    if(idx == -1){
+    if (idx == -1) {
         return;
     }
-    return src.substr(0,idx) + value + src.substr(idx+token.length);
+    return src.substr(0, idx) + value + src.substr(idx + token.length);
 }
 
-function makeOffline(html,outputFilename,callback){
+function makeOffline(html, outputFilename, callback) {
     var outputFilename = Path.resolve(outputFilename);
     var dst = Path.dirname(outputFilename);
-    var resource_folder = getFilenameWithoutExtension(outputFilename)+"_files";
+    var resource_folder = getFilenameWithoutExtension(outputFilename) + "_files";
     var dst_resource_dir = Path.join(dst, resource_folder);
     mkdirpSync(dst_resource_dir);
-    mkdirpSync(dst_resource_dir+Path.sep+"js");
-    mkdirpSync(dst_resource_dir+Path.sep+"css");
-    mkdirpSync(Path.join(dst_resource_dir,"fonts","roboto"));
-    mkdirpSync(Path.join(dst_resource_dir,"fonts","material"));
+    mkdirpSync(dst_resource_dir + Path.sep + "js");
+    mkdirpSync(dst_resource_dir + Path.sep + "css");
+    mkdirpSync(Path.join(dst_resource_dir, "fonts", "roboto"));
+    mkdirpSync(Path.join(dst_resource_dir, "fonts", "material"));
 
-    template_files = ["jquery-2.2.4.min.js","materialize.min.css","materialize.min.js","vue.min.js","colResizable-1.6.min.js"
-    ,"fonts"+Path.sep+"material"+Path.sep+"material_icon.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Bold.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Light.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Regular.woff2"
-    ,"fonts"+Path.sep+"roboto"+Path.sep+"Roboto-Thin.woff2"
+    template_files = ["jquery-2.2.4.min.js", "materialize.min.css", "materialize.min.js", "vue.min.js", "colResizable-1.6.min.js"
+        , "fonts" + Path.sep + "material" + Path.sep + "material_icon.woff2"
+        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Bold.woff2"
+        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Light.woff2"
+        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Regular.woff2"
+        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Thin.woff2"
     ];
 
     //icon.css' content needs dynamic path
-    var data = fs.readFileSync(Path.join(__dirname, 'template',"icon.css"), 'utf8');
-    data = data.replace("url('fonts/material/material_icon.woff2')","url('../fonts/material/material_icon.woff2')");
-    fs.writeFileSync(Path.join(dst_resource_dir,"css","icon.css"),data);
-    var templateDir = Path.join(__dirname,"template");
+    var data = fs.readFileSync(Path.join(__dirname, 'template', "icon.css"), 'utf8');
+    data = data.replace("url('fonts/material/material_icon.woff2')", "url('../fonts/material/material_icon.woff2')");
+    fs.writeFileSync(Path.join(dst_resource_dir, "css", "icon.css"), data);
+    var templateDir = Path.join(__dirname, "template");
     var target_dir = "";
     var fileExt = "";
 
     var count = 0;
-    for(var i = 0;i<template_files.length;i++){
-        if(template_files[i].toLowerCase().endsWith(".css")){
+    for (var i = 0; i < template_files.length; i++) {
+        if (template_files[i].toLowerCase().endsWith(".css")) {
             target_dir = "css";
         }
-        else if(template_files[i].toLowerCase().endsWith(".js")){
+        else if (template_files[i].toLowerCase().endsWith(".js")) {
             target_dir = "js";
         }
-        else{
+        else {
             target_dir = "";
         }
-        copyFile(Path.join(templateDir,template_files[i]),Path.join(dst_resource_dir,target_dir,template_files[i]),function(err){
-            if(err){
+        copyFile(Path.join(templateDir, template_files[i]), Path.join(dst_resource_dir, target_dir, template_files[i]), function (err) {
+            if (err) {
                 console.log(err);
             }
             count++;
         });
     }
 
-    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="'+resource_folder+'/css/materialize.min.css">')
-    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="'+resource_folder+'/css/icon.css" rel="stylesheet">')
-    .replace('__JQUERY_PLACEHOLDER__', '<script src="'+resource_folder+'/js/jquery-2.2.4.min.js"></script>')
-    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="'+resource_folder+'/js/materialize.min.js"></script>')
-    .replace('__VUE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/vue.min.js"></script>')
-    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="'+resource_folder+'/js/colResizable-1.6.min.js"></script>');
-    fs.writeFileSync(outputFilename,html,'utf8');
+    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="' + resource_folder + '/css/materialize.min.css">')
+        .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="' + resource_folder + '/css/icon.css" rel="stylesheet">')
+        .replace('__JQUERY_PLACEHOLDER__', '<script src="' + resource_folder + '/js/jquery-2.2.4.min.js"></script>')
+        .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="' + resource_folder + '/js/materialize.min.js"></script>')
+        .replace('__VUE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/vue.min.js"></script>')
+        .replace('__COLRESIZE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/colResizable-1.6.min.js"></script>');
+    fs.writeFileSync(outputFilename, html, 'utf8');
 
 }
 
-function makeLite(html,callback){
-    callback(null,html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
-    .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
-    .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
-    .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
-    .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
-    .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://cdn.jsdelivr.net/gh/alvaro-prieto/colResizable@1.6.0/colResizable-1.6.min.js"></script>'));
+function makeLite(html, callback) {
+    callback(null, html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
+        .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
+        .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
+        .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
+        .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
+        .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://cdn.jsdelivr.net/gh/alvaro-prieto/colResizable@1.6.0/colResizable-1.6.min.js"></script>'));
 }
 
-function makeSingleFile(html,callback){
+function makeSingleFile(html, callback) {
 
-    var content = fs.readFileSync(Path.join(__dirname, 'template',"materialize.noRoboto.min.css"), 'utf8');
+    var content = fs.readFileSync(Path.join(__dirname, 'template', "materialize.noRoboto.min.css"), 'utf8');
     content = useEmbeddedFont(content);
-    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>'+content+'</style>');
-    html = replace(html,'__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = fs.readFileSync(Path.join(__dirname,'template',"jquery-2.2.4.min.js"), 'utf8');
-    html = replace(html,'__JQUERY_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"materialize.min.js"), 'utf8');
-    html = replace(html,'__MATERIAL_JS_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"vue.min.js"), 'utf8');
-    html = replace(html,'__VUE_PLACEHOLDER__', '<script>'+content+'</script>');
-    content = fs.readFileSync(Path.join(__dirname,'template',"colResizable-1.6.min.js"), 'utf8');
-    html = replace(html,'__COLRESIZE_PLACEHOLDER__', '<script>'+content+'</script>')
-    callback(null,html);
+    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
+    html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "jquery-2.2.4.min.js"), 'utf8');
+    html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "materialize.min.js"), 'utf8');
+    html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "vue.min.js"), 'utf8');
+    html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
+    content = fs.readFileSync(Path.join(__dirname, 'template', "colResizable-1.6.min.js"), 'utf8');
+    html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
+    callback(null, html);
 }
 
 function generateHTML(data, config, callback) {
 
-    if(!config){
+    if (!config) {
         config = {};
     }
 
     var radioColorMap = {
         red: "#f44336"
-        ,pink: "#e91e63"
-        ,purple: "#9c27b0"
-        ,"deep-purple": "#673ab7"
-        ,indigo: "#3f51b5"
-        ,blue: "#2196f3"
-        ,"light-blue": "#03a9f4"
-        ,cyan: "#00bcd4"
-        ,teal: "#009688"
-        ,green: "#4caf50"
-        ,"light-green": "#8bc34a"
-        ,lime: "#cddc39"
-        ,yellow: "#ffeb3b"
-        ,amber: "#ffc107"
-        ,orange: "#ff9800"
-        ,"deep-orange": "#ff5722"
-        ,brown: "#795548"
-        ,grey: "#9e9e9e"
-        ,"blue-grey": "#607d8b"
-        ,black: "#000000"
-        ,white: "#000000"
+        , pink: "#e91e63"
+        , purple: "#9c27b0"
+        , "deep-purple": "#673ab7"
+        , indigo: "#3f51b5"
+        , blue: "#2196f3"
+        , "light-blue": "#03a9f4"
+        , cyan: "#00bcd4"
+        , teal: "#009688"
+        , green: "#4caf50"
+        , "light-green": "#8bc34a"
+        , lime: "#cddc39"
+        , yellow: "#ffeb3b"
+        , amber: "#ffc107"
+        , orange: "#ff9800"
+        , "deep-orange": "#ff5722"
+        , brown: "#795548"
+        , grey: "#9e9e9e"
+        , "blue-grey": "#607d8b"
+        , black: "#000000"
+        , white: "#000000"
     };
     var textInputColorMap = {
-        red: ["#e57373","#ef5350"]
-        ,pink: ["#f06292","#ec407a"]
-        ,purple: ["#ba68c8","#ab47bc"]
-        ,"deep-purple": ["#9575cd","#7e57c2"]
-        ,indigo: ["#7986cb","#5c6bc0"]
-        ,blue: ["#64b5f6","#42a5f5"]
-        ,"light-blue": ["#4fc3f7","#29b6f6"]
-        ,cyan: ["#4dd0e1","#26c6da"]
-        ,teal: ["#4db6ac","#26a69a"]
-        ,green: ["#81c784","#66bb6a"]
-        ,"light-green": ["#aed581","#9ccc65"]
-        ,lime: ["#dce775","#d4e157"]
-        ,yellow: ["#fff176","#ffee58"]
-        ,amber: ["#ffd54f","#ffca28"]
-        ,orange: ["#ffb74d","#ffa726"]
-        ,"deep-orange": ["#ff8a65","#ff7043"]
-        ,brown: ["#a1887f","#8d6e63"]
-        ,grey: ["#e0e0e0","#bdbdbd"]
-        ,"blue-grey": ["#90a4ae","#78909c"]
-        ,black: ["#000000","#000000"]
-        ,white: ["#000000","#000000"]
+        red: ["#e57373", "#ef5350"]
+        , pink: ["#f06292", "#ec407a"]
+        , purple: ["#ba68c8", "#ab47bc"]
+        , "deep-purple": ["#9575cd", "#7e57c2"]
+        , indigo: ["#7986cb", "#5c6bc0"]
+        , blue: ["#64b5f6", "#42a5f5"]
+        , "light-blue": ["#4fc3f7", "#29b6f6"]
+        , cyan: ["#4dd0e1", "#26c6da"]
+        , teal: ["#4db6ac", "#26a69a"]
+        , green: ["#81c784", "#66bb6a"]
+        , "light-green": ["#aed581", "#9ccc65"]
+        , lime: ["#dce775", "#d4e157"]
+        , yellow: ["#fff176", "#ffee58"]
+        , amber: ["#ffd54f", "#ffca28"]
+        , orange: ["#ffb74d", "#ffa726"]
+        , "deep-orange": ["#ff8a65", "#ff7043"]
+        , brown: ["#a1887f", "#8d6e63"]
+        , grey: ["#e0e0e0", "#bdbdbd"]
+        , "blue-grey": ["#90a4ae", "#78909c"]
+        , black: ["#000000", "#000000"]
+        , white: ["#000000", "#000000"]
     }
 
     var radioColor = radioColorMap[config.mainColor] || radioColorMap["blue"];
@@ -1033,15 +1036,15 @@ function generateHTML(data, config, callback) {
     config.pathParamRightToken = config.pathParamRightToken || "";
     config.formDataToken = config.formDataToken || "form";
     config.allowHtml = config.allowHtml || false;
-    if(!config.customCSS){
+    if (!config.customCSS) {
         config.customCSS = "";
     }
-    else{
-        config.customCSS = "<style>"+config.customCSS+"</style>";
+    else {
+        config.customCSS = "<style>" + config.customCSS + "</style>";
     }
 
-    if(typeof data === "object"){
-        data = JSON.stringify(data,null,config.indent || 0);
+    if (typeof data === "object") {
+        data = JSON.stringify(data, null, config.indent || 0);
     }
 
     var html = getTemplate().replace("__DATAPLACEHOLDER__", data);
@@ -1059,42 +1062,70 @@ function generateHTML(data, config, callback) {
     html = html.replace(/__TEXT_INPUT_SHADOW_COLOR__/g, textInputColor[1]);
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
-    html = replace(html,"__CONTAINER_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="grey-text text-darken-1" v-html="summary"></p>':'<p class="grey-text text-darken-1">{{summary}}</p>');
-    html = replace(html,"__PARAM_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="param.desc"></div></td>':'<td><div class="lpad5px">{{param.desc}}</div></td>');
-    html = replace(html,"__RES_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="res.desc"></div></td>':'<td><div class="lpad5px">{{res.desc}}</div></td>');
-    html = replace(html,"__METHOD_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.summary" v-html="method.summary"></p>':'<p class="indent" v-if="method.summary">{{method.summary}}</p>');
-    html = replace(html,"__METHOD_DESC_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.desc" v-html="method.desc"></p>':'<p class="indent" v-if="method.desc">{{method.desc}}</p>');
-    html = replace(html,"__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
-    html = replace (html,"__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
-    html = html.replace("__FOOTER_PLACEHOLDER__", config.noFooter ? '' : config.footer ||  "Generated "+ date.toLocaleTimeString("en-us", dateFormat) +' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
+    html = replace(html, "__CONTAINER_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="grey-text text-darken-1" v-html="summary"></p>' : '<p class="grey-text text-darken-1">{{summary}}</p>');
+    html = replace(html, "__PARAM_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="param.desc"></div></td>' : '<td><div class="lpad5px">{{param.desc}}</div></td>');
+    html = replace(html, "__RES_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="res.desc"></div></td>' : '<td><div class="lpad5px">{{res.desc}}</div></td>');
+    html = replace(html, "__METHOD_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.summary" v-html="method.summary"></p>' : '<p class="indent" v-if="method.summary">{{method.summary}}</p>');
+    html = replace(html, "__METHOD_DESC_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.desc" v-html="method.desc"></p>' : '<p class="indent" v-if="method.desc">{{method.desc}}</p>');
+    html = replace(html, "__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
+    html = replace(html, "__PATH_PARAM_RIGHT_TOKEN__", config.pathParamRightToken);
+    html = html.replace("__FOOTER_PLACEHOLDER__", config.noFooter ? '' : config.footer || "Generated " + date.toLocaleTimeString("en-us", dateFormat) + ' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
+
+    if (config.home) {
+
+        var homeTag = '<a class="navButton pointer" href="' + config.home.URL + '">' + (config.home.text || "Home") + '</a>';
+        switch (config.home.location) {
+
+            case "right-left":
+                html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", "");
+                html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", homeTag);
+                html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
+                break;
+            case "left":
+                html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", '<div class="navButtonContainerL">'+homeTag+'</div>');
+                html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", "");
+                html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
+                break;
+            default: //"right-right"
+                html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", "");
+                html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", "");
+                html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", homeTag);
+                break;
+        }
+    }
+    else {
+        html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", "");
+        html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
+        html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", "");
+    }
 
     config.mode = config.mode || "singlefile";
 
-    if(config.mode.toLowerCase() === "offline"){
+    if (config.mode.toLowerCase() === "offline") {
         var outputFilename = config.outputFilename || "doc.html";
-        makeOffline(html,outputFilename,callback);
+        makeOffline(html, outputFilename, callback);
     }
-    else if(config.mode.toLowerCase() === "noicon"){
-        makeNoIcon(html,callback);
+    else if (config.mode.toLowerCase() === "noicon") {
+        makeNoIcon(html, callback);
     }
-    else if(config.mode.toLowerCase() === "lite"){
-        makeLite(html,callback);
+    else if (config.mode.toLowerCase() === "lite") {
+        makeLite(html, callback);
     }
     else {
-        return makeSingleFile(html,callback);
+        return makeSingleFile(html, callback);
     }
 }
 
 map = {
     "generateHTML": generateHTML
-    ,"initContainer": initContainer
-    ,"initApi": initApi
-    ,"initMethod": initMethod
-    ,"initParam": initParam
-    ,"initResponse": initResponse
-    ,"initRequest": initRequest
-    ,"initHeader": initHeader
+    , "initContainer": initContainer
+    , "initApi": initApi
+    , "initMethod": initMethod
+    , "initParam": initParam
+    , "initResponse": initResponse
+    , "initRequest": initRequest
+    , "initHeader": initHeader
 };
 
 module.exports = map;
