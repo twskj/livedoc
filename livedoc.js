@@ -1072,7 +1072,7 @@ function generateHTML(data, config, callback) {
     html = html.replace("__FOOTER_PLACEHOLDER__", config.noFooter ? '' : config.footer || "Generated " + date.toLocaleTimeString("en-us", dateFormat) + ' by <a href="https://github.com/twskj/livedoc/">livedoc</a>');
     html = html.replace("__GENERATED_DATE__", date.toLocaleTimeString(config.timeLocale || "en-us", dateFormat));
 
-    if (config.home) {
+    if (config.home && config.home.URL) {
 
         var homeTag = '<a class="navButton pointer" href="' + config.home.URL + '">' + (config.home.text || "Home") + '</a>';
         switch (config.home.location) {
