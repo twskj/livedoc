@@ -1078,11 +1078,13 @@ function generateHTML(data, config, callback) {
         switch (config.home.location) {
 
             case "right-left":
+            case "RL":
                 html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", "");
                 html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", homeTag);
                 html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
                 break;
             case "left":
+            case "L":
                 html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", '<div class="navButtonContainerL">'+homeTag+'</div>');
                 html = html.replace("__HOME_ADDR_RIGHT-LEFT_PLACEHOLDER__", "");
                 html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
