@@ -113,6 +113,13 @@ function getTemplate() {
                                                     </tbody>
                                                 </table>
 
+                                                <div v-if="Object.keys(method.examples).length > 0" class="b-margin-one-half">
+                                                    <h5 :class="[getThemeColor('default')+'-text']">Response Example</h5>
+                                                    <div class="indent tool-panel">
+                                                        <div v-for="(value,code) in method.examples"><h6 v-bind:class="[code.startsWith('2') ? 'green-text' : code.startsWith('4') || code.startsWith('5') ? 'red-text' : '']">{{code}}</h6><div v-html="value"></div></div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="showReqBtn" v-if="host && appConfig.showDevPlayground">
                                                     <a class="btn waves-effect" :class="[getThemeColor(method.name,true)]" @click="method.showTool = true" v-if="!method.showTool"><i class="material-icons left">mode_edit</i>Try this operation</a>
                                                     <a class="right pointer" @click="method.showTool = false" v-else>Hide</a>
@@ -758,6 +765,7 @@ function initMethod() {
         , desc: ""
         , params: []
         , responses: []
+        , examples: {}
         , request: initRequest()
         , showTool: false
         , showMe: true
