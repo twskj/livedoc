@@ -176,7 +176,16 @@ function getTemplate() {
                                                             <h5>Parameters</h5>
                                                             <div class="tool-panel round-border">
                                                                 <div v-for="(param,param_idx) in method.params">
-                                                                    <div class="input-field" v-if="param.location !== 'body' && param.location !== 'header'">
+                                                                    <div class="file-field input-field" v-if="param.type==='file'">
+                                                                        <div class="btn" :class="[getThemeColor(method.name,true)]">
+                                                                            <span>{{param.name}}</span>
+                                                                            <input type="file" multiple v-bind:id="api_idx+'_'+method_idx+'_'+param.name" @change="setFilename($event,method.params[param_idx])">
+                                                                        </div>
+                                                                        <div class="file-path-wrapper">
+                                                                            <input class="file-path" type="text" :placeholder="param.desc" v-model="method.params[param_idx].value.filenames">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-field" v-if="param.type !== 'file'">
                                                                         <label v-bind:for="api_idx+'_'+method_idx+'_'+param.name" :class="[method.params[param_idx].value ? 'active' : '']">{{param.name}}</label>
                                                                         <input v-bind:id="api_idx+'_'+method_idx+'_'+param.name" type="text" v-model="method.params[param_idx].value">
                                                                     </div>
@@ -204,7 +213,7 @@ function getTemplate() {
                                                                 <div v-else-if="crossDomain(method.request.choosen)">
                                                                     <blockquote class="warning-yellow-border yellow lighten-5"> <i class="material-icons left">warning</i> This is a cross-origin call. Make sure the server at <span class="blue-text">{{getDestHost(method.request.choosen.scheme)}}</span> accepts POST requests from <span class="blue-text">{{currentHost}}</span>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">Learn more</a></blockquote>
                                                                 </div>
-                                                                <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="sendRequest(method.name,getURL(method,api.path),method.request.choosen.body,method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
+                                                                <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="sendRequest(method.name,getURL(method,api.path),getRequestBody(method),method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -501,7 +510,7 @@ function getTemplate() {
                     var result = [];
                     var len = method.params.length;
                     for(var i=0;i<len;i++){
-                        if(method.params[i].location === "__FORM_PLACEHOLDER__"){
+                        if(method.params[i].location === "__FORM_PLACEHOLDER__" && method.params[i].type !== "file"){
                             result.push(encodeURIComponent(method.params[i].name)+"="+encodeURIComponent(method.params[i].value));
                         }
                     }
@@ -509,6 +518,29 @@ function getTemplate() {
                         return "";
                     }
                     return result.join("&");
+                }
+                , getRequestBody: function(method){
+
+                    var data = new FormData();
+                    var len = method.params.length;
+
+                    var noFileUpload = true;
+                    for(var i=0;i<len;i++){
+
+                        if(method.params[i].type === "file"){
+                            if(method.params[i].value.fileContent){
+                                for(var j=0;j<method.params[i].value.fileContent.length;j++){
+                                    data.append(encodeURIComponent(method.params[i].name+"[]"),method.params[i].value.fileContent[j]);
+                                    noFileUpload = false;
+                                }
+                            }
+                        }
+                        else if(method.params[i].location === "formData"){
+                            data.append(encodeURIComponent(method.params[i].name),encodeURIComponent(method.params[i].value)||"");
+                        }
+                    }
+
+                    return noFileUpload ? this.computeBody(method) : data;
                 }
                 ,getURL: function(method,path){
                     if((method.request.choosen.scheme === "http" && this.port['http'] == 80) || (method.request.choosen.scheme === "https" && this.port['https'] == 443)){
@@ -542,11 +574,15 @@ function getTemplate() {
                         ,context: this.apis
                     };
 
+                    if(typeof data === "object"){
+                        config.contentType = false;
+                    }
+
                     if(Object.keys(headers).length > 0){
                         config.headers = headers;
                     }
 
-                    if(data.length > 0){
+                    if(data){
                         config.data = data;
                     }
 
@@ -613,6 +649,18 @@ function getTemplate() {
                             return "white-text " + tmp;
                     }
                 }
+                , setFilename: function(e,model){
+                    var filenames = [];
+                    var files = [];
+                    for(var i = 0;i<e.target.files.length;i++){
+                        filenames.push(e.target.files[i].name);
+                        files.push(e.target.files[i]);
+                    }
+                    model.value = {
+                        filenames: filenames.sort().join(", ")
+                        ,fileContent: files
+                    }
+                }
                 , toggleConsole: function(event){
 
                     if(event){
@@ -630,7 +678,6 @@ function getTemplate() {
                       });
                     }
                 }
-
                 , autoComplete: function(){
                     if(!this.appData.console){
                         return;
