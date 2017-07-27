@@ -116,7 +116,12 @@ function getTemplate() {
                                                 <div v-if="Object.keys(method.examples).length > 0" class="b-margin-one-half">
                                                     <h5 :class="[getThemeColor('default')+'-text']">Response Example</h5>
                                                     <div class="indent tool-panel">
-                                                        <div v-for="(value,code) in method.examples"><h6 v-bind:class="[code.startsWith('2') ? 'green-text' : code.startsWith('4') || code.startsWith('5') ? 'red-text' : '']">{{code}}</h6><div v-html="value"></div></div>
+                                                        <div class="card grey lighten-4" v-for="(value,code) in method.examples">
+                                                            <div class="card-content black-text">
+                                                                <span class="card-title">{{code}}</span>
+                                                                <pre v-html="value"></pre>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
