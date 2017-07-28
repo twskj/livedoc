@@ -219,6 +219,12 @@ function getTemplate() {
                                                                     <blockquote class="warning-yellow-border yellow lighten-5"> <i class="material-icons left">warning</i> This is a cross-origin call. Make sure the server at <span class="blue-text">{{getDestHost(method.request.choosen.scheme)}}</span> accepts POST requests from <span class="blue-text">{{currentHost}}</span>. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank">Learn more</a></blockquote>
                                                                 </div>
                                                                 <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="sendRequest(method.name,getURL(method,api.path),getRequestBody(method),method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
+                                                                <transition name="fade">
+                                                                    <span v-show="method.request.choosen.rawResult">
+                                                                        <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult)">Download</a>
+                                                                        <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
+                                                                    </span>
+                                                                </transition>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -401,6 +407,13 @@ function getTemplate() {
                         }
                         this.apis[i].visible = bool;
                     }
+                }
+                ,launchPreview: function(data,type){
+                    console.log(data);
+                    console.log("startPreview");
+                }
+                ,startDownload: function(data,type){
+                    console.log("startDownload");
                 }
                 ,hasBodyParam: function(params){
                     var location;
@@ -593,18 +606,23 @@ function getTemplate() {
 
                     $.ajax(config)
                     .done(function(dat, textStatus, jqXHR) {
+                        var contentType = xhr.getResponseHeader("content-type") || "";
                         var result = "HTTP/1.1 "+jqXHR.status+" "+textStatus+"\\r\\n";
                         result += jqXHR.getAllResponseHeaders() + "\\r\\n";
                         if (typeof(dat) === 'object')
                             dat = JSON.stringify(dat,null,3);
                         result += dat;
                         this[api_idx].methods[method_idx].request.choosen.result = result;
+                        this[api_idx].methods[method_idx].request.choosen.rawResult = dat;
+                        this[api_idx].methods[method_idx].request.choosen.contentType = contentType;
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                         var result = "HTTP/1.1 "+jqXHR.status+" "+textStatus+"\\r\\n";
                         result += jqXHR.getAllResponseHeaders();
                         result += "\\r\\n"+errorThrown;
                         this[api_idx].methods[method_idx].request.choosen.result = result;
+                        this[api_idx].methods[method_idx].request.choosen.rawResult = "";
+                        this[api_idx].methods[method_idx].request.choosen.contentType = "";
                     });
                     Materialize.toast('Request Sent', 1853);
                 }
