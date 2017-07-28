@@ -221,7 +221,7 @@ function getTemplate() {
                                                                 <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="sendRequest(method.name,getURL(method,api.path),getRequestBody(method),method.request.choosen.headers,api_idx,method_idx)">Send Request</a>
                                                                 <transition name="fade">
                                                                     <span v-show="method.request.choosen.rawResult">
-                                                                        <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult)">Download</a>
+                                                                        <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult,method.request.choosen.resultFileName)">Download</a>
                                                                         <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
                                                                     </span>
                                                                 </transition>
@@ -413,7 +413,20 @@ function getTemplate() {
                     console.log("startPreview");
                 }
                 ,startDownload: function(data,type){
-                    console.log("startDownload");
+                    var reader = new window.FileReader();
+                    reader.readAsDataURL(data);
+                    reader.onloadend = function() {
+                        var element = document.createElement('a');
+                        element.setAttribute('href', reader.result);
+                        element.setAttribute('download', resultFileName);
+
+                        element.style.display = 'none';
+                        document.body.appendChild(element);
+
+                        element.click();
+
+                        document.body.removeChild(element);
+                    }
                 }
                 ,hasBodyParam: function(params){
                     var location;
@@ -585,45 +598,42 @@ function getTemplate() {
                 }
                 ,sendRequest: function(method,url,data,headers,api_idx,method_idx){
 
-                    var config = {
-                        type: method
-                        ,url: url
-                        ,processData: false
-                        ,context: this.apis
+                    var req = new XMLHttpRequest();
+                    req.open(method, url, true);
+                    var headersKeys = Object.keys(headers);
+                    for(var i = 0;i<headersKeys.length;i++){
+                        req.setRequestHeader(headersKeys[i], headers[headersKeys[i]])
+                    }
+                    req.responseType = "blob";
+                    var that = this.apis;
+                    req.onload = function (event) {
+                        var blob = req.response;
+                        var contentType = req.getResponseHeader("Content-Type") || "";
+                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
+                        result += req.getAllResponseHeaders() + "\r\n";
+
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+                        }
+                        reader.readAsText(blob);
+
+                        that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
+                        that[api_idx].methods[method_idx].request.choosen.contentType = contentType;
+                        var filename = url.substr(url.lastIndexOf('/') + 1);
+                        that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
                     };
 
-                    if(typeof data === "object"){
-                        config.contentType = false;
-                    }
+                    req.onerror = function () {
+                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
+                        result += req.getAllResponseHeaders();
+                        result += "\r\n";
+                        that[api_idx].methods[method_idx].request.choosen.result = result;
+                        that[api_idx].methods[method_idx].request.choosen.rawResult = "";
+                        that[api_idx].methods[method_idx].request.choosen.contentType = "";
+                    };
 
-                    if(Object.keys(headers).length > 0){
-                        config.headers = headers;
-                    }
-
-                    if(data){
-                        config.data = data;
-                    }
-
-                    $.ajax(config)
-                    .done(function(dat, textStatus, jqXHR) {
-                        var contentType = jqXHR.getResponseHeader("content-type") || "";
-                        var result = "HTTP/1.1 "+jqXHR.status+" "+textStatus+"\\r\\n";
-                        result += jqXHR.getAllResponseHeaders() + "\\r\\n";
-                        if (typeof(dat) === 'object')
-                            dat = JSON.stringify(dat,null,3);
-                        result += dat;
-                        this[api_idx].methods[method_idx].request.choosen.result = result;
-                        this[api_idx].methods[method_idx].request.choosen.rawResult = dat;
-                        this[api_idx].methods[method_idx].request.choosen.contentType = contentType;
-                    })
-                    .fail(function(jqXHR, textStatus, errorThrown) {
-                        var result = "HTTP/1.1 "+jqXHR.status+" "+textStatus+"\\r\\n";
-                        result += jqXHR.getAllResponseHeaders();
-                        result += "\\r\\n"+errorThrown;
-                        this[api_idx].methods[method_idx].request.choosen.result = result;
-                        this[api_idx].methods[method_idx].request.choosen.rawResult = "";
-                        this[api_idx].methods[method_idx].request.choosen.contentType = "";
-                    });
+                    req.send(data);
                     Materialize.toast('Request Sent', 1853);
                 }
                 , computePath: function(method,path){
