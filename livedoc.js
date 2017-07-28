@@ -412,16 +412,19 @@ function getTemplate() {
                     console.log(data);
                     console.log("startPreview");
                 }
-                ,startDownload: function(data,type){
+                ,startDownload: function(data,resultFileName){
 
-                    if (data != null && navigator.msSaveBlob)
+                    if (data != null && navigator.msSaveBlob){
                         return navigator.msSaveBlob(data, resultFileName);
-                    var a = $("<a style='display: none;'/>");
+                    }
+
                     var url = window.URL.createObjectURL(data);
-                    a.attr("href", url);
-                    a.attr("download", resultFileName);
-                    $("body").append(a);
-                    a[0].click();
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    a.href = url;
+                    a.download = resultFileName;
+                    a.click();
                     window.URL.revokeObjectURL(url);
                     a.remove();
                 }
