@@ -222,7 +222,7 @@ function getTemplate() {
                                                                 <transition name="fade">
                                                                     <span v-show="method.request.choosen.rawResult">
                                                                         <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult,method.request.choosen.resultFileName)">Download</a>
-                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
+                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType,method.request.choosen.rawSize)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
                                                                     </span>
                                                                 </transition>
                                                             </div>
@@ -413,26 +413,23 @@ function getTemplate() {
                     console.log("startPreview");
                 }
                 ,startDownload: function(data,type){
-                    var reader = new window.FileReader();
-                    reader.readAsDataURL(data);
-                    reader.onloadend = function() {
-                        var element = document.createElement('a');
-                        element.setAttribute('href', reader.result);
-                        element.setAttribute('download', resultFileName);
 
-                        element.style.display = 'none';
-                        document.body.appendChild(element);
-
-                        element.click();
-
-                        document.body.removeChild(element);
-                    }
+                    if (data != null && navigator.msSaveBlob)
+                        return navigator.msSaveBlob(data, resultFileName);
+                    var a = $("<a style='display: none;'/>");
+                    var url = window.URL.createObjectURL(data);
+                    a.attr("href", url);
+                    a.attr("download", resultFileName);
+                    $("body").append(a);
+                    a[0].click();
+                    window.URL.revokeObjectURL(url);
+                    a.remove();
                 }
-                ,isPreviewAbleContentType: function(contentType){
-                    if(!contentType){
+                ,isPreviewAbleContentType: function(contentType,size){
+                    if(!contentType || size > 1000000){
                         return false;
                     }
-                    var keywords = ['text','json','image','xml','pdf','html','plain'];
+                    var keywords = ['json','xml','text','pdf','audio','video','html','plain'];
                     contentType = contentType.toLowerCase();
                     for(var i = 0;i<keywords.length;i++){
                         if(contentType.indexOf(keywords[i]) !== -1){
@@ -626,19 +623,27 @@ function getTemplate() {
                         result += req.getAllResponseHeaders() + "\r\n";
 
                         if(req.status>=200 && req.status < 300){
-                            var reader = new FileReader();
-                            reader.onload = function() {
-                                that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+
+                            if(req.response.size < 300000){
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+                                }
+                                reader.readAsText(blob);
                             }
-                            reader.readAsText(blob);
+                            else{
+                                that[api_idx].methods[method_idx].request.choosen.result = result + "[File Content]";
+                            }
 
                             that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
+                            that[api_idx].methods[method_idx].request.choosen.rawSize = req.response.size;
                             that[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
                             var filename = url.substr(url.lastIndexOf('/') + 1);
                             that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
                         }
                         else{
                             that[api_idx].methods[method_idx].request.choosen.rawResult = "";
+                            that[api_idx].methods[method_idx].request.choosen.rawSize = -1;
                             that[api_idx].methods[method_idx].request.choosen.resultContentType = "";
                             that[api_idx].methods[method_idx].request.choosen.resultFileName = undefined;
                             that[api_idx].methods[method_idx].request.choosen.result = result;
