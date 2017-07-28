@@ -222,7 +222,7 @@ function getTemplate() {
                                                                 <transition name="fade">
                                                                     <span v-show="method.request.choosen.rawResult">
                                                                         <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult,method.request.choosen.resultFileName)">Download</a>
-                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType,method.request.choosen.rawSize)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
+                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
                                                                     </span>
                                                                 </transition>
                                                             </div>
@@ -408,9 +408,18 @@ function getTemplate() {
                         this.apis[i].visible = bool;
                     }
                 }
-                ,launchPreview: function(data,type){
-                    console.log(data);
-                    console.log("startPreview");
+                ,launchPreview: function(data){
+                    var url = window.URL.createObjectURL(data);
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    a.href = url;
+                    a.target = "_blank";
+                    a.click();
+                    setTimeout(function(){
+                        window.URL.revokeObjectURL(url);
+                    },5*60*1000);
+                    a.remove();
                 }
                 ,startDownload: function(data,resultFileName){
 
@@ -428,8 +437,8 @@ function getTemplate() {
                     window.URL.revokeObjectURL(url);
                     a.remove();
                 }
-                ,isPreviewAbleContentType: function(contentType,size){
-                    if(!contentType || size > 1000000){
+                ,isPreviewAbleContentType: function(contentType){
+                    if(!contentType){
                         return false;
                     }
                     var keywords = ['json','xml','text','pdf','audio','video','html','plain'];
@@ -627,7 +636,7 @@ function getTemplate() {
 
                         if(req.status>=200 && req.status < 300){
 
-                            if(req.response.size < 300000){
+                            if(req.response.size < 128000){
                                 var reader = new FileReader();
                                 reader.onload = function() {
                                     that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
@@ -639,14 +648,12 @@ function getTemplate() {
                             }
 
                             that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
-                            that[api_idx].methods[method_idx].request.choosen.rawSize = req.response.size;
                             that[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
                             var filename = url.substr(url.lastIndexOf('/') + 1);
                             that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
                         }
                         else{
                             that[api_idx].methods[method_idx].request.choosen.rawResult = "";
-                            that[api_idx].methods[method_idx].request.choosen.rawSize = -1;
                             that[api_idx].methods[method_idx].request.choosen.resultContentType = "";
                             that[api_idx].methods[method_idx].request.choosen.resultFileName = undefined;
                             that[api_idx].methods[method_idx].request.choosen.result = result;
