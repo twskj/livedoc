@@ -222,7 +222,7 @@ function getTemplate() {
                                                                 <transition name="fade">
                                                                     <span v-show="method.request.choosen.rawResult">
                                                                         <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult,method.request.choosen.resultFileName)">Download</a>
-                                                                        <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
+                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
                                                                     </span>
                                                                 </transition>
                                                             </div>
@@ -428,6 +428,19 @@ function getTemplate() {
                         document.body.removeChild(element);
                     }
                 }
+                ,isPreviewAbleContentType: function(contentType){
+                    if(!contentType){
+                        return false;
+                    }
+                    var keywords = ['text','json','image','xml','pdf','html','plain'];
+                    contentType = contentType.toLowerCase();
+                    for(var i = 0;i<keywords.length;i++){
+                        if(contentType.indexOf(keywords[i]) !== -1){
+                            return true;
+                        }
+                    }
+                    return false;
+                }
                 ,hasBodyParam: function(params){
                     var location;
                     for(var i = 0;i<params.length;i++){
@@ -606,31 +619,31 @@ function getTemplate() {
                     }
                     req.responseType = "blob";
                     var that = this.apis;
-                    req.onload = function (event) {
+                    req.onload = function() {
                         var blob = req.response;
                         var contentType = req.getResponseHeader("Content-Type") || "";
                         var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
                         result += req.getAllResponseHeaders() + "\r\n";
 
-                        var reader = new FileReader();
-                        reader.onload = function() {
-                            that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+                        if(req.status>=200 && req.status < 300){
+                            var reader = new FileReader();
+                            reader.onload = function() {
+                                that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+                            }
+                            reader.readAsText(blob);
+
+                            that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
+                            that[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
+                            var filename = url.substr(url.lastIndexOf('/') + 1);
+                            that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
                         }
-                        reader.readAsText(blob);
+                        else{
+                            that[api_idx].methods[method_idx].request.choosen.rawResult = "";
+                            that[api_idx].methods[method_idx].request.choosen.resultContentType = "";
+                            that[api_idx].methods[method_idx].request.choosen.resultFileName = undefined;
+                            that[api_idx].methods[method_idx].request.choosen.result = result;
+                        }
 
-                        that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
-                        that[api_idx].methods[method_idx].request.choosen.contentType = contentType;
-                        var filename = url.substr(url.lastIndexOf('/') + 1);
-                        that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
-                    };
-
-                    req.onerror = function () {
-                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
-                        result += req.getAllResponseHeaders();
-                        result += "\r\n";
-                        that[api_idx].methods[method_idx].request.choosen.result = result;
-                        that[api_idx].methods[method_idx].request.choosen.rawResult = "";
-                        that[api_idx].methods[method_idx].request.choosen.contentType = "";
                     };
 
                     req.send(data);
