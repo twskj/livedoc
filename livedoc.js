@@ -606,7 +606,7 @@ function getTemplate() {
 
                     $.ajax(config)
                     .done(function(dat, textStatus, jqXHR) {
-                        var contentType = xhr.getResponseHeader("content-type") || "";
+                        var contentType = jqXHR.getResponseHeader("content-type") || "";
                         var result = "HTTP/1.1 "+jqXHR.status+" "+textStatus+"\\r\\n";
                         result += jqXHR.getAllResponseHeaders() + "\\r\\n";
                         if (typeof(dat) === 'object')
