@@ -222,7 +222,7 @@ function getTemplate() {
                                                                 <transition name="fade">
                                                                     <span v-show="method.request.choosen.rawResult">
                                                                         <a class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="startDownload(method.request.choosen.rawResult,method.request.choosen.resultFileName)">Download</a>
-                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult)">Preview</a>
+                                                                        <a v-if="isPreviewAbleContentType(method.request.choosen.resultContentType)" class="waves-effect waves-light btn b-margin" :class="[getThemeColor(method.name,true)]" @click="launchPreview(method.request.choosen.rawResult,method.request.choosen.resultContentType,method.request.choosen.resultFileName)">Preview</a>
                                                                     </span>
                                                                 </transition>
                                                             </div>
@@ -408,18 +408,44 @@ function getTemplate() {
                         this.apis[i].visible = bool;
                     }
                 }
-                ,launchPreview: function(data){
-                    var url = window.URL.createObjectURL(data);
-                    var a = document.createElement("a");
-                    document.body.appendChild(a);
-                    a.style = "display: none";
-                    a.href = url;
-                    a.target = "_blank";
-                    a.click();
-                    setTimeout(function(){
-                        window.URL.revokeObjectURL(url);
-                    },5*60*1000);
-                    a.remove();
+                ,launchPreview: function(data,contentType,fileName){
+                    if(contentType.indexOf('json') !== -1){
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            json = jsonPreview.replace('_data_',reader.result);
+                            json = json.replace('_title_',fileName);
+
+                            var myblob = new Blob([json], {
+                                type: 'text/html'
+                            });
+
+                            var url = window.URL.createObjectURL(myblob);
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            a.href = url;
+                            a.target = "_blank";
+                            a.click();
+                            setTimeout(function(){
+                                window.URL.revokeObjectURL(url);
+                            },60000);
+                            a.remove();
+                        }
+                        reader.readAsText(data);
+                    }
+                    else{
+                        var url = window.URL.createObjectURL(data);
+                        var a = document.createElement("a");
+                        document.body.appendChild(a);
+                        a.style = "display: none";
+                        a.href = url;
+                        a.target = "_blank";
+                        a.click();
+                        setTimeout(function(){
+                            window.URL.revokeObjectURL(url);
+                        },5*60*1000);
+                        a.remove();
+                    }
                 }
                 ,startDownload: function(data,resultFileName){
 
@@ -822,6 +848,7 @@ function getTemplate() {
               ,gripInnerHtml:"<div class='grip'></div>"
               ,draggingClass:"dragging"
           });
+          var jsonPreview = '<!--jsonViewer | https://github.com/twskj/jsonViewer | License: MIT--><!DOCTYPE html><html lang=en><title>_title_<\/title><meta charset=UTF-8><meta content="width=device-width,initial-scale=1"name=viewport><style>@charset "UTF-8";.json-view pre{display:inline}.json-view{position:relative}.json-view .collapser{width:20px;height:18px;display:block;position:absolute;left:-1.7em;top:-.2em;z-index:5;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD1JREFUeNpiYGBgOADE%2F3Hgw0DM4IRHgSsDFOzFInmMAQnY49ONzZRjDFiADT7dMLALiE8y4AGW6LoBAgwAuIkf%2F%2FB7O9sAAAAASUVORK5CYII%3D);background-repeat:no-repeat;background-position:center center;opacity:.5;cursor:pointer}.json-view .collapsed{-ms-transform:rotate(-90deg);-moz-transform:rotate(-90deg);-khtml-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg);transform:rotate(-90deg)}.json-view .bl{display:block;padding-left:20px;margin-left:-20px;position:relative}.json-view{font-family:monospace}.json-view ul{list-style-type:none;padding-left:2em;border-left:1px dotted;margin:.3em}.json-view ul li{position:relative}.json-view .comments,.json-view .dots{display:none;-moz-user-select:none;-ms-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-o-user-select:none;user-select:none}.json-view .comments{padding-left:.8em;font-style:italic;color:#888}.json-view .bool,.json-view .null,.json-view .num,.json-view .undef{font-weight:700;color:#1a01cc}.json-view .str{color:#800}<\/style><div id=d><\/div><script>function createElement(e,t,n){var a=document.createElement(e);t=(t=t||"").split(" ");for(var l=0;l<t.length;l++)t[l]&&a.classList.add(t[l]);return a.innerHTML=htmlEncode(n||""),a}function createTextElement(e,t,n){var a=document.createTextNode(e);return a.class=t,a.innerHTML=htmlEncode(n||""),a}function collapser(e){var t=createElement("span","collapser");return t.addEventListener("click",function(e){var t=e.target;t.classList.toggle("collapsed");for(var n=t.parentNode,a=null,l=0;l<n.childNodes.length;l++){var r=n.childNodes[l];if(r.classList&&r.classList.contains("block")){a=n.childNodes[l];break}}var c=a.getElementsByTagName("ul")[0];if(t.classList.contains("collapsed")){if(c.style.display="none",a)for(l=0;l<a.childNodes.length;l++)(a.childNodes[l].classList.contains("dots")||a.childNodes[l].classList.contains("comments"))&&(a.childNodes[l].style.display="inline")}else if(c.style.display="block",a)for(l=0;l<a.childNodes.length;l++)(a.childNodes[l].classList.contains("dots")||a.childNodes[l].classList.contains("comments"))&&(a.childNodes[l].style.display="none")}),e&&t.classList.add("collapsed"),t}function htmlEncode(e){return e.toString()?e.toString().replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"):""}function getType(e){return{}.toString.call(e).split(" ")[1].slice(0,-1).toLowerCase()}function isEmpty(e){return Array.isArray(e)?0==e.length:0===Object.keys(e).length&&e.constructor===Object}function genObjOrArrayBlock(e,t,n){var a=e?"{":"[",l=e?"}":"]";n||(n=0);var r=createElement("span","block"),c=Object.keys(t).length;if(r.appendChild(createElement("span","b",a)),!c){var s=document.createTextNode(" ");return r.appendChild(s),r.appendChild(createElement("span","b",l)),r}for(var i=createElement("ul","obj collapsible level"+n),d=Object.keys(t),o=0;o<d.length;o++){c--;var p=createElement("li");-1===["object","array"].indexOf(getType(t[d[o]]))||isEmpty(t[d[o]])||p.appendChild(collapser()),p.appendChild(createElement("span","q","\\"")),p.appendChild(createTextElement(d[o])),p.appendChild(createElement("span","q","\\"")),p.appendChild(createTextElement(": ")),p.appendChild(genBlock(t[d[o]],n+1)),c>0&&p.appendChild(createTextElement(",")),i.appendChild(p)}return r.appendChild(i),r.appendChild(createElement("span","dots","...")),r.appendChild(createElement("span","b",l)),1===Object.keys(t).length?r.appendChild(createElement("span","comments","// 1 item")):r.appendChild(createElement("span","comments","// "+Object.keys(t).length+" items")),r}function genBlock(e,t){switch(getType(e)){case"object":return genObjOrArrayBlock(!0,e,t);case"array":return genObjOrArrayBlock(!1,e,t);case"string":var n=createElement("span");if(n.appendChild(createElement("span","q","\\"")),e=htmlEncode(e),/^(http|https|file):\\/\\/[^\\s]+$/i.test(e)){var a=createElement("a");return a.href=e,a.innerHTML=e,n.appendChild(a),n.appendChild(createElement("span","q","\\"")),n}var z=/\\n/g;var y=z.test(e)?"pre":"span";var r=createElement(y,"str",e);return n.appendChild(r),n.appendChild(createElement("span","q","\\"")),n;case"number":return createElement("span","num",e.toString());case"undefined":return createElement("span","undef","undefined");case"null":return createElement("span","null","null");case"boolean":return createElement("span","bool",e.toString())}}function formatter(e){return genBlock(e)}function addJsonViewer(e,t){if("string"==typeof t)try{t=JSON.parse(t)}catch(e){return void console.log(e)}var n=createElement("div","json-view");e.appendChild(n),n.appendChild(formatter(t))}<\/script><script>var el=document.getElementById("d");addJsonViewer(el,_data_)<\/script><\/body><\/html>';
         });
     </script>
 </body>
