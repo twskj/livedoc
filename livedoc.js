@@ -2,7 +2,7 @@ const fs = require('fs');
 const Path = require('path');
 
 function getTemplate() {
-    return `
+    return `<!DOCTYPE html>
 <html>
 <head>
     __MATERIAL_CSS_PLACEHOLDER__
