@@ -1,3 +1,6 @@
+## 0.1.73 July 29, 2017
+- Remove http,https p tag that causes IE to complain
+
 ## 0.1.72 July 29, 2017
 - Add doctype
 - Fixed escaping bug
