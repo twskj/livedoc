@@ -409,6 +409,7 @@ function getTemplate() {
                     }
                 }
                 ,launchPreview: function(data,contentType,fileName){
+                    var cacheDuration = 60000;
                     if(contentType.indexOf('json') !== -1){
                         var reader = new FileReader();
                         reader.onload = function() {
@@ -428,7 +429,7 @@ function getTemplate() {
                             a.click();
                             setTimeout(function(){
                                 window.URL.revokeObjectURL(url);
-                            },60000);
+                            },cacheDuration);
                             a.remove();
                         }
                         reader.readAsText(data);
@@ -443,7 +444,7 @@ function getTemplate() {
                         a.click();
                         setTimeout(function(){
                             window.URL.revokeObjectURL(url);
-                        },5*60*1000);
+                        },cacheDuration);
                         a.remove();
                     }
                 }
