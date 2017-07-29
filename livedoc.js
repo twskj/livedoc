@@ -135,14 +135,12 @@ function getTemplate() {
                                                         <h5>Request</h5>
                                                         <div class="tool-panel round-border">
                                                             <p class="bold">Scheme</p>
-                                                            <p>
-                                                                <form>
-                                                                    <span v-for="(scheme,idx) in method.request.schemes">
-                                                                        <input class="with-gap" v-bind:name="scheme" type="radio" v-bind:value="scheme" v-bind:id="api_idx+'_'+method_idx+'_'+scheme" v-model="method.request.choosen.scheme"/>
-                                                                        <label class="r-margin" v-bind:for="api_idx+'_'+method_idx+'_'+scheme" v-bind:class="method.request.choosen.scheme === scheme ? 'black-text' : ''">{{scheme}}</label>
-                                                                    </span>
-                                                                </form>
-                                                            </p>
+                                                            <form>
+                                                                <span v-for="(scheme,idx) in method.request.schemes">
+                                                                    <input class="with-gap" v-bind:name="scheme" type="radio" v-bind:value="scheme" v-bind:id="api_idx+'_'+method_idx+'_'+scheme" v-model="method.request.choosen.scheme"/>
+                                                                    <label class="r-margin" v-bind:for="api_idx+'_'+method_idx+'_'+scheme" v-bind:class="method.request.choosen.scheme === scheme ? 'black-text' : ''">{{scheme}}</label>
+                                                                </span>
+                                                            </form>
                                                             <p class="bold">HTTP Headers</p>
                                                             <table class="highlight compact" v-if="Object.keys(method.request.choosen.headers).length !== 0">
                                                                 <colgroup>
