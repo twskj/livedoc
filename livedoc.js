@@ -658,8 +658,8 @@ function getTemplate() {
                     req.onload = function() {
                         var blob = req.response;
                         var contentType = req.getResponseHeader("Content-Type") || "";
-                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
-                        result += req.getAllResponseHeaders() + "\r\n";
+                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\\r\\n";
+                        result += req.getAllResponseHeaders() + "\\r\\n";
 
                         if(req.status>=200 && req.status < 300){
 
