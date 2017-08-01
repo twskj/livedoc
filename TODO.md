@@ -4,3 +4,4 @@
 [X] collapse fold schema too?
 [ ] make default value adjustable?
 [ ] Form input's color follow primary color
+[ ] ColResize-able really drain the resource. Can it be implement better?
