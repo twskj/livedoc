@@ -1,3 +1,10 @@
+## 0.1.75 Aug 9, 2017
+- Improve download filename
+- Always show body either fail or success
+
+## 0.1.74 Aug 9, 2017
+- Embed all resources into livedoc.js
+
 ## 0.1.73 July 29, 2017
 - Remove http,https p tag that causes IE to complain
 
