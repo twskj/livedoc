@@ -665,18 +665,18 @@ function getTemplate() {
                         var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\\r\\n";
                         result += req.getAllResponseHeaders() + "\\r\\n";
 
-                        if(req.status>=200 && req.status < 300){
-
-                            if(req.response.size < 128000){
+                        if(req.response.size < 128000){
                                 var reader = new FileReader();
                                 reader.onload = function() {
                                     that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
                                 }
                                 reader.readAsText(blob);
-                            }
-                            else{
-                                that[api_idx].methods[method_idx].request.choosen.result = result + "[File Content]";
-                            }
+                        }
+                        else{
+                            that[api_idx].methods[method_idx].request.choosen.result = result + "[Content Truncated]";
+                        }
+
+                        if(req.status>=200 && req.status < 300){
 
                             that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
                             that[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
