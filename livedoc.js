@@ -1,6 +1,3 @@
-const fs = require('fs');
-const Path = require('path');
-
 const materialize_noRoboto_min_css = `/*!
  * Materialize v0.98.0 (http://materializecss.com)
  * Copyright 2014-2015 Materialize
