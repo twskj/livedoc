@@ -481,6 +481,29 @@ function getTemplate() {
                     }
                     return false;
                 }
+                ,getFileExtension: function(contentType){
+                    if(!contentType){
+                        return "";
+                    }
+                    var keywords = ['json','xml', 'pdf','mp3','mp4','htm','html'];
+                    contentType = contentType.toLowerCase();
+                    for(var i = 0;i<keywords.length;i++){
+                        if(contentType.indexOf(keywords[i]) !== -1){
+                            return "."+keywords[i];
+                        }
+                    }
+                    if(contentType.indexOf("plain") !== -1){
+                        return ".txt";
+                    }
+                    if(contentType.indexOf("octet") !== -1){
+                        return ".bin";
+                    }
+                    var idx = contentType.indexOf("application/");
+                    if(idx !== -1){
+                        return "."+contentType.substr(idx+12);
+                    }
+                    return "";
+                }
                 ,hasBodyParam: function(params){
                     var location;
                     for(var i = 0;i<params.length;i++){
@@ -658,36 +681,38 @@ function getTemplate() {
                         req.setRequestHeader(headersKeys[i], headers[headersKeys[i]])
                     }
                     req.responseType = "blob";
-                    var that = this.apis;
+                    var that = this;
                     req.onload = function() {
                         var blob = req.response;
                         var contentType = req.getResponseHeader("Content-Type") || "";
-                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\\r\\n";
-                        result += req.getAllResponseHeaders() + "\\r\\n";
+                        var result = "HTTP/1.1 "+req.status+" "+req.statusText+"\r\n";
+                        result += req.getAllResponseHeaders() + "\r\n";
 
                         if(req.response.size < 128000){
-                                var reader = new FileReader();
-                                reader.onload = function() {
-                                    that[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
-                                }
-                                reader.readAsText(blob);
+                            var reader = new FileReader();
+                            reader.onload = function() {
+                                that.apis[api_idx].methods[method_idx].request.choosen.result = result + reader.result;
+                            }
+                            reader.readAsText(blob);
                         }
                         else{
-                            that[api_idx].methods[method_idx].request.choosen.result = result + "[Content Truncated]";
+                            that.apis[api_idx].methods[method_idx].request.choosen.result = result + "[Content Truncated]";
                         }
 
                         if(req.status>=200 && req.status < 300){
 
-                            that[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
-                            that[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
-                            var filename = url.substr(url.lastIndexOf('/') + 1);
-                            that[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
+                            that.apis[api_idx].methods[method_idx].request.choosen.rawResult = req.response;
+                            that.apis[api_idx].methods[method_idx].request.choosen.resultContentType = contentType;
+                            var url_segment = url.replace("//"+that.host,'').split("/");
+                            url_segment.shift();
+                            var filename = url_segment.join("-")+that.getFileExtension(contentType);
+                            that.apis[api_idx].methods[method_idx].request.choosen.resultFileName = filename;
                         }
                         else{
-                            that[api_idx].methods[method_idx].request.choosen.rawResult = "";
-                            that[api_idx].methods[method_idx].request.choosen.resultContentType = "";
-                            that[api_idx].methods[method_idx].request.choosen.resultFileName = undefined;
-                            that[api_idx].methods[method_idx].request.choosen.result = result;
+                            that.apis[api_idx].methods[method_idx].request.choosen.rawResult = "";
+                            that.apis[api_idx].methods[method_idx].request.choosen.resultContentType = "";
+                            that.apis[api_idx].methods[method_idx].request.choosen.resultFileName = undefined;
+                            that.apis[api_idx].methods[method_idx].request.choosen.result = result;
                         }
 
                     };
