@@ -207,6 +207,7 @@ function getTemplate() {
                                                                 <div class="grey lighten-3 console padding-all">
                                                                     <span class="bold red-text">{{method.name.toUpperCase()}}</span> <a v-bind:href="getURL(method,api.path)">{{getURL(method,api.path)}}</a> HTTP/1.1
                                                                     <div><span class="bold">Host:</span> {{host}}</div>
+                                                                    <div v-if="userAgent"><span class="bold">User-Agent:</span> {{userAgent}}</div>
                                                                     <div v-for="(value,key) in method.request.choosen.headers"><span class="bold">{{key}}:</span> {{value}}</div>
                                                                     <div v-if="computeBody(method)"><pre>{{computeBody(method)}}</pre></div>
                                                                 </div>
@@ -340,6 +341,9 @@ function getTemplate() {
                     }
 
                     return Object.keys(result).sort().join(", ");
+                }
+                , userAgent: function(){
+                    return navigator.userAgent;
                 }
             }
             , methods:{
