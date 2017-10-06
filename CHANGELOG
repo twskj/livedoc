@@ -1,4 +1,7 @@
-## 0.1.76 Oct 6, 2017
+## 0.1.79 Oct 6, 2017
+- Fixed "fs is not defined"
+
+## 0.1.78 Oct 6, 2017
 - Fixed "Path is not defined"
 
 ## 0.1.75 Aug 9, 2017

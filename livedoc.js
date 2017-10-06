@@ -1000,6 +1000,7 @@ function getFilenameWithoutExtension(filename) {
 }
 
 var mkdirSync = function (path) {
+    const fs = require('fs');
     try {
         fs.mkdirSync(path);
     }
@@ -1020,6 +1021,7 @@ var mkdirpSync = function (dirpath) {
 
 function copyFile(source, target, cb) {
     var cbCalled = false;
+    const fs = require('fs');
     function done(err) {
         if (cb && !cbCalled) {
             cb(err);
@@ -1075,6 +1077,8 @@ function replace(src, token, value) {
 
 function makeOffline(html, outputFilename, callback) {
     const Path = require('path');
+    const fs = require('fs');
+
     var outputFilename = Path.resolve(outputFilename);
     var dst = Path.dirname(outputFilename);
     var resource_folder = getFilenameWithoutExtension(outputFilename) + "_files";
