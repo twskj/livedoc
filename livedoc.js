@@ -994,6 +994,7 @@ function useEmbeddedFont(css) {
 }
 
 function getFilenameWithoutExtension(filename) {
+    const Path = require('path');
     var filename = Path.basename(filename);
     return filename.substr(0, filename.lastIndexOf('.')) || filename;
 }
@@ -1010,6 +1011,7 @@ var mkdirSync = function (path) {
 }
 
 var mkdirpSync = function (dirpath) {
+    const Path = require('path');
     var parts = dirpath.split(Path.sep);
     for (var i = 1; i <= parts.length; i++) {
         mkdirSync(Path.join.apply(null, parts.slice(0, i)));
