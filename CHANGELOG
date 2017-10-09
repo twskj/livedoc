@@ -1,3 +1,7 @@
+## 0.1.80 Oct 9, 2017
+- Add missing callback call in offline mode
+- Add try-catch to proper handling callback with error
+
 ## 0.1.79 Oct 6, 2017
 - Fixed "fs is not defined"
 
