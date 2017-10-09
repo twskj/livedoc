@@ -1046,23 +1046,28 @@ function copyFile(source, target, cb) {
 }
 
 function makeNoIcon(html, callback) {
-    var content = materialize_min_css;
-    content = useLocalFont(content);
-    html = html.replace('<i class="material-icons">close</i>', '<span class="material-icons lighten-4">X</span>');
-    html = html.replace('<i class="material-icons left">mode_edit</i>', '');
-    html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>', '');
-    html = html.replace('<i class="material-icons">add</i>', '<span style="font-size:2rem">+</span>');
-    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
-    html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = jquery_2_2_4_min_js;
-    html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = materialize_min_js;
-    html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = vue_min_js;
-    html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = colResizable_1_6_min_js;
-    html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
-    callback(null, html);
+    try {
+        var content = materialize_min_css;
+        content = useLocalFont(content);
+        html = html.replace('<i class="material-icons">close</i>', '<span class="material-icons lighten-4">X</span>');
+        html = html.replace('<i class="material-icons left">mode_edit</i>', '');
+        html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>', '');
+        html = html.replace('<i class="material-icons">add</i>', '<span style="font-size:2rem">+</span>');
+        html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
+        html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
+        content = jquery_2_2_4_min_js;
+        html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = materialize_min_js;
+        html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = vue_min_js;
+        html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = colResizable_1_6_min_js;
+        html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
+        callback(null, html);
+    }
+    catch(err){
+        callback(err);
+    }
 }
 
 //use this to avoid str.replace do the trick on $&, $`
@@ -1076,88 +1081,103 @@ function replace(src, token, value) {
 }
 
 function makeOffline(html, outputFilename, callback) {
-    const Path = require('path');
-    const fs = require('fs');
+    try{
+        const Path = require('path');
+        const fs = require('fs');
 
-    var outputFilename = Path.resolve(outputFilename);
-    var dst = Path.dirname(outputFilename);
-    var resource_folder = getFilenameWithoutExtension(outputFilename) + "_files";
-    var dst_resource_dir = Path.join(dst, resource_folder);
-    mkdirpSync(dst_resource_dir);
-    mkdirpSync(dst_resource_dir + Path.sep + "js");
-    mkdirpSync(dst_resource_dir + Path.sep + "css");
-    mkdirpSync(Path.join(dst_resource_dir, "fonts", "roboto"));
-    mkdirpSync(Path.join(dst_resource_dir, "fonts", "material"));
+        var outputFilename = Path.resolve(outputFilename);
+        var dst = Path.dirname(outputFilename);
+        var resource_folder = getFilenameWithoutExtension(outputFilename) + "_files";
+        var dst_resource_dir = Path.join(dst, resource_folder);
+        mkdirpSync(dst_resource_dir);
+        mkdirpSync(dst_resource_dir + Path.sep + "js");
+        mkdirpSync(dst_resource_dir + Path.sep + "css");
+        mkdirpSync(Path.join(dst_resource_dir, "fonts", "roboto"));
+        mkdirpSync(Path.join(dst_resource_dir, "fonts", "material"));
 
-    template_files = ["jquery-2.2.4.min.js", "materialize.min.css", "materialize.min.js", "vue.min.js", "colResizable-1.6.min.js"
-        , "fonts" + Path.sep + "material" + Path.sep + "material_icon.woff2"
-        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Bold.woff2"
-        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Light.woff2"
-        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Regular.woff2"
-        , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Thin.woff2"
-    ];
+        template_files = ["jquery-2.2.4.min.js", "materialize.min.css", "materialize.min.js", "vue.min.js", "colResizable-1.6.min.js"
+            , "fonts" + Path.sep + "material" + Path.sep + "material_icon.woff2"
+            , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Bold.woff2"
+            , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Light.woff2"
+            , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Regular.woff2"
+            , "fonts" + Path.sep + "roboto" + Path.sep + "Roboto-Thin.woff2"
+        ];
 
-    //icon.css' content needs dynamic path
-    var data = icon_css;
-    data = data.replace("url('fonts/material/material_icon.woff2')", "url('../fonts/material/material_icon.woff2')");
-    fs.writeFileSync(Path.join(dst_resource_dir, "css", "icon.css"), data);
-    var templateDir = Path.join(__dirname, "template");
-    var target_dir = "";
-    var fileExt = "";
+        //icon.css' content needs dynamic path
+        var data = icon_css;
+        data = data.replace("url('fonts/material/material_icon.woff2')", "url('../fonts/material/material_icon.woff2')");
+        fs.writeFileSync(Path.join(dst_resource_dir, "css", "icon.css"), data);
+        var templateDir = Path.join(__dirname, "template");
+        var target_dir = "";
+        var fileExt = "";
 
-    var count = 0;
-    for (var i = 0; i < template_files.length; i++) {
-        if (template_files[i].toLowerCase().endsWith(".css")) {
-            target_dir = "css";
-        }
-        else if (template_files[i].toLowerCase().endsWith(".js")) {
-            target_dir = "js";
-        }
-        else {
-            target_dir = "";
-        }
-        copyFile(Path.join(templateDir, template_files[i]), Path.join(dst_resource_dir, target_dir, template_files[i]), function (err) {
-            if (err) {
-                console.log(err);
+        var count = 0;
+        for (var i = 0; i < template_files.length; i++) {
+            if (template_files[i].toLowerCase().endsWith(".css")) {
+                target_dir = "css";
             }
-            count++;
-        });
+            else if (template_files[i].toLowerCase().endsWith(".js")) {
+                target_dir = "js";
+            }
+            else {
+                target_dir = "";
+            }
+            copyFile(Path.join(templateDir, template_files[i]), Path.join(dst_resource_dir, target_dir, template_files[i]), function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                count++;
+            });
+        }
+
+        var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="' + resource_folder + '/css/materialize.min.css">')
+            .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="' + resource_folder + '/css/icon.css" rel="stylesheet">')
+            .replace('__JQUERY_PLACEHOLDER__', '<script src="' + resource_folder + '/js/jquery-2.2.4.min.js"></script>')
+            .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="' + resource_folder + '/js/materialize.min.js"></script>')
+            .replace('__VUE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/vue.min.js"></script>')
+            .replace('__COLRESIZE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/colResizable-1.6.min.js"></script>');
+        fs.writeFileSync(outputFilename, html, 'utf8');
+        callback(null);
     }
-
-    var html = html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="' + resource_folder + '/css/materialize.min.css">')
-        .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="' + resource_folder + '/css/icon.css" rel="stylesheet">')
-        .replace('__JQUERY_PLACEHOLDER__', '<script src="' + resource_folder + '/js/jquery-2.2.4.min.js"></script>')
-        .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="' + resource_folder + '/js/materialize.min.js"></script>')
-        .replace('__VUE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/vue.min.js"></script>')
-        .replace('__COLRESIZE_PLACEHOLDER__', '<script src="' + resource_folder + '/js/colResizable-1.6.min.js"></script>');
-    fs.writeFileSync(outputFilename, html, 'utf8');
-
+    catch(err){
+        callback(err);
+    }
 }
 
 function makeLite(html, callback) {
-    callback(null, html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
-        .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
-        .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
-        .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
-        .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
-        .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://cdn.jsdelivr.net/gh/alvaro-prieto/colResizable@1.6.0/colResizable-1.6.min.js"></script>'));
+    try {
+        callback(null, html.replace('__MATERIAL_CSS_PLACEHOLDER__', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">')
+            .replace('__MATERIAL_ICON_PLACEHOLDER__', '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">')
+            .replace('__JQUERY_PLACEHOLDER__', '<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>')
+            .replace('__MATERIAL_JS_PLACEHOLDER__', '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>')
+            .replace('__VUE_PLACEHOLDER__', '<script src="https://unpkg.com/vue@2.1.10/dist/vue.min.js"></script>')
+            .replace('__COLRESIZE_PLACEHOLDER__', '<script src="https://cdn.jsdelivr.net/gh/alvaro-prieto/colResizable@1.6.0/colResizable-1.6.min.js"></script>'));
+    }
+    catch(err){
+        callback(err)
+    }
 }
 
 function makeSingleFile(html, callback) {
 
-    var content = materialize_noRoboto_min_css;
-    content = useEmbeddedFont(content);
-    html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
-    html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
-    content = jquery_2_2_4_min_js;
-    html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = materialize_min_js;
-    html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = vue_min_js;
-    html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
-    content = colResizable_1_6_min_js;
-    html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
-    callback(null, html);
+    try {
+        var content = materialize_noRoboto_min_css;
+        content = useEmbeddedFont(content);
+        html = replace(html, '__MATERIAL_CSS_PLACEHOLDER__', '<style>' + content + '</style>');
+        html = replace(html, '__MATERIAL_ICON_PLACEHOLDER__', '');
+        content = jquery_2_2_4_min_js;
+        html = replace(html, '__JQUERY_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = materialize_min_js;
+        html = replace(html, '__MATERIAL_JS_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = vue_min_js;
+        html = replace(html, '__VUE_PLACEHOLDER__', '<script>' + content + '</script>');
+        content = colResizable_1_6_min_js;
+        html = replace(html, '__COLRESIZE_PLACEHOLDER__', '<script>' + content + '</script>')
+        callback(null, html);
+    }
+    catch(err){
+        callback(err);
+    }
 }
 
 function generateHTML(data, config, callback) {
@@ -1290,13 +1310,13 @@ function generateHTML(data, config, callback) {
 
     if (config.mode.toLowerCase() === "offline") {
         var outputFilename = config.outputFilename || "doc.html";
-        makeOffline(html, outputFilename, callback);
+        return makeOffline(html, outputFilename, callback);
     }
     else if (config.mode.toLowerCase() === "noicon") {
-        makeNoIcon(html, callback);
+        return makeNoIcon(html, callback);
     }
     else if (config.mode.toLowerCase() === "lite") {
-        makeLite(html, callback);
+        return makeLite(html, callback);
     }
     else {
         return makeSingleFile(html, callback);
