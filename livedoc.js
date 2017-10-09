@@ -1233,7 +1233,7 @@ function generateHTML(data, config, callback) {
         , white: ["#000000", "#000000"]
     }
 
-    var radioColor = radioColorMap[config.mainColor] || radioColorMap["blue"];
+    var radioColor = "#333"; //radioColorMap[config.mainColor] || radioColorMap["blue"];
     var textInputColor = textInputColorMap[config.mainColor] || textInputColorMap["blue"];
 
     config.pathParamLeftToken = config.pathParamLeftToken || ":";
