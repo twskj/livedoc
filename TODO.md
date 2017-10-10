@@ -5,4 +5,5 @@
 [ ] make default value adjustable?
 [ ] Form input's color follow primary color
 [ ] ColResize-able really drain the resource. Can it be implement better?
-[ ] Radio button color need to be determined by the theme color
+[ ] Radio button's color need to be determined by the theme color
+[ ] Section Header's color to be determined by the theme color
