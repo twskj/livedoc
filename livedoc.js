@@ -93,10 +93,10 @@ function getTemplate() {
                                                     </thead>
                                                     <tbody>
                                                         <tr v-for="param in method.params">
-                                                            <td><div class="lpad5px">{{param.name}}</div></td>
-                                                            <td><div class="lpad5px">{{param.location}}</div></td>
+                                                            <td><p class="lpad5px">{{param.name}}</p></td>
+                                                            <td><p class="lpad5px">{{param.location}}</p></td>
                                                             __PARAM_DESC_PLACEHOLDER__
-                                                            <td><div class="lpad5px">{{param.required ? 'Yes':'No'}}</div></td>
+                                                            <td><p class="lpad5px">{{param.required ? 'Yes':'No'}}</p></td>
                                                             <td><div class="lpad5px"><pre><span v-for="token in getSchema(param.schema,param.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,param.schemaState)">{{token.val}}</span></pre></div></td>
                                                         </tr>
                                                     </tbody>
@@ -112,7 +112,7 @@ function getTemplate() {
                                                     </thead>
                                                     <tbody>
                                                         <tr v-for="res in method.responses">
-                                                            <td><div class="lpad5px" v-bind:class="[res.code === '200' ? 'green-text darken-2' : '']" >{{res.code}}</div></td>
+                                                            <td><p class="lpad5px" v-bind:class="[res.code === '200' ? 'green-text darken-2' : '']" >{{res.code}}</p></td>
                                                             __RES_DESC_PLACEHOLDER__
                                                             <td><div class="lpad5px"><pre><span v-for="token in getSchema(res.schema,res.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,res.schemaState)">{{token.val}}</span></pre></div></td>
                                                         </tr>
