@@ -1,4 +1,7 @@
-## 0.1.83 Nov 30, 2017
+## 0.1.85 Dec 1, 2017
+- Fix data alignment in table 
+
+## 0.1.84 Nov 30, 2017
 - Fix failing to generate html due to user input contains special characters
 
 ## 0.1.82 Oct 18, 2017
