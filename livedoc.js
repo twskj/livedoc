@@ -1070,6 +1070,41 @@ function makeNoIcon(html, callback) {
     }
 }
 
+
+
+function escapeSpecialReplacementPatterns(str) {
+    
+    /* | Pattern | Inserts                                                                  |
+     * |------------------------------------------------------------------------------------|
+     * |   $$    | Inserts a "$"                                                            |
+     * |   $&    | Inserts the matched substring.                                           |
+     * |   $`	 | Inserts the portion of the string that precedes the matched substring.   |
+     * |   $'	 | Inserts the portion of the string that follows the matched substring.    |
+     * |   $n	 | Where n is a positive integer less than 100, inserts the nth             |
+     * |         | parenthesized submatch string, provided the first argument was a RegExp  | 
+     * |         | object. Note that this is 1-indexed.                                     |
+     * --------------------------------------------------------------------------------------
+     * SEE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter
+     * */
+
+    return str.replace("$$", "__DOUBLE_DOLLAR__")
+        .replace("$&", "__DOLLAR_AMP__")
+        .replace("$`", "__DOLLAR_BACKTICK__")
+        .replace("$'", "__DOLLAR_SINGLE_QUOTE__")
+        .replace("$", "__ESCAPED_DOLLAR__")
+        ;
+}
+
+function UnEscapeSpecialReplacementPatterns(str) {
+
+    return str.replace("__DOUBLE_DOLLAR__", "$$$$")
+        .replace("__DOLLAR_AMP__", "$$$$")
+        .replace("__DOLLAR_BACKTICK__", "$$`")
+        .replace("__DOLLAR_SINGLE_QUOTE__", "$$'")
+        .replace("__ESCAPED_DOLLAR__", "$$")
+        ;
+}
+
 //use this to avoid str.replace do the trick on $&, $`
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 function replace(src, token, value) {
@@ -1251,6 +1286,7 @@ function generateHTML(data, config, callback) {
         data = JSON.stringify(data, null, config.indent || 0);
     }
 
+    data = escapeSpecialReplacementPatterns(data);
     var html = getTemplate().replace("__DATAPLACEHOLDER__", data);
     var date = new Date();
     var dateFormat = {
@@ -1305,6 +1341,8 @@ function generateHTML(data, config, callback) {
         html = html.replace("__HOME_ADDR_RIGHT-RIGHT_PLACEHOLDER__", "");
         html = html.replace("__HOME_ADDR_LEFT_PLACEHOLDER__", "");
     }
+
+    html = UnEscapeSpecialReplacementPatterns(html);
 
     config.mode = config.mode || "singlefile";
 

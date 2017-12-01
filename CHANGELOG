@@ -1,3 +1,6 @@
+## 0.1.83 Nov 30, 2017
+- Fix failing to generate html due to user input contains special characters
+
 ## 0.1.82 Oct 18, 2017
 - Add package-lock.json to work with npm5
 
