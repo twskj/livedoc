@@ -97,7 +97,7 @@ function getTemplate() {
                                                             <td><p class="lpad5px">{{param.location}}</p></td>
                                                             __PARAM_DESC_PLACEHOLDER__
                                                             <td><p class="lpad5px">{{param.required ? 'Yes':'No'}}</p></td>
-                                                            <td><div class="lpad5px"><pre><span v-for="token in getSchema(param.schema,param.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,param.schemaState)">{{token.val}}</span></pre></div></td>
+                                                            <td><p class="lpad5px"><pre><span v-for="token in getSchema(param.schema,param.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,param.schemaState)">{{token.val}}</span></pre></p></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -114,7 +114,7 @@ function getTemplate() {
                                                         <tr v-for="res in method.responses">
                                                             <td><p class="lpad5px" v-bind:class="[res.code === '200' ? 'green-text darken-2' : '']" >{{res.code}}</p></td>
                                                             __RES_DESC_PLACEHOLDER__
-                                                            <td><div class="lpad5px"><pre><span v-for="token in getSchema(res.schema,res.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,res.schemaState)">{{token.val}}</span></pre></div></td>
+                                                            <td><p class="lpad5px"><pre><span v-for="token in getSchema(res.schema,res.schemaState)" v-bind:class="{pointer: isFoldable(token)}" @click="schemaClicked(token,res.schemaState)">{{token.val}}</span></pre></p></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -1303,8 +1303,8 @@ function generateHTML(data, config, callback) {
     html = html.replace('"__PROTO__"', 'location.protocol.replace(":","")');
     html = html.replace('"__CURRENTHOST__"', 'location.host || "null"');
     html = replace(html, "__CONTAINER_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="grey-text text-darken-1" v-html="summary"></p>' : '<p class="grey-text text-darken-1">{{summary}}</p>');
-    html = replace(html, "__PARAM_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="param.desc"></div></td>' : '<td><div class="lpad5px">{{param.desc}}</div></td>');
-    html = replace(html, "__RES_DESC_PLACEHOLDER__", config.allowHtml ? '<td><div class="lpad5px" v-html="res.desc"></div></td>' : '<td><div class="lpad5px">{{res.desc}}</div></td>');
+    html = replace(html, "__PARAM_DESC_PLACEHOLDER__", config.allowHtml ? '<td><p class="lpad5px" v-html="param.desc"></p></td>' : '<td><p class="lpad5px">{{param.desc}}</p></td>');
+    html = replace(html, "__RES_DESC_PLACEHOLDER__", config.allowHtml ? '<td><p class="lpad5px" v-html="res.desc"></p></td>' : '<td><p class="lpad5px">{{res.desc}}</p></td>');
     html = replace(html, "__METHOD_SUMMARY_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.summary" v-html="method.summary"></p>' : '<p class="indent" v-if="method.summary">{{method.summary}}</p>');
     html = replace(html, "__METHOD_DESC_PLACEHOLDER__", config.allowHtml ? '<p class="indent" v-if="method.desc" v-html="method.desc"></p>' : '<p class="indent" v-if="method.desc">{{method.desc}}</p>');
     html = replace(html, "__PATH_PARAM_LEFT_TOKEN__", config.pathParamLeftToken);
