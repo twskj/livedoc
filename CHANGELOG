@@ -1,3 +1,7 @@
+
+## 0.1.86 Dec 2, 2017
+- Fix escaping bug
+
 ## 0.1.85 Dec 1, 2017
 - Fix data alignment in table 
 
