@@ -1,3 +1,5 @@
+## 0.1.87 Dec 3, 2017
+- Redone escaping $
 
 ## 0.1.86 Dec 2, 2017
 - Fix escaping bug

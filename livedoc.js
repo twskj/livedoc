@@ -1085,22 +1085,12 @@ function escapeSpecialReplacementPatterns(str) {
      * SEE https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_string_as_a_parameter
      * */
 
-    return str.replace(/\$\$/g, "__DOUBLE_DOLLAR__")
-        .replace(/\$&/g, "__DOLLAR_AMP__")
-        .replace(/\$`/g, "__DOLLAR_BACKTICK__")
-        .replace(/\$'/g, "__DOLLAR_SINGLE_QUOTE__")
-        .replace(/\$/g, "__ESCAPED_DOLLAR__")
-        ;
+    return str.replace(/\$/g, "__ESCAPED_DOLLAR_SIGN__");
 }
 
 function UnEscapeSpecialReplacementPatterns(str) {
 
-    return str.replace(/__DOUBLE_DOLLAR__/g, "$$$$")
-        .replace(/__DOLLAR_AMP__/g, "$$$$")
-        .replace(/__DOLLAR_BACKTICK__/g, "$$`")
-        .replace(/__DOLLAR_SINGLE_QUOTE__/g, "$$'")
-        .replace(/__ESCAPED_DOLLAR__/g, "$$")
-        ;
+    return str.replace(/__ESCAPED_DOLLAR_SIGN__/g, "$$");
 }
 
 //use this to avoid str.replace do the trick on $&, $`
