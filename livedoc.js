@@ -194,7 +194,7 @@ function getTemplate() {
                                                                             <input class="file-path" type="text" :placeholder="param.desc.replace(/<p>(.*)<\\/p>/i,'$1')" v-model="method.params[param_idx].value.filenames">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="input-field" v-if="param.location !== 'body'">
+                                                                    <div class="input-field" v-if="param.location !== 'body' &&  param.type !== 'file'">
                                                                         <label v-bind:for="api_idx+'_'+method_idx+'_'+param.name" :class="[method.params[param_idx].value ? 'active' : '']">{{param.name}}</label>
                                                                         <input v-bind:id="api_idx+'_'+method_idx+'_'+param.name" type="text" v-model="method.params[param_idx].value">
                                                                     </div>

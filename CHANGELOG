@@ -1,4 +1,7 @@
 
+## 0.1.95 Jun 27, 2018
+- Fix incorrectly show file parameter
+
 ## 0.1.94 Jun 27, 2018
 - Fix incorrectly show body parameter along with raw body panel
 
