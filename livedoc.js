@@ -184,7 +184,7 @@ function getTemplate() {
                                                             </div>
                                                             <h5>Parameters</h5>
                                                             <div class="tool-panel round-border">
-                                                                <div v-for="(param,param_idx) in method.params">
+                                                                <div v-for="(param,param_idx) in method.params" v-if="!hasBodyParam(method.params)">
                                                                     <div class="file-field input-field" v-if="param.type==='file'">
                                                                         <div class="btn" :class="[getThemeColor(method.name,true)]">
                                                                             <span>{{param.name}}</span>
