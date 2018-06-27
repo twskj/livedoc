@@ -1,5 +1,8 @@
-## 0.1.93 Jun 27, 2018
+
+## 0.1.94 Jun 27, 2018
 - Fix incorrectly show body parameter along with raw body panel
+
+## 0.1.93 Jun 27, 2018 [YANKED]
 
 ## 0.1.92 Dec 25, 2017
 - Fix file upload's placeholder contains <p> when markdown is enable

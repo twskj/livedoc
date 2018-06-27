@@ -184,7 +184,7 @@ function getTemplate() {
                                                             </div>
                                                             <h5>Parameters</h5>
                                                             <div class="tool-panel round-border">
-                                                                <div v-for="(param,param_idx) in method.params" v-if="!hasBodyParam(method.params)">
+                                                                <div v-for="(param,param_idx) in method.params">
                                                                     <div class="file-field input-field" v-if="param.type==='file'">
                                                                         <div class="btn" :class="[getThemeColor(method.name,true)]">
                                                                             <span>{{param.name}}</span>
@@ -194,13 +194,13 @@ function getTemplate() {
                                                                             <input class="file-path" type="text" :placeholder="param.desc.replace(/<p>(.*)<\\/p>/i,'$1')" v-model="method.params[param_idx].value.filenames">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="input-field" v-if="param.type !== 'file'">
+                                                                    <div class="input-field" v-if="param.location !== 'body'">
                                                                         <label v-bind:for="api_idx+'_'+method_idx+'_'+param.name" :class="[method.params[param_idx].value ? 'active' : '']">{{param.name}}</label>
                                                                         <input v-bind:id="api_idx+'_'+method_idx+'_'+param.name" type="text" v-model="method.params[param_idx].value">
                                                                     </div>
                                                                 </div>
                                                                 <div v-if="hasBodyParam(method.params)">
-                                                                    <label  v-bind:for="api_idx+'_'+method_idx+'_requestBody'">Raw Body</label>
+                                                                    <label  v-bind:for="api_idx+'_'+method_idx+'_requestBody'">Body</label>
                                                                     <textarea v-bind:id="api_idx+'_'+method_idx+'_requestBody'" v-model="method.request.choosen.body"></textarea>
                                                                 </div>
                                                                 <h6 class="grey-text">Request</h6>
