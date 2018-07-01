@@ -270,24 +270,25 @@ function getTemplate() {
                             return;
                         }
                         newValue = newValue || "";
-                        var search_tags = this.tokenizeSearchText(newValue);
+                        newValue = newValue.toLowerCase();
+                        var search_tokens = new Set(this.tokenizeSearchText(newValue));
                         var includeTags = new Set();
                         var excludeTags = new Set();
                         var mustHaveTags = new Set();
 
-                        for(var i = 0;i<search_tags.length;i++){
+                        for(var token of search_tokens) {
 
-                            if(search_tags[i] === "" || search_tags[i] === '"'){
+                            if(token === "" || token === '"'){
                                 continue;
                             }
-                            else if(search_tags[i][0] === "-"){
-                                excludeTags.add(search_tags[i].substr(1));
+                            else if(token[0] === "-"){
+                                excludeTags.add(token.substr(1));
                             }
-                            else if(search_tags[i].length > 2 && search_tags[i][0] === '"' && search_tags[i].endsWith('"')){
-                                mustHaveTags.add(search_tags[i].substr(1,search_tags[i].length-2));
+                            else if(token.length > 2 && token[0] === '"' && token.endsWith('"')){
+                                mustHaveTags.add(token.substr(1,token.length-2));
                             }
-                            else if(search_tags[i][0] !== '"'){
-                                includeTags.add(search_tags[i]);
+                            else if(token[0] !== '"'){
+                                includeTags.add(token);
                             }
                         }
 
@@ -385,8 +386,8 @@ function getTemplate() {
                         return;
                     }
                     keyword = \`"\${keyword}"\`;
-                    var tags = this.appData.search.split(" ");
-
+                    var tags = this.tokenizeSearchText(this.appData.search);
+                    
                     var keyword_pos = tags.indexOf(keyword);
                     if(keyword_pos !== -1){
                         tags.splice(keyword_pos,1);
@@ -882,8 +883,46 @@ function getTemplate() {
                     }
                     this.appData.console = "";
                 }
-                , tokenizeSearchText: function(searchText){
-                    return searchText.toLowerCase().split(/[\\s,]+/);
+                , tokenizeSearchText: function(txt){
+                    var result = [];
+                    var in_quote = false;
+                    var start_idx = -1;
+                    var token;
+
+                    for(var i=0;i<txt.length;i++){
+                       
+                        if(txt[i] === " ") {
+                            
+                            if(in_quote) {
+                                continue;
+                            }
+                            if (start_idx === -1) {
+                                continue;
+                            }
+                            result.push(txt.substr(start_idx,i-start_idx));
+                            start_idx = -1;
+                        }
+                        else if(txt[i] === '"') {
+                            if(in_quote){
+                                result.push(txt.substr(start_idx,i-start_idx+1));
+                                start_idx = -1;
+                            }
+                            else {
+                                start_idx = i;
+                            }
+                            in_quote = !in_quote;
+                        }
+                        else if(start_idx === -1 && txt[i] !== " "){
+                            start_idx = i;
+                        }
+                    }
+                    if(start_idx != -1){
+                        token = txt.substr(start_idx).trim();
+                        if(token) {
+                            result.push(token);
+                        }
+                    }
+                    return result;
                 }
             }
             , data: __DATAPLACEHOLDER__
