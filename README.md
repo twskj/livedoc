@@ -101,5 +101,19 @@ npm install livedoc
 ## Example
 todo: add example here
 
+## Escaping Guide
+- Use `JSON.stringify` to do 1st pass escape
+- The second pass escape needed to escape reserve tokens of `string.proto.replace()`
+
+| Pattern |                                Inserts                                 |
+| ------- | ---------------------------------------------------------------------- |
+| $$      | Inserts a "$".                                                         |
+| $&      | Inserts the matched substring.                                         |
+| $`      | Inserts the portion of the string that precedes the matched substring. |
+| $'      | Inserts the portion of the string that follows the matched substring.  |
+| $n      | Where n is a positive integer less than 100                            |
+
+> $n inserts the nth parenthesized submatch string, provided the first argument was a RegExp object. Note that this is 1-indexed.
+
 ## License
 The contents of this repository are covered under the [MIT License](LICENSE)

@@ -16,7 +16,7 @@ function getTemplate() {
     __CUSTOM_CSS_PLACEHOLDER__
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
-    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding-bottom:1.5rem}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #555555}[type=radio].with-gap:checked+label:after{border-radius:50%;border:1px solid __RADIO_BUTTON_COLOR__;background-color:__RADIO_BUTTON_COLOR__;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}input[type=text]:focus:not([readonly])+label{color:#666}input[type=text]:focus:not([readonly]){border-bottom:1px solid __TEXT_INPUT_COLOR__;box-shadow:0 1px 0 0 __TEXT_INPUT_SHADOW_COLOR__}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainerR{position:absolute;top:0;right:1rem}.navButtonContainerL{position:absolute;top:0;left:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}.lpad5px{padding-left:5px}th.status{width:64px}th.desc{width:256px}th.location,th.name{width:128px}th.required{width:90px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}table.compact input{margin:0;border-bottom:0;height:1rem}strong{font-weight:900}.b-margin-one-half{margin-bottom:1.5rem}.pad-top{padding-top:1rem}html{color:rgba(53,53,53,0.87)}.slim-grey-border{border:0.5px solid #bdbdbd}__CODESTYLE_PLACEHOLDER__</style>
+    <style>.pointer,footer>a{cursor:pointer}[v-cloak]{display:none}body{background:#fdfdfd}.indent{padding-left:1em}.r-margin{margin-right:2em}.r-indent{padding-right:1em}.padding-all{padding:1em}.b-margin{margin-bottom:1em}no-overflow{overflow:auto}.bold{font-weight:700}.api-block{border:1px solid;margin:.5rem 0 1.5rem}.api-header{font-size:13pt}.api-header>.api-title{font-size:13pt;padding:.5em;display:inline-block}.tag-container{padding:1em .3em 0 .3em;height:2.2em}.tag-container>.tag{display:inline-block;margin-right:10px;padding:0 .5rem;white-space:nowrap;position:relative;min-width:3rem;text-align:center;background:linear-gradient(to bottom,#fed970 0,#febc4a 100%);background-color:#FEC95B;color:#963;font-weight:700;text-decoration:none;text-shadow:0 1px rgba(255,255,255,.4);border-top:1px solid #EDB14A;border-bottom:1px solid #CE922E;border-right:1px solid #DCA03B;border-left:1px solid #EDB14A;border-radius:3px;box-shadow:inset 0 1px #FEE395,0 1px 2px rgba(0,0,0,.21)}.round-border{border-radius:3px}.showReqBtn{padding-bottom:1.5rem}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-leave-active{transition:opacity .05s}.fade-enter,.fade-leave-to{opacity:0}.tool-panel{border:1px solid #9e9e9e;padding:1em 1em 0 1em;margin:1rem 0 1rem 0}[type=radio].with-gap:checked+label:before{border-radius:50%;border:2px solid #555555}[type=radio].with-gap:checked+label:after{border-radius:50%;border:1px solid __RADIO_BUTTON_COLOR__;background-color:__RADIO_BUTTON_COLOR__;z-index:0;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5)}input[type=text]:focus:not([readonly])+label{color:#666}input[type=text]:focus:not([readonly]){border-bottom:1px solid __TEXT_INPUT_COLOR__;box-shadow:0 1px 0 0 __TEXT_INPUT_SHADOW_COLOR__}textarea{white-space:pre;overflow:scroll;overflow-x:scroll;overflow-y:scroll;height:10em}.console{font-family:monospace;font-weight:400;font-style:normal}.warning-yellow-border{border-color:#ffc400}blockquote{padding:.5em 0 .5em 1em}#toast-container{min-width:100%;bottom:0;top:95%;right:0;left:0}::-webkit-input-placeholder{color:#DDD}::-moz-placeholder{color:#DDD}:-ms-input-placeholder{color:#DDD}:-moz-placeholder{color:#DDD}body{display:flex;min-height:100vh;flex-direction:column}main{flex:1 0 auto}.navButtonContainerR{position:absolute;top:0;right:1rem}.navButtonContainerL{position:absolute;top:0;left:1rem}.navButton{padding:0 1rem}footer>a{color:#f5f5f5}td{vertical-align:top}h1{font-size:2.75rem}h2{font-size:2.2rem}h3{font-size:2rem}h4{font-size:1.75rem}h5{font-size:1.5rem}h6{font-size:1.28rem}table.fixed{table-layout:fixed}table.fixed td{overflow-x:auto}.lpad5px{padding-left:5px}th.status{width:64px}th.desc{width:256px}th.location,th.name{width:128px}th.required{width:90px}no-padding-bot{padding-bottom:0}.red-border{border-color:#ff8a80}.pink-border{border-color:#ff80ab}.purple-border{border-color:#ea80fc}.deep-purple-border{border-color:#b388ff}.indigo-border{border-color:#8c9eff}.blue-border{border-color:#82b1ff}.light-blue-border{border-color:#80d8ff}.cyan-border{border-color:#4dd0e1}.teal-border{border-color:#80cbc4}.green-border{border-color:#4caf50}.light-green-border{border-color:#aed581}.lime-border{border-color:#c0ca33}.yellow-border{border-color:#fdd835}.amber-border{border-color:#ffb300}.orange-border{border-color:#ffd180}.deep-orange-border{border-color:#ff9e80}.brown-border{border-color:#bcaaa4}.grey-border{border-color:#bdbdbd}.blue-grey-border{border-color:#90a4ae}.white-border{border-color:#fdfdfd}.slide-vert-enter-active{transition:all .4s ease}.slide-vert-leave-active{transition:all .2s ease}.slide-vert-enter,.slide-vert-leave-to{transform:translateY(100%)}table.compact input{margin:0;border-bottom:0;height:1rem}strong{font-weight:900}.b-margin-one-half{margin-bottom:1.5rem}.pad-top{padding-top:1rem}html{color:rgba(53,53,53,0.87)}.slim-grey-border{border:0.5px solid #bdbdbd}blockquote.not-found{border-left:5px solid #e0e0e0}#search{line-height: normal}__CODESTYLE_PLACEHOLDER__</style>
     <title></title>
 </head>
 <body>
@@ -25,8 +25,8 @@ function getTemplate() {
             <nav :class="getThemeColor('default')" role="navigation">
                 <div class="nav-wrapper container">
                     <div class="input-field">
-                        <input id="search" type="search" placeholder="search by tag" title="Use - prefix to exclude unwanted tags. Ex: -POST" required v-model="filterByTag" @keyup.enter="$event.target.blur()">
-                        <label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>
+                        <input id="search" autocomplete="off" type="search" placeholder="search by tag" title="Use - prefix to exclude unwanted tags. Ex: -POST" required v-model="filterByTag" @keyup.enter="$event.target.blur()">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
                 </div>
@@ -54,13 +54,14 @@ function getTemplate() {
                     __CONTAINER_SUMMARY_PLACEHOLDER__
                     <div v-for="(value,key) in metadata"><span class="bold">{{key}}</span><span class="grey-text text-darken-1">: </span><span class="grey-text text-darken-1" v-html="value"></span></div>
                     <div v-if="getAllTags.length > 0" class="pad-top">
-                        <span class="bold">Available Tags: </span>{{getAllTags}}
+                    <span class="bold">Available Tags: </span><span class="pointer blue-text text-lighten-1" v-for="(tag, index) in getAllTags" @click="addToSearch(tag)">{{index===getAllTags.length-1? tag:tag+", "}}</span>
                     </div>
                 </div>
             </div>
 
             <div class="section">
-                <h5>Paths</h5>
+                <h5 v-if="getAllTags.length > 0">Paths</h5>
+                <blockquote class="not-found" v-else>No results containing all your search terms were found</blockquote>
                 <div class="indent" v-for="(api,api_idx) in apis" v-if="api.visible">
                     <div class="indent">
                         <div class="row pointer blue-text text-lighten-1"><span @click="api.showMe=!api.showMe">{{api.path}}</span></div>
@@ -269,20 +270,24 @@ function getTemplate() {
                             return;
                         }
                         newValue = newValue || "";
-                        var search_tags = newValue.toLowerCase().split(/[\\s,]+/);
-                        var includeTags = [];
-                        var excludeTags = [];
+                        var search_tags = this.tokenizeSearchText(newValue);
+                        var includeTags = new Set();
+                        var excludeTags = new Set();
+                        var mustHaveTags = new Set();
 
                         for(var i = 0;i<search_tags.length;i++){
 
-                            if(search_tags[i] === ""){
+                            if(search_tags[i] === "" || search_tags[i] === '"'){
                                 continue;
                             }
                             else if(search_tags[i][0] === "-"){
-                                excludeTags.push(search_tags[i].substr(1));
+                                excludeTags.add(search_tags[i].substr(1));
                             }
-                            else{
-                                includeTags.push(search_tags[i]);
+                            else if(search_tags[i].length > 2 && search_tags[i][0] === '"' && search_tags[i].endsWith('"')){
+                                mustHaveTags.add(search_tags[i].substr(1,search_tags[i].length-2));
+                            }
+                            else if(search_tags[i][0] !== '"'){
+                                includeTags.add(search_tags[i]);
                             }
                         }
 
@@ -293,17 +298,31 @@ function getTemplate() {
                             for(var j=0;j<api.methods.length;j++){
 
                                 var method = api.methods[j];
-                                var visible = includeTags.length == 0;
-
+                                var visible = includeTags.size == 0 && mustHaveTags.size == 0;
+                                var matched = false;
+                                var tags = new Set();
                                 for(var k=0;k<method.tags.length;k++){
                                     var tag = method.tags[k].toLowerCase();
-                                    if(excludeTags.indexOf(tag) > -1){
+                                    tags.add(tag);
+                                    if(excludeTags.has(tag)){
                                         visible = false;
+                                        matched = true;
                                         break;
                                     }
-                                    for(var l=0;l<includeTags.length;l++){
-                                        if(tag.startsWith(includeTags[l])){
+                                    for(var t of includeTags){
+                                        if(tag.startsWith(t)){
                                             visible = true;
+                                            matched = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                
+                                if(!matched && !visible && mustHaveTags.size > 0){
+                                    visible = true;
+                                    for(var musthavetag of mustHaveTags){
+                                        if(!tags.has(musthavetag)){
+                                            visible = false
                                             break;
                                         }
                                     }
@@ -340,7 +359,7 @@ function getTemplate() {
                         }
                     }
 
-                    return Object.keys(result).sort().join(", ");
+                    return Object.keys(result).sort();
                 }
                 , userAgent: function(){
                     return navigator.userAgent;
@@ -365,13 +384,18 @@ function getTemplate() {
                     if(!this.appConfig.showNav){
                         return;
                     }
+                    keyword = \`"\${keyword}"\`;
                     var tags = this.appData.search.split(" ");
-                    tags = new Set(tags);
-                    if(tags.has(keyword)){
-                        return;
-                    }
 
-                    this.filterByTag = this.appData.search+" "+keyword;
+                    var keyword_pos = tags.indexOf(keyword);
+                    if(keyword_pos !== -1){
+                        tags.splice(keyword_pos,1);
+                    }
+                    else{
+                        tags.push(keyword);
+                    }
+                    this.appData.search = tags.join(' ');
+                    this.filterByTag = this.appData.search;
                 }
                 ,getDestHost: function(scheme){
                     var dest_port = ":"+this.port[scheme];
@@ -857,6 +881,9 @@ function getTemplate() {
                         this.appData.consoleLogs.push("> "+this.appData.console);
                     }
                     this.appData.console = "";
+                }
+                , tokenizeSearchText: function(searchText){
+                    return searchText.toLowerCase().split(/[\\s,]+/);
                 }
             }
             , data: __DATAPLACEHOLDER__

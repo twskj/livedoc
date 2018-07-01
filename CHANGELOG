@@ -1,4 +1,12 @@
 
+## 0.1.96 Jun 30, 2018
+- Added "must have" search by surrounding search term with double quotation
+- Update search bar now play nice with double click
+- Show "no result found"
+- Click on tag default to double quote
+- Toggle tags
+- Available Tags are now clickable
+
 ## 0.1.95 Jun 27, 2018
 - Fix incorrectly show file parameter
 
