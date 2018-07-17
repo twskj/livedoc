@@ -1,4 +1,8 @@
 
+## 0.1.98 July 15, 2018
+- handle required in schema
+- syntax highlight
+
 ## 0.1.96 Jun 30, 2018
 - Added "must have" search by surrounding search term with double quotation
 - Update search bar now play nice with double click
