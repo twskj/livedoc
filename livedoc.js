@@ -27,7 +27,7 @@ function getTemplate() {
                     <div class="input-field">
                         <input id="search" autocomplete="off" type="search" placeholder="search by tag" title="Use - prefix to exclude unwanted tags. Ex: -POST" required v-model="filterByTag" @keyup.enter="$event.target.blur()">
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
+                        <i class="material-icons" @click="clearSearch()">close</i>
                     </div>
                 </div>
                 <div class="navButtonContainerR">
@@ -1090,6 +1090,10 @@ function getTemplate() {
                     }
                     return result;
                 }
+                , clearSearch: function() {
+                    this.appData.search = "";
+                    this.filterByTag = "";
+                }
             }
             , data: __DATAPLACEHOLDER__
             , mounted: function(){
@@ -1282,7 +1286,7 @@ function makeNoIcon(html, callback) {
     try {
         var content = materialize_min_css;
         content = useLocalFont(content);
-        html = html.replace('<i class="material-icons">close</i>', '<span class="material-icons lighten-4">X</span>');
+        html = html.replace('<i class="material-icons" @click="clearSearch()">close</i>', '<span class="material-icons lighten-4" >X</span>');
         html = html.replace('<i class="material-icons left">mode_edit</i>', '');
         html = html.replace('<label class="label-icon" for="search"><i class="material-icons">search by tags</i></label>', '');
         html = html.replace('<i class="material-icons">add</i>', '<span style="font-size:2rem">+</span>');
