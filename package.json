@@ -4,24 +4,24 @@
     "description": "A single page document generator for REST API",
     "main": "livedoc.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/twskj/livedoc.git"
+        "type": "git",
+        "url": "git+https://github.com/twskj/livedoc.git"
     },
     "keywords": [
-      "API",
-      "Document",
-      "Doc",
-      "gen",
-      "generator",
-      "REST"
+        "API",
+        "Document",
+        "Doc",
+        "gen",
+        "generator",
+        "REST"
     ],
     "author": "TJ",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/twskj/livedoc/issues"
+        "url": "https://github.com/twskj/livedoc/issues"
     },
     "homepage": "https://github.com/twskj/livedoc#readme"
-  }
+}
