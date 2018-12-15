@@ -1,3 +1,5 @@
+## 0.1.99 Dec 15, 2018
+- move charset up so browser can detect properly
 
 ## 0.1.98 July 15, 2018
 - handle required in schema
