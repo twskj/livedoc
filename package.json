@@ -1,6 +1,6 @@
 {
     "name": "livedoc",
-    "version": "0.1.99",
+    "version": "0.1.100",
     "description": "A single page document generator for REST API",
     "main": "livedoc.js",
     "scripts": {
@@ -18,7 +18,7 @@
         "generator",
         "REST"
     ],
-    "author": "TJ",
+    "author": "twskj",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/twskj/livedoc/issues"

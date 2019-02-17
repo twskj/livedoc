@@ -41,7 +41,7 @@ function getTemplate() {
         </div>
 
         <transition name="slide-vert">
-          <div v-show="appData.showConsole" id="consolePanel" class="input-field" style="background-color: rgba(0,0,0,.67);color: whitesmoke; position: absolute; left:0;right:-1; z-index: 2; padding: 1.5rem;">
+          <div v-show="appData.showConsole" id="consolePanel" class="input-field" style="background-color: rgba(0,0,0,.67);color: whitesmoke; position: absolute; left:0;right:0; z-index: 2; padding: 1.5rem;">
             <div v-for="log in appData.consoleLogs">{{log}}</div>
             <input type="text" spellcheck="false" v-model="appData.console" @keyup.enter="parseCmd" @keydown.tab.prevent @keyup.tab="autoComplete" ref="txtConsole">
           </div>
